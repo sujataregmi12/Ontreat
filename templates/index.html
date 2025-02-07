@@ -7,20 +7,27 @@
   <title>Ontreat - Python/Django Development</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<style>
-  .btn {
-  padding: 15px 30px; /* Adjust padding for bigger button size */
-  font-size: 18px; /* Adjust font size to make the text larger */
-}
+  <style>
+    .btn {
+      padding: 15px 30px;
+      /* Adjust padding for bigger button size */
+      font-size: 18px;
+      /* Adjust font size to make the text larger */
+    }
 
-.nav-link {
-  color: white; /* Ensure the link text color is visible */
-}
-</style>
-  </head>
+    .nav-link {
+      color: white;
+      /* Ensure the link text color is visible */
+    }
+
+    .navbar {
+      background-color: #295297;
+    }
+  </style>
+</head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Ontreat</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -30,19 +37,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">SERVICES</a>
+            <a class="nav-link" aria-current="page" href="#services">SERVICES</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">ABOUT</a>
+            <a class="nav-link" href="#about">ABOUT</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">PORTFOLIO</a>
+            <a class="nav-link" href="#portfolio">PORTFOLIO</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">TEAM</a>
+            <a class="nav-link" href="#team">TEAM</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">CONTACT</a>
+            <a class="nav-link" href="#contact">CONTACT</a>
           </li>
         </ul>
       </div>
@@ -52,416 +59,402 @@
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img src="/static/header-bg1 (1).jpg" class="d-block w-100" alt="..." style="height: 500px; object-fit: cover;">
-        <div class="carousel-caption d-none d-md-block  " >
+        <img src="/static/header-bg1 (1).jpg" class="d-block w-100" alt="..." style="height: 600px; object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block  ">
           <h1>Python/Django developer at remote</h1>
           <h3>A agile team that you can count on</h3>
           <ul>
             <li><button type="button" class="btn btn-secondary">
                 <a class="nav-link active" aria-current="page" href="#services">TELL ME MORE</a>
-            </button></li>
+              </button></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-</div>
-
-
-<main>
-  <section class="py-5 text-center container">
-      <div class="row py-lg">
-          <div class="col-lg-6 col-md-8 mx-auto">
-              <section id="services">
-              </section>
-              <h1 class="fw-light-12"><b><br><br>SERVICES</b></h1>
-              <p class="lead text-body-secondary"><i>We specilize Python/Django Development and ...
-                      JavaScript.</i></p>
-          </div>
-      </div>
-  </section>
-
-  <div class="container">
-      <div class="row d-flex align-items-center justify-content-between ">
-          <div class="col">
-              <img class="bd-placeholder-img rounded-circle" width="100" height="100"
-                  src="data:image/jpeg;base64,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"
-                  alt="hello">
-              <h2 class="fw-normal"><b>Python</b></h2>
-              <p>Build custom application -<br> scraping, load testing, network <br>programming.
-              <p>
-
-          </div>
-          <div class="col">
-              <img class="bd-placeholder-img rounded-circle" width="100" height="100"
-                  src="https://i.pinimg.com/736x/3b/ca/eb/3bcaeb8fd287c48b18f48f4685dcd311.jpg"
-                  alt="hello">
-              <h2 class="fw-normal"><b>Django</b></h2>
-              <p>Get web application developed in worldclass framework - secure, fast, scalable.</p>
-
-          </div>
-          <div class="col">
-              <img class="bd-placeholder-img rounded-circle" width="100" height="100"
-                  src="https://www.ontreat.com/img/drf.png" alt="hello">
-              <h2 class="fw-normal"><b>Django Rest Framework</b></h2>
-              <p>RESTFul API for mobile App or JavaScript like ReactJS, Vue.js, Angular</p>
-
-          </div>
-          <div class="col">
-              <img class="bd-placeholder-img rounded-circle" width="100" height="100"
-                  src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*MsVTg6PhGE1f4CYEvy52ig.jpeg"
-                  alt="hello">
-              <h2 class="fw-normal"><b>JavaScript</b></h2>
-              <p>Blazing fast frotend development in Angular, React or you need advance tool in plain
-                  vanilla
-                  JavaScript.</p>
-          </div>
-      </div>
   </div>
-</main>
+
+
+  <main>
+    <section class="py-5 text-center container">
+      <div class="row py-lg">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <section id="services">
+          </section>
+          <h1 class="fw-light-12"><b><br><br>SERVICES</b></h1>
+          <p class="lead text-body-secondary"><i>We specilize Python/Django Development and ...
+              JavaScript.</i></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="row d-flex align-items-center justify-content-between ">
+        <div class="col">
+          <img class="bd-placeholder-img rounded-circle" width="100" height="100"
+            src="data:image/jpeg;base64,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"
+            alt="hello">
+          <h2 class="fw-normal"><b>Python</b></h2>
+          <p>Build custom application -<br> scraping, load testing, network <br>programming.
+          <p>
+
+        </div>
+        <div class="col">
+          <img class="bd-placeholder-img rounded-circle" width="100" height="100"
+            src="https://i.pinimg.com/736x/3b/ca/eb/3bcaeb8fd287c48b18f48f4685dcd311.jpg" alt="hello">
+          <h2 class="fw-normal"><b>Django</b></h2>
+          <p>Get web application developed in worldclass framework - secure, fast, scalable.</p>
+
+        </div>
+        <div class="col">
+          <img class="bd-placeholder-img rounded-circle" width="100" height="100"
+            src="https://www.ontreat.com/img/drf.png" alt="hello">
+          <h2 class="fw-normal"><b>Django Rest Framework</b></h2>
+          <p>RESTFul API for mobile App or JavaScript like ReactJS, Vue.js, Angular</p>
+
+        </div>
+        <div class="col">
+          <img class="bd-placeholder-img rounded-circle" width="100" height="100"
+            src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*MsVTg6PhGE1f4CYEvy52ig.jpeg" alt="hello">
+          <h2 class="fw-normal"><b>JavaScript</b></h2>
+          <p>Blazing fast frotend development in Angular, React or you need advance tool in plain
+            vanilla
+            JavaScript.</p>
+        </div>
+      </div>
+    </div>
+  </main>
 
 
 
   <main>
-                <section class="py-5 text-center container">
-                    <div class="row py-lg">
-                        <div class="col-lg-6 col-md-8 mx-auto">
-                            <section id="about">
-                                <h2 class="section-title"><b>ABOUT</b></h2>
-                            </section>
-                            <p class="lead text-body-secondary"><i>From MVP to full-scale product</i></p>
+    <section class="py-5 text-center container">
+      <div class="row py-lg">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <section id="about">
+            <h2 class="section-title"><br><br><b>ABOUT</b></h2>
+          </section>
+          <p class="lead text-body-secondary"><i>From MVP to full-scale product</i></p>
+  </main>
 
 
-</main>
-
-
- <main>
-                <section class="py-5 text-center container">
-                    <div class="row py-lg">
-                        <div class="col-lg-6 col-md-8 mx-auto">
-                            <section id="portfolio">
-                                <h2><b>PORTFOLIO</b></h2>
-                            </section>
-                            <p class="lead text-body-secondary"><i>From MVP to fullscale product</i></p>
-                        </div>
-                    </div>
-                </section>
-
-
-
-
-                <div class="container my-5">
-                    <div class="row justify-content-center g-3">
-                        <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px;">
-                            <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal1" style="height:300px">
-                                <img src="https://www.ontreat.com/img/portfolio/ontreat-full.png" alt="Image 1"
-                                    style="width:100%;height:100%">
-                            </div>
-                            <br />
-                            <div style="text-align: center;font-weight:bold">Ontreat</div>
-                            <div style="text-align: center;">Multifaceted E-commerce</div>
-
-                        </div>
-                        <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px">
-                            <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal2" style="height:300px">
-                                <img src="https://www.ontreat.com/img/portfolio/decervo-full.png" alt="Image 2"
-                                    style="width:100%;height:100%">
-                            </div><br />
-                            <div style="text-align: center;"><b>deCervo/uHit</b></div>
-                            <div style="text-align: center;">Gaming, Subscription</div>
-
-                        </div>
-                        <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px;">
-                            <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal3" style="height:300px">
-                                <img src="https://www.ontreat.com/img/portfolio/powrbot-full.png" alt="Image 3"
-                                    style="width:100%;height:100%">
-                            </div>
-                            <div style="text-align: center;">Powrbot</div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="imageModal1" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Image Preview</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body text-center">
-                                <h2 class="text-uppercase"><b>Ontreat</b></h2>
-                            </div>
-                            <p class="item-intro text-muted">Multifaceted E-commerce.</p>
-                            <img src="https://www.ontreat.com/img/portfolio/ontreat-full.png" style="width:100%"
-                                alt="Expanded View">
-                            <p>Airbnb for restaurants. It has features for restaurant to upload menu. A customer can go
-                                through restaurants, select menu item and book a treat for their friends or family.</p>
-                            <p>Python/Django, Django Rest Framework<br />Bootstrap<br />Stripe, E-Sewa, NIBL Payment
-                                Gateway</p>
-                        </div>
-
-                    </div>
-                </div>
+  <main>
+    <section class="py-5 text-center container">
+      <div class="row py-lg">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <section id="portfolio">
+            <h2><b><br><br>PORTFOLIO</b></h2>
+          </section>
+          <p class="lead text-body-secondary"><i>From MVP to fullscale product</i></p>
         </div>
+      </div>
+    </section>
+    <div class="container my-5">
+      <div class="row justify-content-center g-3">
+        <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px;">
+          <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal1" style="height:300px">
+            <img src="https://www.ontreat.com/img/portfolio/ontreat-full.png" alt="Image 1"
+              style="width:100%;height:100%">
+          </div>
+          <br />
+          <div style="text-align: center;font-weight:bold">Ontreat</div>
+          <div style="text-align: center;">Multifaceted E-commerce</div>
+
+        </div>
+        <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px">
+          <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal2" style="height:300px">
+            <img src="https://www.ontreat.com/img/portfolio/decervo-full.png" alt="Image 2"
+              style="width:100%;height:100%">
+          </div><br />
+          <div style="text-align: center;"><b>deCervo/uHit</b></div>
+          <div style="text-align: center;">Gaming, Subscription</div>
+
+        </div>
+        <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px;">
+          <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal3" style="height:300px">
+            <img src="https://www.ontreat.com/img/portfolio/powrbot-full.png" alt="Image 3"
+              style="width:100%;height:100%">
+          </div>
+          <div style="text-align: center;">Powrbot</div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="imageModal1" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Image Preview</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <h2 class="text-uppercase"><b>Ontreat</b></h2>
+          </div>
+          <p class="item-intro text-muted">Multifaceted E-commerce.</p>
+          <img src="https://www.ontreat.com/img/portfolio/ontreat-full.png" style="width:100%" alt="Expanded View">
+          <p>Airbnb for restaurants. It has features for restaurant to upload menu. A customer can go
+            through restaurants, select menu item and book a treat for their friends or family.</p>
+          <p>Python/Django, Django Rest Framework<br />Bootstrap<br />Stripe, E-Sewa, NIBL Payment
+            Gateway</p>
+        </div>
+
+      </div>
+    </div>
+    </div>
     </div>
 
     <div class="modal fade" id="imageModal2" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Image Preview</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <h2 class="text-uppercase">deCervo/uHIT</h2>
-                    <p class="item-intro text-muted">A special software for cognitive training for.</p>
-                    <img src="https://www.ontreat.com/img/portfolio/decervo-full.png" style="width:100%"
-                        alt="Expanded View">
-                    <br>
-                    <ul class="list-inline">
-                        <p>We upgraded to Python 3.6 and Django 1.11, adding numerous features - integration to Stripe
-                            Subscription, comprehensive permission system where an organization owner can appoint
-                            manager, team and players, processing of game data and creating different report.</p>
-                        <p>Python 3.6, Django 1.11, Postgres, Celery/Redis, Django Rest Framework
-                            Integration with Striple Google Play (in-app-purchase), App Store (in-app-purchase) </p>
-                    </ul>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Image Preview</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <h2 class="text-uppercase">deCervo/uHIT</h2>
+            <p class="item-intro text-muted">A special software for cognitive training for.</p>
+            <img src="https://www.ontreat.com/img/portfolio/decervo-full.png" style="width:100%" alt="Expanded View">
+            <br>
+            <ul class="list-inline">
+              <p>We upgraded to Python 3.6 and Django 1.11, adding numerous features - integration to Stripe
+                Subscription, comprehensive permission system where an organization owner can appoint
+                manager, team and players, processing of game data and creating different report.</p>
+              <p>Python 3.6, Django 1.11, Postgres, Celery/Redis, Django Rest Framework
+                Integration with Striple Google Play (in-app-purchase), App Store (in-app-purchase) </p>
+            </ul>
 
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <div class="modal fade" id="imageModal3" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Image Preview</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <h2 class="text-uppercase"><b>Powrbot</b></h2>
-                    <p class="item-intro text-muted">Marketing, Scraping</p>
-                    <img src="https://www.ontreat.com/img/portfolio/powrbot-full.png" style="width:100%"
-                        alt="Expanded View">
-                    <p>High performance scraping tool to automate searching. If you provide list of company names, it
-                        gets you website, industry, location, revenue &amp; more...</p>
-                    <p>Python 3.6, Django 1.11, Postgres, Celery/Redis, Django Rest Framework
-                        Bootstrap, jQuery
-                        Stripe Payment Gateway</p>
-                </div>
-            </div>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Image Preview</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <h2 class="text-uppercase"><b>Powrbot</b></h2>
+            <p class="item-intro text-muted">Marketing, Scraping</p>
+            <img src="https://www.ontreat.com/img/portfolio/powrbot-full.png" style="width:100%" alt="Expanded View">
+            <p>High performance scraping tool to automate searching. If you provide list of company names, it
+              gets you website, industry, location, revenue &amp; more...</p>
+            <p>Python 3.6, Django 1.11, Postgres, Celery/Redis, Django Rest Framework
+              Bootstrap, jQuery
+              Stripe Payment Gateway</p>
+          </div>
         </div>
+      </div>
     </div>
     </div>
 
 
 
     <div class="container my-5">
-        <div class="row justify-content-center g-3">
-            <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px;">
-                <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal4" style="height:300px">
-                    <img src="https://www.ontreat.com/img/portfolio/arithmetica-thumbnail.png" alt="Image 1"
-                        style="width:100%;height:100%">
-                </div>
-                <br />
-                <div style="text-align: center;font-weight:bold">Arigthmetica</div>
+      <div class="row justify-content-center g-3">
+        <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px;">
+          <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal4" style="height:300px">
+            <img src="https://www.ontreat.com/img/portfolio/arithmetica-thumbnail.png" alt="Image 1"
+              style="width:100%;height:100%">
+          </div>
+          <br />
+          <div style="text-align: center;font-weight:bold">Arigthmetica</div>
 
-                <div style="text-align: center;">Datasince</div>
+          <div style="text-align: center;">Datasince</div>
 
-            </div>
-            <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px">
-                <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal5" style="height:300px">
-                    <img src="https://www.ontreat.com/img/portfolio/fishrr-thumbnail.png" alt="Image 2"
-                        style="width:100%;height:100%">
-                </div><br />
-                <div style="text-align: center;"><b>Fishrr</b></div>
-                <div style="text-align: center;">Web monitoring tool</div>
-
-            </div>
-            <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px;">
-                <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal6" style="height:300px">
-                    <img src="https://www.ontreat.com/img/portfolio/06-thumbnail.jpg" alt="Image 3"
-                        style="width:100%;height:100%">
-                </div><br />
-                <div style="text-align: center;"><b>Web Scraping</b></div>
-                <div style="text-align: center;">High performance scraping app using Tornado, Scrapy to fulfill custom
-                    need.</div>
-
-            </div>
         </div>
+        <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px">
+          <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal5" style="height:300px">
+            <img src="https://www.ontreat.com/img/portfolio/fishrr-thumbnail.png" alt="Image 2"
+              style="width:100%;height:100%">
+          </div><br />
+          <div style="text-align: center;"><b>Fishrr</b></div>
+          <div style="text-align: center;">Web monitoring tool</div>
+
+        </div>
+        <div class="col-md-4" style="border:1px solid rgb(196, 196, 196);border-radius: 8px;">
+          <div class="card" data-bs-toggle="modal" data-bs-target="#imageModal6" style="height:300px">
+            <img src="https://www.ontreat.com/img/portfolio/06-thumbnail.jpg" alt="Image 3"
+              style="width:100%;height:100%">
+          </div><br />
+          <div style="text-align: center;"><b>Web Scraping</b></div>
+          <div style="text-align: center;">High performance scraping app using Tornado, Scrapy to fulfill custom
+            need.</div>
+
+        </div>
+      </div>
     </div>
 
     <div class="modal fade" id="imageModal4" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Image Preview</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <h2 class="text-uppercase"><b>Arithmetica</b></h2>
-                    <p class="item-intro text-muted">Kaggle like datacience competition platform.</p>
-                    <img src="https://www.ontreat.com/img/portfolio/arithmetica-full.png" style="width:100%"
-                        alt="Expanded View">
-                    <p>Kaggle like datascience competition platform with many added features. Our job was to build
-                        backend in Python/Django, integrate with Stripe and Twilio</p>
-                    <p>Python 3.6, Django 1.9, MySQL, Django Rest Framework
-                        Bootstrap, jQuery
-                        Stripe Payment Gateway, Twilio SMS</p>
-                </div>
-            </div>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Image Preview</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <h2 class="text-uppercase"><b>Arithmetica</b></h2>
+            <p class="item-intro text-muted">Kaggle like datacience competition platform.</p>
+            <img src="https://www.ontreat.com/img/portfolio/arithmetica-full.png" style="width:100%"
+              alt="Expanded View">
+            <p>Kaggle like datascience competition platform with many added features. Our job was to build
+              backend in Python/Django, integrate with Stripe and Twilio</p>
+            <p>Python 3.6, Django 1.9, MySQL, Django Rest Framework
+              Bootstrap, jQuery
+              Stripe Payment Gateway, Twilio SMS</p>
+          </div>
         </div>
+      </div>
     </div>
     </div>
 
     <div class="modal fade" id="imageModal5" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Image Preview</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <h2 class="text-uppercase"><b>Fishrr</b></h2>
-                    <p class="item-intro text-muted">Web monitor tool.</p>
-                    <img src="https://www.ontreat.com/img/portfolio/fishrr-full.png" style="width:100%"
-                        alt="Expanded View">
-                    <p>Complete web monitoring app that lets you know first for any error or malfunction in your
-                        websites. It keeps testing crucial features like signup, checkout etc.</p>
-                    <p>Python 3.6, Django 1.9, Postgres, Celery/Redis, Django Rest Framework
-                        Bootstrap, jQuery, Javascript
-                        Stripe Payment Gateway</p>
-                </div>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Image Preview</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <h2 class="text-uppercase"><b>Fishrr</b></h2>
+            <p class="item-intro text-muted">Web monitor tool.</p>
+            <img src="https://www.ontreat.com/img/portfolio/fishrr-full.png" style="width:100%" alt="Expanded View">
+            <p>Complete web monitoring app that lets you know first for any error or malfunction in your
+              websites. It keeps testing crucial features like signup, checkout etc.</p>
+            <p>Python 3.6, Django 1.9, Postgres, Celery/Redis, Django Rest Framework
+              Bootstrap, jQuery, Javascript
+              Stripe Payment Gateway</p>
+          </div>
 
-            </div>
         </div>
+      </div>
     </div>
 
     <div class="modal fade" id="imageModal6" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Image Preview</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <h2 class="text-uppercase"><b>Web Scraping</b></h2>
-                    <p class="item-intro text-muted">Turning website into data</p>
-                    <img src="https://www.ontreat.com/img/portfolio/06-full.jpg" style="width:100%" alt="Expanded View">
-                    <p>We have developed high peformance scraping tool for various businesses like e-Commerce, real
-                        estate, HR to collect hundreds of millions records. </p>
-                    <p>Tornado, Scrapy, Selenium, PhantomJS
-                    </p>
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Image Preview</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <h2 class="text-uppercase"><b>Web Scraping</b></h2>
+            <p class="item-intro text-muted">Turning website into data</p>
+            <img src="https://www.ontreat.com/img/portfolio/06-full.jpg" style="width:100%" alt="Expanded View">
+            <p>We have developed high peformance scraping tool for various businesses like e-Commerce, real
+              estate, HR to collect hundreds of millions records. </p>
+            <p>Tornado, Scrapy, Selenium, PhantomJS
+            </p>
 
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
     </div>
-    </main>
+  </main>
 
 
-    <main>
-        <section id="contact">
+  <main>
+    <section id="contact">
+    </section>
+    <div class="container">
+      <form action="" class="form">
+
+        <section class="py-5 text-center container">
+          <div class="row py-lg">
+            <div class="col-lg-6 col-md-8 mx-auto">
+              <section id="contact">
+              </section>
+              <div class="container">
+                <form action="" class="form">
+                  <div class="mb-3">
+                    <h2 class="text-center mb-3 bg p-3">GET IN TOUCH WITH US</h2>
+                    <h6 class="text-center mb-2 bg pt-3"><i>Please drop us your name, number or
+                        email, and a brief note about your project.</i></h6>
+
+                    <input type="text" class="form-control mb-3" name="name" id="name" placeholder="Your Name*">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" class="form-control " id="exampleInputEmail" name="your email*"
+                      placeholder="Your Email*" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <input type="contact" class="form-control " id="contactno" name="contact*"
+                      placeholder="Your Contact*">
+                  </div>
+                  <div class="mb-3">
+                    <textarea id="description" name="description" rows="4" cols="50"
+                      placeholder="Your Message*"></textarea>
+
+                  </div>
+                  <div class="mb-3">
+                    <button type="button" class="btn btn-secondary">Send Message</button>
+                  </div>
+                  <p>
+                  <h6>
+                    Ontreat Service Pvt. Ltd.<br>
+                    Kathmandu-16, Nayabazar<br>
+                    Kathmandu, Nepal<br>
+                    Krishna Sunuwar<br>
+                    Email: krish@ontreat.com
+                  </h6>
+                  </p>
+
+                </form>
+              </div>
+            </div>
+          </div>
         </section>
-        <div class="container">
-            <form action="" class="form">
+  </main>
+  <style>
+    form {
+      background-color: #295297;
+    }
 
-                <section class="py-5 text-center container">
-                    <div class="row py-lg">
-                        <div class="col-lg-6 col-md-8 mx-auto">
-                            <section id="contact">
-                            </section>
-                            <div class="container">
-                                <form action="" class="form">
-                                    <div class="mb-3">
-                                        <h2 class="text-center mb-3 bg p-3">GET IN TOUCH WITH US</h2>
-                                        <h6 class="text-center mb-2 bg pt-3"><i>Please drop us your name, number or
-                                                email, and a brief note about your project.</i></h6>
+    h2.bg {
+      color: grey;
+    }
 
-                                        <input type="text" class="form-control mb-3" name="name" id="name"
-                                            placeholder="Your Name*">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="text" class="form-control " id="exampleInputEmail"
-                                            name="your email*" placeholder="Your Email*" aria-describedby="emailHelp">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="contact" class="form-control " id="contactno" name="contact*"
-                                            placeholder="Your Contact*">
-                                    </div>
-                                    <div class="mb-3">
-                                        <textarea id="description" name="description" rows="4" cols="50"
-                                            placeholder="Your Message*"></textarea>
+    h8,
+    p,
+    span {
+      color: grey;
+    }
 
-                                    </div>
-                                    <div class="mb-3">
-                                        <button type="button" class="btn btn-secondary">Send Message</button>
-                                    </div>
-                                    <p>
-                                    <h6>
-                                        Ontreat Service Pvt. Ltd.<br>
-                                        Kathmandu-16, Nayabazar<br>
-                                        Kathmandu, Nepal<br>
-                                        Krishna Sunuwar<br>
-                                        Email: krish@ontreat.com
-                                    </h6>
-                                    </p>
+    h8 {
+      position: relative;
+      top: -10px;
+      /* Move the h8 text 10px upwards */
+    }
 
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-    </main>
-    <style>
-        form {
-            background-color: #295297;
-        }
+    h5,
+    p,
+    span {
+      color: white;
+    }
 
-        h2.bg {
-            color: grey;
-        }
+    h7,
+    p,
+    span {
+      color: grey;
+    }
 
-        h8,
-        p,
-        span {
-            color: grey;
-        }
-
-        h8 {
-            position: relative;
-            top: -10px;
-            /* Move the h8 text 10px upwards */
-        }
-
-        h5,
-        p,
-        span {
-            color: white;
-        }
-
-        h7,
-        p,
-        span {
-            color: grey;
-        }
-
-        nav {
-            background-color: #295297;
-        }
-    </style>
+    nav {
+      background-color: #295297;
+    }
+  </style>
 
   <div class="col-md-4">
-        <span class="copyright">Copyright © ontreat.com 2018</span><br>
-    </div>
+    <span class="copyright">Copyright © ontreat.com 2018</span><br>
+  </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
