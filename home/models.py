@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Project(models.Model):
-   
     name= models.CharField(max_length=122)
     short_description = models.CharField(max_length=122)
     description = models.TextField(max_length=122)
