@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from home.models import Project
 from django.contrib.auth.models import User
 from datetime import datetime
-from django.views.generic import TemplateView, ListView, DetailView, DeleteView
+from django.views.generic import TemplateView, ListView, DetailView, DeleteView 
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -22,6 +23,21 @@ class ProjectListView(ListView):
     context_object_name = "project_list"
 
 #### Create a ProjectDetailView, ProjectDeleteView
+#projectDetailview.
+class ProjectDetailView(DetailView):
+    model = Project
+    template_name = 'projectdetail.html'
+    context_object_name = 'project_detail'
+
+#projectDeleteview
+class ProjectDeleteView(DeleteView):
+    model = Project
+    template_name = 'project_confirm_delete.html'  # The template that will ask for confirmation
+    context_object_name = 'project_delete'
+    success_url = reverse_lazy('project_list')
+
+
+
 
 
 def index(request):
