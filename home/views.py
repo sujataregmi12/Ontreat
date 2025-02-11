@@ -37,9 +37,6 @@ class ProjectDeleteView(DeleteView):
     success_url = reverse_lazy('project_list')
 
 
-
-
-
 def index(request):
         if request.method =='POST':
             name = request.POST.get('name')
