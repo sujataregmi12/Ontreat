@@ -7,7 +7,7 @@ urlpatterns = [
     path('', IndexView.as_view(), name= 'index'),
     path('project_list', ProjectListView.as_view(), name= 'project_list'),
     path('project_detail', ProjectDetailView.as_view(), name='project_detail'),
-     path('project_delete', ProjectDeleteView.as_view(), name='project_delete'),
+    path('project_delete', ProjectDeleteView.as_view(), name='project_delete'),
 ]
 
     
