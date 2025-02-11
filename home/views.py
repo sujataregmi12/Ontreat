@@ -26,7 +26,7 @@ class ProjectListView(ListView):
 #projectDetailview.
 class ProjectDetailView(DetailView):
     model = Project
-    template_name = 'projectdetail.html'
+    template_name = 'project_detail.html'
     context_object_name = 'project_detail'
 
 #projectDeleteview
@@ -36,9 +36,14 @@ class ProjectDeleteView(DeleteView):
     context_object_name = 'project_delete'
     success_url = reverse_lazy('project_list')
 
+#projectCreateView
+
+
+
 
 def index(request):
         if request.method =='POST':
+            title = request.POST.get('title')
             name = request.POST.get('name')
             short_description = request.POST.get('short_description')
             description = request.POST.get('description')
@@ -47,7 +52,7 @@ def index(request):
             type = request.POST.get('type')
             developer_ids = request.POST.getlist('developers')
 
-            project= Project(name=name, short_description=short_description,description=description,
+            project= Project(titlle=title,name=name, short_description=short_description,description=description,
                           created_date=created_date,end_date=end_date,type=type)
             for developer_id in developer_ids:
                 developer = User.objects.get(id=developer_id)  # Get the developer by ID
