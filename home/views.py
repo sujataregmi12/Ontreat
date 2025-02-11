@@ -3,7 +3,27 @@ from django.http import HttpResponse
 from home.models import Project
 from django.contrib.auth.models import User
 from datetime import datetime
+from django.views.generic import TemplateView, ListView, DetailView, DeleteView
+
 # Create your views here.
+
+### Use Class Based View
+# https://docs.djangoproject.com/en/5.1/topics/class-based-views/
+###
+
+class IndexView(TemplateView):
+    template_name = "index.html"
+
+
+#### Modifiy the projectlist template as you prefer.
+class ProjectListView(ListView):
+    template_name = "projectlist.html"
+    model = Project
+    context_object_name = "project_list"
+
+#### Create a ProjectDetailView, ProjectDeleteView
+
+
 def index(request):
         if request.method =='POST':
             name = request.POST.get('name')
