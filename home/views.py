@@ -3,8 +3,12 @@ from django.http import HttpResponse
 from home.models import Project
 from django.contrib.auth.models import User
 from datetime import datetime
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView ,DetailView
+
+
 # Create your views here.
+# https://docs.djangoproject.com/en/5.1/topics/class-based-views/
+
 class IndexView(TemplateView):
     template_name = "index.html"
 
@@ -15,8 +19,13 @@ class ProjectListView(ListView):
     model = Project
     context_object_name = "project_list"
 
-
 #### Create a ProjectDetailView, ProjectDeleteView
+class ProjectDetailView(DetailView):
+    model = Project
+    template_name = 'detail.html'
+    context_object_name = 'project_detail'
+
+
 
 def index(request):
         if request.method =='POST':

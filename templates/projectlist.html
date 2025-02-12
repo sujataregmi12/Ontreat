@@ -7,6 +7,12 @@
         {% if project_list %}
             {% for project in project_list %}
             <li>{{ project.name }}</li>
+            
+                
+           <a href="{{project.id}}"><h1>{{project.name}}</h1></a><hr>
+            
+          
+            
             {% endfor %}
         {% endif %}
     </ul>

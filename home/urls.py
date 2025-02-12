@@ -6,6 +6,6 @@ from home.views import IndexView, ProjectListView
 urlpatterns = [
     path('', IndexView.as_view(), name= 'index'),
     path('project_list', ProjectListView.as_view(), name= 'project_list'),
-    
+    path('<int:pk>', ProjectListView.as_view(), name= 'detail'),
     
 ]
