@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from home.models import Project
 from django.contrib.auth.models import User
 from datetime import datetime
-from django.views.generic import TemplateView, ListView ,DetailView
+from django.views.generic import TemplateView, ListView ,DetailView, DeleteView 
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -25,6 +26,11 @@ class ProjectDetailView(DetailView):
     template_name = 'detail.html'
     context_object_name = 'project_detail'
 
+class ProjectDeleteView(DeleteView):
+    model = Project
+    template_name = 'delete.html'
+    context_object_name = 'project_delete'
+    success_url = reverse_lazy("list")
 
 
 def index(request):
