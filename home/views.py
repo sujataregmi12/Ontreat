@@ -21,11 +21,13 @@ class ProjectListView(ListView):
     context_object_name = "project_list"
 
 #### Create a ProjectDetailView, ProjectDeleteView
+#ProjectDetailView
 class ProjectDetailView(DetailView):
     model = Project
     template_name = 'detail.html'
     context_object_name = 'project_detail'
 
+#projectDeleteView
 class ProjectDeleteView(DeleteView):
     model = Project
     template_name = 'delete.html'
