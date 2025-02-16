@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <article class="project">
+
+    <section class="project-name pt-5">
+      <h2>Name:</h2>
+      <p>{{ project.name|linebreaksbr }}</p>
+    </section>
+
+      <section class="project-short_description">
+        <h2>Short_Description:</h2>
+        <p>{{ project.short_description|linebreaksbr }}</p>
+      </section>   
+
+    <section class="project-description">
+      <h2>Description:</h2>
+      <p>{{ project.description|linebreaksbr }}</p>
+    </section>
+
+    <section class="project-text">
+      <h2>Details:</h2>
+      <p>{{ project.text|linebreaksbr }}</p>
+    </section>
+
+    <section class="project-meta">
+      <div><strong>Created on:</strong> {{ project.created_date|date:"F j, Y" }}</div>
+      <div><strong>End date:</strong> {{ project.end_date|date:"F j, Y" }}</div>
+      <div><strong>Type:</strong> {{ project.type }}</div>
+
+      <div><strong>Developers:</strong> 
+        {% for developer in project.developers.all %}
+          <span>{{ developer.name }}</span>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+  </article>
+
+  <div class="back-link">
+    <a href="{% url 'project_list' %}" class="btn btn-primary">Back to Projects</a>
+  </div>
+
+{% endblock %}
