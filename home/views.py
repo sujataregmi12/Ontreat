@@ -3,8 +3,9 @@ from django.http import HttpResponse
 from home.models import Project
 from django.contrib.auth.models import User
 from datetime import datetime
-from django.views.generic import TemplateView, ListView ,DetailView, DeleteView 
-from django.urls import reverse_lazy
+from django.views.generic import TemplateView, ListView 
+from django.shortcuts import render, get_object_or_404
+
 
 
 # Create your views here.
@@ -22,17 +23,12 @@ class ProjectListView(ListView):
 
 #### Create a ProjectDetailView, ProjectDeleteView
 #ProjectDetailView
-class ProjectDetailView(DetailView):
-    model = Project
-    template_name = 'detail.html'
-    context_object_name = 'project_detail'
+def project_detail(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    return render(request, 'project_detail.html', {'project': project})
 
 #projectDeleteView
-class ProjectDeleteView(DeleteView):
-    model = Project
-    template_name = 'delete.html'
-    context_object_name = 'project_delete'
-    success_url = reverse_lazy("list")
+
 
 
 def index(request):

@@ -7,13 +7,8 @@
         {% if project_list %}
             {% for project in project_list %}
             <li>{{ project.name }}</li>
-            
-                
-           <a href="{{project.id}}"><h1>{{project.name}}</h1></a><hr>
-           <a href="{% url "delete" project.id %}">Delete</a><hr>
-            
-          
-            
+           <h2> <a href= "{% url 'project_detail' pk=project.pk %}">{{project.name}}</a></h2>
+       
             {% endfor %}
         {% endif %}
     </ul>

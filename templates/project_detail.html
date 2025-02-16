@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load i18n static django_bootstrap5 %}
+
+{% block content %}
+    <article class="project">
+        
+        <h2>{{ project.name }}</h2>
+        <p>{{ project.text|linebreaksbr }}</p>
+        <h2>{{ project.short_description }}</h2>
+        <h2>{{ project.description }}</h2>
+        <h2>{{ project.created_date}}</h2>
+        <h2>{{ project.end_date }}</h2>
+        <h2>{{ project.type }}</h2>
+        <h2>{{ project.developers }}</h2>
+    </article>
+{% endblock %}
