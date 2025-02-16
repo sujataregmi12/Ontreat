@@ -29,8 +29,6 @@ def project_detail(request, pk):
 
 #projectDeleteView
 
-
-
 def index(request):
         if request.method =='POST':
             name = request.POST.get('name')
