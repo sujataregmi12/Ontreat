@@ -2,54 +2,51 @@
 {% load i18n static django_bootstrap5 %}
 {% block content %}
 <div class="container my-5">
-    <h2 class="text-center mb-4">Project List</h2>
-    <div class="row">
+    <h2 class="text-center mb-4 text-dark font-weight-bold">Project List</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
         {% if project_list %}
             {% for project in project_list %}
-            <div class="col-md-4 mb-4">
-                <div class="card">
+            <div class="col">
+                <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
                     <!-- Dynamically add the image for each project -->
                     {% if project.image %}
-                        <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.name }}">
+                        <img src="{{ project.image.url }}" class="card-img-top project-img" alt="{{ project.name }}">
                     {% else %}
-                        <!-- You can specify different fallback images here for different cards -->
+                        <!-- Fallback images for different projects -->
                         {% if forloop.counter == 1 %}
-                            <img src="{% static '\image\cakes.jpg' %}" class="card-img-top" alt="Image 1">
+                            <img src="{% static 'image/cakes.jpg' %}" class="card-img-top project-img" alt="Image 1">
                         {% elif forloop.counter == 2 %}
-                            <img src="{% static '\image\bakedfood1.jpg' %}" class="card-img-top" alt="Image 2">
+                            <img src="{% static 'image/bakedfood1.jpg' %}" class="card-img-top project-img" alt="Image 2">
                         {% elif forloop.counter == 3 %}
-                            <img src="{% static '\image\baked food.jpg' %}" class="card-img-top" alt="Image 3">
-
+                            <img src="{% static 'image/baked food.jpg' %}" class="card-img-top project-img" alt="Image 3">
                         {% elif forloop.counter == 4 %}
-                            <img src="{% static 'image\icecream3.jpg' %}" class="card-img-top" alt="Image 3">
-                            
+                            <img src="{% static 'image/icecream3.jpg' %}" class="card-img-top project-img" alt="Image 4">
                         {% elif forloop.counter == 5 %}
-                            <img src="{% static '\image\colddrinks.jpg' %}" class="card-img-top" alt="Image 3">
-                           
+                            <img src="{% static 'image/colddrinks.jpg' %}" class="card-img-top project-img" alt="Image 5">
                         {% elif forloop.counter == 6 %}
-                            <img src="{% static '\image\food.jpg' %}" class="card-img-top" alt="Image 3">
+                            <img src="{% static 'image/food.jpg' %}" class="card-img-top project-img" alt="Image 6">
                         {% else %}
-                            <img src="{% static 'images/default_project_image.jpg' %}" class="card-img-top" alt="Default Image">
+                            <img src="{% static 'image/default_project_image.jpg' %}" class="card-img-top project-img" alt="Default Image">
                         {% endif %}
                     {% endif %}
-
-                    <div class="card-body">
-                        <h5 class="card-title">{{ project.name }}</h5>
-                        <p class="card-text">
+                    <div class="card-body p-4">
+                        <h5 class="card-title text-dark font-weight-bold">{{ project.name }}</h5>
+                        <p class="card-text text-muted">
                             {% if project.short_description %}
                                 {{ project.short_description|truncatewords:20 }}
                             {% else %}
                                 No description available.
                             {% endif %}
                         </p>
-                        <a href="{% url 'project_detail' pk=project.pk %}" class="btn btn-primary">View Details</a>
+                        <a href="{% url 'project_detail' pk=project.pk %}" class="btn btn-outline-primary btn-hover-custom">View Details</a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         {% else %}
-            <p>No projects available.</p>
+            <p class="text-center text-muted">No projects available.</p>
         {% endif %}
     </div>
 </div>
+
 {% endblock %}

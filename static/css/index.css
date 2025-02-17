@@ -398,4 +398,79 @@ section#contact :-ms-input-placeholder {
 }
 
 
+
+
 /*PROJECTVIEWDETAILS*/
+
+/* For project images */
+.project-img {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for images */
+.project-img:hover {
+  transform: scale(1.05);
+}
+
+/* Card hover effect */
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Card styles */
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  border: none;
+}
+
+/* Button hover effect */
+.btn-hover-custom {
+  border-radius: 50px;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-hover-custom:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Adjust grid layout for responsiveness */
+.row-cols-1 .col {
+  padding: 15px;
+}
+
+.text-dark {
+  color: #333 !important;
+}
+
+.font-weight-bold {
+  font-weight: 700;
+}
+
+/* Add subtle background color to the container */
+.container {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 40px;
+}
+
+/* Style for the heading */
+h2.text-center {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+/* Text color for no project message */
+.text-muted {
+  font-size: 1.1rem;
+  color: #777;
+}
+
