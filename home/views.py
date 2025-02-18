@@ -3,8 +3,9 @@ from django.http import HttpResponse
 from home.models import Project
 from django.contrib.auth.models import User
 from datetime import datetime
-from django.views.generic import TemplateView, ListView ,DetailView
-from django.shortcuts import render, get_object_or_404
+from django.views.generic import TemplateView, ListView ,DetailView ,DeleteView
+from django.shortcuts import render
+from django.urls import reverse_lazy
 
 
 
@@ -29,6 +30,12 @@ class ProjectDetailView(DetailView):
     context_object_name = 'project'
 
 #projectDeleteView
+class ProjectDeleteView(DeleteView):
+    model = Project
+    template_name = 'project_delete.html'  # Template for the confirmation page
+    context_object_name = 'project'  # The name of the object in the template context
+    success_url = reverse_lazy('project_list') 
+
 
 def index(request):
         if request.method =='POST':

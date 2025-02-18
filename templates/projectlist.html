@@ -39,6 +39,7 @@
                             {% endif %}
                         </p>
                         <a href="{% url 'project_detail' pk=project.pk %}" class="btn btn-outline-primary btn-hover-custom">View Details</a>
+                        <a href="{% url 'project_delete' pk=project.pk%}">Delete</a>
                     </div>
                 </div>
             </div>
