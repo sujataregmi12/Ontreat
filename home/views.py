@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from home.models import Project
 from django.contrib.auth.models import User
 from datetime import datetime
-from django.views.generic import TemplateView, ListView ,DetailView ,DeleteView
+from django.views.generic import TemplateView, ListView ,DetailView ,DeleteView,FormView
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from .forms import AddForm
 
 
 
@@ -35,6 +36,13 @@ class ProjectDeleteView(DeleteView):
     template_name = 'project_delete.html'  # Template for the confirmation page
     context_object_name = 'project'  # The name of the object in the template context
     success_url = reverse_lazy('project_list') 
+
+class ProjectFormView(FormView):
+    model = Project
+    template_name = 'project_form.html'  # Template for the confirmation page
+    form_class= AddForm  # The name of the object in the template context
+    success_url = reverse_lazy('project_list') 
+
 
 
 def index(request):

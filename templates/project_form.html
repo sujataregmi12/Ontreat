@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="form-container">
+    <h2>Add a New Project</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}  <!-- Render the form fields as <p> elements -->
+      <button type="submit">Add Project</button>
+    </form>
+
+    {% if form.errors %}
+      <div class="error-message">
+        <p><strong>There were some errors in your form:</strong></p>
+        <ul>
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
