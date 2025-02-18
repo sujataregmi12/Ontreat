@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from home.models import Project
 from django.contrib.auth.models import User
 from datetime import datetime
-from django.views.generic import TemplateView, ListView 
+from django.views.generic import TemplateView, ListView ,DetailView
 from django.shortcuts import render, get_object_or_404
 
 
@@ -23,9 +23,10 @@ class ProjectListView(ListView):
 
 #### Create a ProjectDetailView, ProjectDeleteView
 #ProjectDetailView
-def project_detail(request, pk):
-    project = get_object_or_404(Project, pk=pk)
-    return render(request, 'project_detail.html', {'project': project})
+class ProjectDetailView(DetailView):
+    model = Project
+    template_name = 'project_detail.html'  # The template you want to use
+    context_object_name = 'project'
 
 #projectDeleteView
 
