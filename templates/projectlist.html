@@ -2,6 +2,11 @@
 {% load i18n static django_bootstrap5 %}
 {% block content %}
 <div class="container my-5">
+    <div class="row">
+        <div class="col text-end">
+            <a href="{% url 'project_form' %}" class="btn btn-outline-primary btn-hover-custom mb-3">Add Project</a>
+        </div>
+    </div>
     <h2 class="text-center mb-4 text-dark font-weight-bold">Project List</h2>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
         {% if project_list %}
