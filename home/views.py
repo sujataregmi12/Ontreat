@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from home.models import Project
 from django.contrib.auth.models import User
 from datetime import datetime
-from django.views.generic import TemplateView, ListView ,DetailView ,DeleteView,FormView
+from django.views.generic import TemplateView, ListView ,DetailView ,DeleteView, CreateView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .forms import AddForm
@@ -37,7 +37,11 @@ class ProjectDeleteView(DeleteView):
     context_object_name = 'project'  # The name of the object in the template context
     success_url = reverse_lazy('project_list') 
 
-class ProjectFormView(FormView):
+# To Create a object in any table you have to use CreateView
+# To use FormView you have to call method form_valid which is used for form validation where you have to call save function
+# https://docs.djangoproject.com/en/5.1/topics/class-based-views/generic-editing/
+
+class ProjectFormView(CreateView):
     model = Project
     template_name = 'project_form.html'  # Template for the confirmation page
     form_class= AddForm  # The name of the object in the template context
