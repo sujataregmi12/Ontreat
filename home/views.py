@@ -3,19 +3,20 @@ from django.http import HttpResponse
 from home.models import Project
 from django.contrib.auth.models import User
 from datetime import datetime
+from django.contrib import messages
 from django.views.generic import TemplateView, ListView ,DetailView ,DeleteView, CreateView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .forms import AddForm
-
-
+from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 # https://docs.djangoproject.com/en/5.1/topics/class-based-views/
 
-class IndexView(TemplateView):
+class IndexView(LoginRequiredMixin, TemplateView):
     template_name = "index.html"
-
+    login_url = '/login'  # Specify where to redirect users who aren't logged in
 
 #### Modifiy the projectlist template as you prefer.
 class ProjectListView(ListView):
@@ -48,22 +49,50 @@ class ProjectFormView(CreateView):
     success_url = reverse_lazy('project_list') 
 
 
+def index(request): 
+  if request.method =='POST':
+    name = request.POST.get('name')
+    short_description = request.POST.get('short_description')
+    description = request.POST.get('description')
+    created_date = request.POST.get('created_date')
+    end_date = request.POST.get('end_date')
+    type = request.POST.get('type')
+    developer_ids = request.POST.getlist('developers')
 
-def index(request):
-        if request.method =='POST':
-            name = request.POST.get('name')
-            short_description = request.POST.get('short_description')
-            description = request.POST.get('description')
-            created_date = request.POST.get('created_date')
-            end_date = request.POST.get('end_date')
-            type = request.POST.get('type')
-            developer_ids = request.POST.getlist('developers')
+    project= Project(name=name, short_description=short_description,description=description,
+        created_date=created_date,end_date=end_date,type=type)
+    for developer_id in developer_ids:
+        developer = User.objects.get(id=developer_id)  # Get the developer by ID
+        Project.developers.add(developer)
+    project.save()
 
-            project= Project(name=name, short_description=short_description,description=description,
-                          created_date=created_date,end_date=end_date,type=type)
-            for developer_id in developer_ids:
-                developer = User.objects.get(id=developer_id)  # Get the developer by ID
-                Project.developers.add(developer)
-            project.save()
-        return render(request, 'index.html')
-     
+    
+
+def loginUser(request):
+    if request.method=="POST":
+        username= request.POST.get("username")
+        password= request.POST.get("password")
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+        # A backend authenticated the credentials
+            return redirect("/")
+    
+        else:
+         # No backend authenticated the credentials
+            return render(request, "login.html")
+    
+        #check f user has entered correct credentials
+    return render(request, "login.html")
+
+def logoutUser(request):
+    logout(request)
+    return redirect("/login")
+            
+   
+#    password for user sujata : Boomboom$$$
+        
+    # return HttpResponse("This is my new site")
+
+#(password for user sujata : regmi@123)
+#superuser:sujataregmi, password:sujataregmi ,email:sujataregmi@gmail.com

@@ -5,8 +5,11 @@ from home.views import IndexView, ProjectListView, ProjectDetailView, ProjectDel
 
 urlpatterns = [
     path('', IndexView.as_view(), name= 'index'),
+    path("login", views.loginUser, name="login"),
+    path("logout", views.logoutUser, name="logout"),
     path('project_list', ProjectListView.as_view(), name= 'project_list'),
     path('project/<int:pk>',  ProjectDetailView.as_view(), name= 'project_detail'),
     path('project/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),
     path('project/add/', ProjectFormView.as_view(), name='add_project'),
+
 ]
