@@ -90,9 +90,9 @@ def logoutUser(request):
     return redirect("/login")
             
    
-#    password for user sujata : Boomboom$$$
+
         
     # return HttpResponse("This is my new site")
 
-#(password for user sujata : regmi@123)
+
 #superuser:sujataregmi, password:sujataregmi ,email:sujataregmi@gmail.com
