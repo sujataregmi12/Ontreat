@@ -3,12 +3,12 @@
 
   <div class="form-container">
     <h2>Add a New Project</h2>
-    <form action="{% url 'add_project' %}" method="POST">
-        {% csrf_token %}
-        
-        <!-- Render the form fields -->
-        {{ form.as_p }}
 
+    <form action="{% url 'add_project' %}" method="POST">
+        {% csrf_token %}        
+        <!-- Render the form fields -->
+        {{ form.as_p }}      
         <button type="submit">Create Project</button>
     </form>
+    
 {% endblock %}

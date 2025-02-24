@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
+    
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Set up message storage system(manually added)
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+#manually added
+
+
 
 ROOT_URLCONF = 'Ontreat.urls'
 
