@@ -51,24 +51,22 @@ class ProjectFormView(CreateView):
     success_url = reverse_lazy('project_list') 
    
 
-
-# views.py
 def register(request):
  form = SignupForm(request.POST)
  if form.is_valid():
-            # Process the form data
+           
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             
-            # Create the user and save
+            # Creates the user and save
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
 
             messages.success(request, 'Your account has been created successfully!')
-            return redirect('/login')  # Redirect to login page
+            return redirect('/login') 
  else:
-        form = SignupForm()  # Initialize the form for GET request
+        form = SignupForm()  
     
  return render(request, 'register.html', {'form': form})
 
@@ -82,14 +80,16 @@ def index(request):
     end_date = request.POST.get('end_date')
     type = request.POST.get('type')
     developer_ids = request.POST.getlist('developers')
+    image = request.FILES.get('image')
 
     project= Project(project_name=project_name, short_description=short_description,description=description,
-        created_date=created_date,end_date=end_date,type=type)
+        created_date=created_date,end_date=end_date,type=type ,image=image)
     for developer_id in developer_ids:
         developer = User.objects.get(id=developer_id)  # Get the developer by ID
         Project.developers.add(developer)
     project.save()
-    return render(request, "login.html")
+    return render(request, "login.html" )
+  return render(request, "project_form.html")
 
 
 def loginUser(request):

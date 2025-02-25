@@ -13,3 +13,13 @@ class SignupForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
+
+#imagefield:
+class Project(forms.ModelForm):
+   image = forms.ImageField(
+       label= "photo",
+       widget = forms.ClearableFileInput(attrs={
+           'class':'form-control'
+       })
+      
+) 

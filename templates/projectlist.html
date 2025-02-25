@@ -12,30 +12,14 @@
         {% if project_list %}
             {% for project in project_list %}
             <div class="col">
-                <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
-                    <!-- Dynamically add the image for each project -->
+                <div class="card shadow-lg border-0 rounded-3 overflow-hidden">          
                     {% if project.image %}
-                        <img src="{{ project.image.url }}" class="card-img-top project-img" alt="{{ project.name }}">
-                    {% else %}
-                        <!-- Fallback images for different projects -->
-                        {% if forloop.counter == 1 %}
-                            <img src="{% static 'image/cakes.jpg' %}" class="card-img-top project-img" alt="Image 1">
-                        {% elif forloop.counter == 2 %}
-                            <img src="{% static 'image/bakedfood1.jpg' %}" class="card-img-top project-img" alt="Image 2">
-                        {% elif forloop.counter == 3 %}
-                            <img src="{% static 'image/baked food.jpg' %}" class="card-img-top project-img" alt="Image 3">
-                        {% elif forloop.counter == 4 %}
-                            <img src="{% static 'image/icecream3.jpg' %}" class="card-img-top project-img" alt="Image 4">
-                        {% elif forloop.counter == 5 %}
-                            <img src="{% static 'image/colddrinks.jpg' %}" class="card-img-top project-img" alt="Image 5">
-                        {% elif forloop.counter == 6 %}
-                            <img src="{% static 'image/food.jpg' %}" class="card-img-top project-img" alt="Image 6">
-                        {% else %}
-                            <img src="{% static 'image/default_project_image.jpg' %}" class="card-img-top project-img" alt="Default Image">
-                        {% endif %}
-                    {% endif %}
+                    <img src="{{ project.image.url }}" alt="{{ project.Project_name }}" >
+                  {% else %}
+                    <p>No image available</p>
+                  {% endif %}
                     <div class="card-body p-4">
-                        <h5 class="card-title text-dark font-weight-bold">{{ project.name }}</h5>
+                        <h5 class="card-title text-dark font-weight-bold">{{ project.Project_name }}</h5>
                         <p class="card-text text-muted">
                             {% if project.short_description %}
                                 {{ project.short_description|truncatewords:20 }}
