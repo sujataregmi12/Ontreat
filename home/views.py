@@ -18,7 +18,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class IndexView(LoginRequiredMixin, TemplateView):
     template_name = "index.html"
-    login_url = '/login'  # Specify where to redirect users who aren't logged in
+    login_url = '/account/login'  # Specify where to redirect users who aren't logged in
 
 #### Modifiy the projectlist template as you prefer.
 class ProjectListView(ListView):
@@ -49,68 +49,5 @@ class ProjectFormView(CreateView):
     template_name = 'project_form.html'  # Template for the confirmation page
     form_class= AddForm  # The name of the object in the template context
     success_url = reverse_lazy('project_list') 
-   
-
-def register(request):
- form = SignupForm(request.POST)
- if form.is_valid():
-           
-            username = form.cleaned_data['username']
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            
-            # Creates the user and save
-            user = User.objects.create_user(username=username, email=email, password=password)
-            user.save()
-
-            messages.success(request, 'Your account has been created successfully!')
-            return redirect('/login') 
- else:
-        form = SignupForm()  
-    
- return render(request, 'register.html', {'form': form})
-
-
-def index(request): 
-  if request.method =='POST':
-    project_name = request.POST.get('Project_name')
-    short_description = request.POST.get('short_description')
-    description = request.POST.get('description')
-    created_date = request.POST.get('created_date')
-    end_date = request.POST.get('end_date')
-    type = request.POST.get('type')
-    developer_ids = request.POST.getlist('developers')
-    image = request.FILES.get('image')
-
-    project= Project(project_name=project_name, short_description=short_description,description=description,
-        created_date=created_date,end_date=end_date,type=type ,image=image)
-    for developer_id in developer_ids:
-        developer = User.objects.get(id=developer_id)  # Get the developer by ID
-        Project.developers.add(developer)
-    project.save()
-    return render(request, "login.html" )
-  return render(request, "project_form.html")
-
-
-def loginUser(request):
-    if request.method=="POST":
-        username= request.POST.get("username")
-        password= request.POST.get("password")
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-        # A backend authenticated the credentials
-            return redirect("/")       
-     
-        else:
-         # No backend authenticated the credentials
-            return render(request, "login.html")
-    
-        #check f user has entered correct credentials
-    return render(request, "login.html")
-
-def logoutUser(request):
-    logout(request)
-    return redirect("/login")
             
 #superuser:sujataregmi, password:sujataregmi ,email:sujataregmi@gmail.com
