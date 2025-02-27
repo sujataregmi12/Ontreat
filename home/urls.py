@@ -9,5 +9,5 @@ urlpatterns = [
     path('project/<int:pk>',  ProjectDetailView.as_view(), name= 'project_detail'),
     path('project/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),
     path('project/add/', ProjectFormView.as_view(), name='add_project'),
-    
+   
 ]

@@ -9,8 +9,9 @@ from django.views.generic import TemplateView, ListView ,DetailView ,DeleteView,
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .forms import AddForm
-from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from bootstrap_datepicker_plus.widgets import DateTimePickerInput
+
 
 
 # Create your views here.
@@ -49,5 +50,6 @@ class ProjectFormView(CreateView):
     template_name = 'project_form.html'  # Template for the confirmation page
     form_class= AddForm  # The name of the object in the template context
     success_url = reverse_lazy('project_list') 
+   
             
 #superuser:sujataregmi, password:sujataregmi ,email:sujataregmi@gmail.com

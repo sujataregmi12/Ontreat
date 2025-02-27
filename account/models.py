@@ -418,3 +418,6 @@ class PasswordExpiry(models.Model):
         on_delete=models.CASCADE,
     )
     expiry = models.PositiveIntegerField(default=0)
+
+
+

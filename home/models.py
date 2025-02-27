@@ -17,15 +17,14 @@ class Project(models.Model):
     Project_name= models.CharField(max_length=122)
     short_description = models.CharField(max_length=122)
     description = models.TextField(max_length=122)
-    created_date =models.DateTimeField()
-    end_date =models.DateTimeField()
+    created_date =models.DateTimeField(null=True, blank=True)
+    end_date =models.DateTimeField(null=True, blank=True)
     TYPE_CHOICES = [
         ('Web', 'Web Development'),
       ]
     type =models.CharField(max_length=12 ,choices=TYPE_CHOICES)
     developers = models.ManyToManyField(User, related_name='projects')
     image = models.ImageField(upload_to = 'projects/images/', null=True, blank=True )
-
     def __str__(self):
       return self.Project_name
     
