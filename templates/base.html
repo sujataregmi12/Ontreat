@@ -47,6 +47,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'project_list' %}">PROJECT LIST</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'task_list' %}">TASK LIST</a>
+          </li>
           {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" name="logout" href="/account/logout">LOGOUT</a>

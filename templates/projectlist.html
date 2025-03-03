@@ -19,17 +19,19 @@
                     <p>No image available</p>
                   {% endif %}
                     <div class="card-body p-4">
-                        <h5 class="card-title text-dark font-weight-bold">{{ project.Project_name }}</h5>
+                        <h5 class="card-title text-dark font-weight-bold" >{{ project.Project_name }}</h5>
                         <p class="card-text text-muted">
                             {% if project.short_description %}
                                 {{ project.short_description|truncatewords:20 }}
                             {% else %}
                                 No description available.
                             {% endif %}
-                        </p>
-                        <a href="{% url 'project_detail' pk=project.pk %}" class="btn btn-outline-primary btn-hover-custom">View Details</a>
-                        <a href="{% url 'project_delete' pk=project.pk%}" class="btn-outline-primary btn-hover-custom">Delete</a>
-                    </div>
+                        </p>  
+                        <div class="d-flex justify-content-between">                  
+                            <a href="{% url 'project_detail' pk=project.pk %}" class="btn btn-primary ">View Details</a>                           
+                            <a href="{% url 'project_delete' pk=project.pk %}" class="btn btn-danger" >Delete</a>
+                        </div>
+                </div>
                 </div>
             </div>
             {% endfor %}

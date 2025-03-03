@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5"> 
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">           
+            <div class="card shadow-lg">
+                <div class="card-body">                   
+                    <h4 class="card-title text-center mb-4 text-primary">Create New Task</h4>
+                    {{form.media}}
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary w-100 mb-3">Create Task</button>
+    </form>
+    <a href="{% url 'task_list' %}" class="btn btn-outline-secondary w-100">Cancel</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

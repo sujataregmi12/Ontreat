@@ -1,7 +1,7 @@
 from django import forms
-from .models import Project ,User
+from .models import Project ,User ,Task
 from django.contrib.auth.models import User
-from bootstrap_datepicker_plus.widgets import DatePickerInput, TimePickerInput, DateTimePickerInput, MonthPickerInput, YearPickerInput
+from bootstrap_datepicker_plus.widgets import DatePickerInput
 
 
 
@@ -29,4 +29,15 @@ class Project(forms.ModelForm):
            'class':'form-control'
        })
       
-) 
+)
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = "__all__" #['Title', 'Description', 'priority', 'status', 'Deadline']
+        widgets = {
+            "created_date": DatePickerInput(),
+            "end_date": DatePickerInput(),
+            'Deadline': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+
+        }

@@ -1,16 +1,11 @@
 from django.shortcuts import render ,redirect
 from django.http import HttpResponse
-from home.models import Project 
-from .forms import SignupForm
-from django.contrib.auth.models import User
-from datetime import datetime
-from django.contrib import messages
+from home.models import Project ,Task
 from django.views.generic import TemplateView, ListView ,DetailView ,DeleteView, CreateView
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from .forms import AddForm
+from .forms import AddForm ,TaskForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from bootstrap_datepicker_plus.widgets import DateTimePickerInput
 
 
 
@@ -50,6 +45,31 @@ class ProjectFormView(CreateView):
     template_name = 'project_form.html'  # Template for the confirmation page
     form_class= AddForm  # The name of the object in the template context
     success_url = reverse_lazy('project_list') 
-   
-            
-#superuser:sujataregmi, password:sujataregmi ,email:sujataregmi@gmail.com
+
+
+class TaskListView(ListView):
+    model= Task
+    template_name ='task_list.html'
+    context_object_name = "task_list"
+
+class TaskDetailView(DetailView):
+    model = Task
+    template_name = 'task_detail.html'
+    context_object_name = "task_detail"
+
+class TaskDeleteView(DeleteView):
+    model= Task
+    template_name = 'task_delete.html'
+    context_object_name = "task_delete"
+    success_url = reverse_lazy('task_list') 
+
+
+class TaskCreateView(CreateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'taskform.html'
+    success_url = reverse_lazy('task_list') 
+
+
+
+#superuser:admin, password:admin , email:admin@gmail.com
