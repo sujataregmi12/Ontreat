@@ -28,12 +28,31 @@ class Project(models.Model):
 
     def __str__(self):
       return self.Project_name
+
+  
+    
+class Developer(models.Model):
+    name = models.CharField(max_length=50)
+        
+    def __str__(self):
+        return self.name
+    
+    
+class Team(models.Model):
+    name = models.CharField(max_length=100)
+    project_lead = models.ForeignKey(Developer, related_name='lead_of_teams', on_delete=models.SET_NULL, null=True, blank=True)
+    developers = models.ManyToManyField(Developer, related_name='teams', blank=True)
+    projects = models.ManyToManyField(Project, related_name='teams_assigned', blank=True)
     
 
+    def __str__(self):
+        return self.name
+
 class Task(models.Model):
-    Title=models.CharField(max_length=150)
-    Description= models.TextField(max_length=250)
-    Assigned_to=models.ManyToManyField(User, related_name='task')
+    title=models.CharField(max_length=150)
+    description= models.TextField(max_length=250)
+    assigned_to_team = models.ForeignKey(Team, related_name='tasks_assigned_to_team', null=True, blank=True, on_delete=models.SET_NULL)
+
   
     PRIORITY_CHOICES = [
         ('low', 'Low'),
@@ -51,9 +70,9 @@ class Task(models.Model):
         ('on_hold', 'On Hold'),
     ]
     status=models.CharField(max_length=150, choices=STATUS_CHOICES)
-    Deadline=models.DateTimeField(null=True, blank=True)
+    deadline=models.DateTimeField(null=True, blank=True)
     created_date =models.DateTimeField(null=True, blank=True)
     end_date =models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
-      return self.Title
+      return self.title

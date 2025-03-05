@@ -40,14 +40,14 @@
         <h4 class="text-secondary" style="font-family: 'Arial', sans-serif; font-size: 22px;"><b>Details:</b></h4>
         <p style="line-height: 1.6; color: #333;">{{task.text|linebreaksbr }}</p>
       
-        <div style="font-size: 18px; font-weight: bold;">Created on: <span style="font-weight: normal; color: #555;">{{ project.created_date|date:"F j, Y" }}</span></div>
-        <div style="font-size: 18px; font-weight: bold;">End date: <span style="font-weight: normal; color: #555;">{{ project.end_date|date:"F j, Y" }}</span></div>
-        <div style="font-size: 18px; font-weight: bold;">priority: <span style="font-weight: normal; color: #555;">{{ project.type }}</span></div>
-        <div style="font-size: 18px; font-weight: bold;">status: <span style="font-weight: normal; color: #555;">{{ project.type }}</span></div>
+        <div style="font-size: 18px; font-weight: bold;">Created on: <span style="font-weight: normal; color: #555;">{{ task.created_date|date:"F j, Y" }}</span></div>
+        <div style="font-size: 18px; font-weight: bold;">End date: <span style="font-weight: normal; color: #555;">{{ task.end_date|date:"F j, Y" }}</span></div>
+        <div style="font-size: 18px; font-weight: bold;">priority: <span style="font-weight: normal; color: #555;">{{ task.type }}</span></div>
+        <div style="font-size: 18px; font-weight: bold;">status: <span style="font-weight: normal; color: #555;">{{ task.type }}</span></div>
         <div style="font-size: 18px; font-weight: bold;">Assigned_to:</div>
         <div>
           {% for developer in project.developers.all %}
-            <span style="color: #007bff;">{{ assigned_to.name }}</span>{% if not forloop.last %}, {% endif %}
+            <span style="color: #007bff;">{{ assigned_to.title }}</span>{% if not forloop.last %}, {% endif %}
           {% endfor %}
         </div>
       </section>

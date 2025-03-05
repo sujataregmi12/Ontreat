@@ -38,6 +38,6 @@ class TaskForm(forms.ModelForm):
         widgets = {
             "created_date": DatePickerInput(),
             "end_date": DatePickerInput(),
-            'Deadline': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'deadline': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
 
         }
