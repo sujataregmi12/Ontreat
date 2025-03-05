@@ -39,9 +39,6 @@
             <a class="nav-link" href="#portfolio">PORTFOLIO</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#team">TEAM</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="#contact">CONTACT</a>
           </li>
           <li class="nav-item">
@@ -49,6 +46,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'task_list' %}">TASK LIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'team_list' %}">TEAM LIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'developer_list' %}">DEVELOPER LIST</a>
           </li>
           {% if request.user.is_authenticated %}
           <li class="nav-item">

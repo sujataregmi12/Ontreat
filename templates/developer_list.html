@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Developer List</h1>
+<ul>
+    {% for developer in developers %}
+        <li>
+            <a href="{% url 'developer_detail' pk=developer.pk %}">{{ developer.name }}</a>
+            <a href="{% url 'developer_delete' pk=developer.pk %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'developer_create' %}">Add New Developer</a>
+
+{% endblock %}

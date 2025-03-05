@@ -1,4 +1,3 @@
-<!-- home/templates/home/task_list.html -->
 {% extends 'base.html' %}
 
 {% block content %}
@@ -14,8 +13,8 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title text-dark font-weight-bold">{{ task.Title }}</h5>
-                            <p class="card-text">{{ task.Description|truncatewords:20 }}</p>
+                            <h5 class="card-title text-dark font-weight-bold">{{ task.title }}</h5>
+                            <p class="card-text">{{ task.description|truncatewords:20 }}</p>
                             
                                            
                         <div class="d-flex justify-content-between">                  

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% comment %}
+{% comment %} 
 {% block content %}
 <div class="container my-5">
     <h2 class="text-center">{{ task.Title }}</h2>
@@ -14,7 +14,7 @@
     </p>
     <a href="{% url 'task_list' %}" class="btn btn-secondary">Back to Task List</a>
 </div>
-{% endblock %} {% endcomment %}
+{% endblock %}  {% endcomment %}
 
 
 
@@ -47,7 +47,7 @@
         <div style="font-size: 18px; font-weight: bold;">Assigned_to:</div>
         <div>
           {% for developer in project.developers.all %}
-            <span style="color: #007bff;">{{ assigned_to.title }}</span>{% if not forloop.last %}, {% endif %}
+            <span style="color: #007bff;">{{ assigned_to.Team }}</span>{% if not forloop.last %}, {% endif %}
           {% endfor %}
         </div>
       </section>

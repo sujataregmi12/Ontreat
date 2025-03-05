@@ -1,5 +1,5 @@
 from django import forms
-from .models import Project ,User ,Task
+from .models import Project ,User ,Task ,Team ,Developer
 from django.contrib.auth.models import User
 from bootstrap_datepicker_plus.widgets import DatePickerInput
 
@@ -41,3 +41,13 @@ class TaskForm(forms.ModelForm):
             'deadline': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
 
         }
+
+class TeamForm(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = "__all__" 
+
+class DeveloperForm(forms.ModelForm):
+    class Meta:
+        model = Developer
+        fields= "__all__"

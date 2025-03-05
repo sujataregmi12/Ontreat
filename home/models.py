@@ -12,6 +12,14 @@ class Signup(models.Model):
     def __str__(self):
         return self.username
 
+
+
+   
+class Developer(models.Model):
+    name = models.CharField(max_length=50)
+        
+    def __str__(self):
+        return self.name
  
 class Project(models.Model):
     Project_name= models.CharField(max_length=122)
@@ -23,19 +31,11 @@ class Project(models.Model):
         ('Web', 'Web Development'),
       ]
     type =models.CharField(max_length=12 ,choices=TYPE_CHOICES)
-    developers = models.ManyToManyField(User, related_name='projects')
+    developers = models.ManyToManyField(Developer, related_name='projects')
     image = models.ImageField(upload_to = 'projects/images/', null=True, blank=True )
 
     def __str__(self):
       return self.Project_name
-
-  
-    
-class Developer(models.Model):
-    name = models.CharField(max_length=50)
-        
-    def __str__(self):
-        return self.name
     
     
 class Team(models.Model):

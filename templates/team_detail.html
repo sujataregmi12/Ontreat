@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>{{ team.name }}</h1>
+<h2><p>Project Lead:</h2> {{ team.project_lead.name }}</p>
+
+<h2>Projects:</h2>
+<ul>
+    {% for project in team.projects.all %}
+        <li>{{ project.Project_name }}</li>
+    {% empty %}
+        <li>No projects assigned to this team.</li>
+    {% endfor %}
+</ul>
+
+<h2>Developers:</h2>
+<ul>
+    {% for developer in team.developers.all %}
+        <li>{{ developer.name }}</li>
+    {% empty %}
+        <li>No developers assigned to this team.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
