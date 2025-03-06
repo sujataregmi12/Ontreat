@@ -1,7 +1,43 @@
 {% extends 'base.html' %}
+
 {% block content %}
+    <div class="container mt-5">
+        <!-- Card layout with shadow for elegance -->
+        <div class="card shadow-sm rounded-lg">
+            <div class="card-header text-white text-center py-4" style="background-color: rgb(50, 96, 146);">
+                <h2>{{ developer.display_name }}</h2>
+            </div>
+            <div class="card-body">
 
-<h1>{{ developer.name }}</h1>
-<p><b>Developer Name:</b> {{ developer.name }}.</p>
+                <!-- Developer Email -->
+                <div class="mb-4">
+                    <h5 class="text-muted"><b>Email</b></h5>
+                    <p class="fs-5 text-dark">{{ developer.email }}</p>
+                </div>
 
+                <!-- Developer Role -->
+                <div class="mb-4">
+                    <h5 class="text-muted"><b>Role</b></h5>
+                    <p class="fs-5 text-dark">{{ developer.role }}</p>
+                </div>
+
+                <!-- Developer Active Status -->
+                <div class="mb-4">
+                    <h5 class="text-muted"><b>Active Status</b></h5>
+                    <p class="fs-5 text-dark">
+                        {% if developer.is_active %}
+                            <span class="badge bg-success">Active</span>
+                        {% else %}
+                            <span class="badge bg-danger">Inactive</span>
+                        {% endif %}
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{% url 'developer_delete' developer.pk %}" class="btn btn-danger btn-sm px-4">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

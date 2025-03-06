@@ -59,6 +59,7 @@ class Team(models.Model):
     def __str__(self):
         return self.name
 
+
 class Task(models.Model):
     title=models.CharField(max_length=150)
     description= models.TextField(max_length=250)
@@ -87,3 +88,6 @@ class Task(models.Model):
 
     def __str__(self):
       return self.title
+    
+
+#username and password of superuser: admin, email:admin@gmail.com

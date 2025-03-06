@@ -1,26 +1,53 @@
 {% extends 'base.html' %}
-{% load static %}
 
 {% block content %}
+    <div class="container mt-5">
+        <!-- Card layout with shadow for elegance -->
+        <div class="card shadow-sm rounded-lg">
+            <div class="card-header text-white text-center py-4" style="background-color: rgb(50, 96, 146);">
+                <h2>{{ team.name }}</h2>
+            </div>
+            <div class="card-body">
 
-<h1>{{ team.name }}</h1>
-<h2><p>Project Lead:</h2> {{ team.project_lead.name }}</p>
+                <!-- Project Lead -->
+                <div class="mb-4">
+                    <h5 class="text-muted"><b>Project Lead</b></h5>
+                    <p class="fs-5 text-dark">{{ team.project_lead.display_name }}</p>
+                </div>
 
-<h2>Projects:</h2>
-<ul>
-    {% for project in team.projects.all %}
-        <li>{{ project.Project_name }}</li>
-    {% empty %}
-        <li>No projects assigned to this team.</li>
-    {% endfor %}
-</ul>
+                <!-- Developers List -->
+                <div class="mb-4">
+                    <h5 class="text-muted"><b>Developers</b></h5>
+                    <ul class="list-unstyled">
+                        {% for developer in team.developers.all %}
+                            <li>
+                                <i class="bi bi-person-fill text-primary me-2"></i>
+                                {{ developer.display_name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
 
-<h2>Developers:</h2>
-<ul>
-    {% for developer in team.developers.all %}
-        <li>{{ developer.name }}</li>
-    {% empty %}
-        <li>No developers assigned to this team.</li>
-    {% endfor %}
-</ul>
+                <!-- Projects List -->
+                <div class="mb-4">
+                    <h5 class="text-muted"><b>Projects</b></h5>
+                    <ul class="list-unstyled">
+                        {% for project in team.projects.all %}
+                            <li>
+                                <i class="bi bi-folder-fill text-warning me-2"></i>
+                                {{ project.Project_name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-between mt-4">
+                   
+                    <a href="{% url 'team_delete' team.pk %}" class="btn btn-danger btn-sm px-4">Delete </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

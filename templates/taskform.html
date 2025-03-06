@@ -12,7 +12,7 @@
         <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary w-100 mb-3">Create Task</button>
+        <button type="submit" class="btn w-100 mb-3" style="background-color: rgb(43, 71, 100); color: white;">Create Task</button>
     </form>
     <a href="{% url 'task_list' %}" class="btn btn-outline-secondary w-100">Cancel</a>
 </div>

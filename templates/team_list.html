@@ -1,14 +1,34 @@
 {% extends 'base.html' %}
-{% block content %}
 
-<h1>Team List</h1>
-<ul>
-    {% for team in teams %}
-        <li>
-            <a href="{% url 'team_detail' team.pk %}">{{ team.name }}</a>
-            <a href="{% url 'team_delete' team.pk %}">Delete</a>
+{% block content %}
+  <h1 class="text-center mb-5" style="font-size: 3rem; font-weight: bold; color: #2c3e50; margin-bottom: 40px;">Our Amazing Teams</h1>
+  
+  <div class="team-list-container" style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+    <ul class="team-list" style="list-style: none; padding: 0; margin: 0; width: 100%; max-width: 900px;">
+      {% for team in teams %}
+        <li class="team-item" style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background-color: #fff; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;">
+          <div class="team-details" style="max-width: 70%;">
+            <span class="team-name" style="font-size: 1.8rem; font-weight: bold; color: #2980b9; margin-bottom: 5px;">{{ team.name }}</span>
+          </div>
+          
+          <div class="team-actions" style="display: flex; gap: 15px;">
+            <a href="{% url 'team_detail' team.pk %}" class="btn btn-primary" style="font-weight: bold; font-size: 1rem;">
+                View Details
+              </a>
+              
+            <a href="{% url 'team_delete' team.pk %}" class="btn btn-danger" style="font-weight: bold; font-size: 1rem;">
+              Delete
+            </a>
+          </div>
         </li>
-    {% endfor %}
-</ul>
-<a href="{% url 'team_create' %}">Add New Team</a>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="container my-5">
+    <div class="col d-flex justify-content-center">
+        <a href="{% url 'team_create' %}" class="btn btn-outline-primary btn-hover-custom mb-3" style="text-align: center;">Add New Team</a>
+    </div>
+</div>
+
+
 {% endblock %}

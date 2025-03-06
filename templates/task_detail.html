@@ -1,61 +1,50 @@
 {% extends 'base.html' %}
-{% comment %} 
-{% block content %}
-<div class="container my-5">
-    <h2 class="text-center">{{ task.Title }}</h2>
-    <p>{{ task.Description }}</p>
-    <p>Priority: {{ task.priority }}</p>
-    <p>Status: {{ task.status }}</p>
-    <p>Deadline: {{ task.Deadline }}</p>
-    <p>Assigned to:
-        {% for user in task.Assigned_to.all %}
-            {{ user.username }}{% if not forloop.last %}, {% endif %}
-        {% endfor %}
-    </p>
-    <a href="{% url 'task_list' %}" class="btn btn-secondary">Back to Task List</a>
-</div>
-{% endblock %}  {% endcomment %}
-
-
 
 {% load static %}
 
 {% block content %}
-  <div class="container my-5" style="background-image: url('{% static '\image\background.jpg' %}'); background-size: cover; background-position: center; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <div class="container my-5" style="background-image: url('{% static 'image/background.jpg' %}'); background-size: cover; background-position: center; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
    
-   
-    <article class="project">
+    <!-- Task Article -->
+    <article class="task">
+      <!-- Task Title Section -->
       <section class="task-title pt-5">
         <h2 class="text-center text-primary" style="font-family: 'Arial', sans-serif; font-size: 36px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">{{ task.title }}</h2>
       </section>
 
-     
-      <section class="task-description mt-4" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px;">
-        <h4 class="text-secondary" style="font-family: 'Arial', sans-serif; font-size: 22px;"><b>Description:</b></h4>
-        <p style="line-height: 1.6; color: #333;">{{ task.description|linebreaksbr }}</p>
+      <!-- Short Description Section -->
+      <section class="task-short_description mt-4" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px;">
+        <h4 class="text-secondary" style="font-family: 'Arial', sans-serif; font-size: 22px;"><b>Short Description:</b></h4>
+        <p class="lead" style="line-height: 1.6; color: #333;">{{ task.description|linebreaksbr }}</p>
       </section>
 
-     
-      <section class="taskt-text mt-4" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px;">
+      <!-- Task Details Section -->
+      <section class="task-details mt-4" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px;">
         <h4 class="text-secondary" style="font-family: 'Arial', sans-serif; font-size: 22px;"><b>Details:</b></h4>
-        <p style="line-height: 1.6; color: #333;">{{task.text|linebreaksbr }}</p>
-      
+        <p style="line-height: 1.6; color: #333;">{{ task.description|linebreaksbr }}</p>
+
+        <!-- Task Meta Section -->
         <div style="font-size: 18px; font-weight: bold;">Created on: <span style="font-weight: normal; color: #555;">{{ task.created_date|date:"F j, Y" }}</span></div>
         <div style="font-size: 18px; font-weight: bold;">End date: <span style="font-weight: normal; color: #555;">{{ task.end_date|date:"F j, Y" }}</span></div>
-        <div style="font-size: 18px; font-weight: bold;">priority: <span style="font-weight: normal; color: #555;">{{ task.type }}</span></div>
-        <div style="font-size: 18px; font-weight: bold;">status: <span style="font-weight: normal; color: #555;">{{ task.type }}</span></div>
-        <div style="font-size: 18px; font-weight: bold;">Assigned_to:</div>
+        <div style="font-size: 18px; font-weight: bold;">Priority: <span style="font-weight: normal; color: #555;">{{ task.get_priority_display }}</span></div>
+        <div style="font-size: 18px; font-weight: bold;">Status: <span style="font-weight: normal; color: #555;">{{ task.get_status_display }}</span></div>
+        <div style="font-size: 18px; font-weight: bold;">Deadline: <span style="font-weight: normal; color: #555;">{{ task.deadline|date:"F j, Y" }}</span></div>
+
+        <!-- Assigned Team Section -->
+        <div style="font-size: 18px; font-weight: bold;">Assigned Team:</div>
         <div>
-          {% for developer in project.developers.all %}
-            <span style="color: #007bff;">{{ assigned_to.Team }}</span>{% if not forloop.last %}, {% endif %}
-          {% endfor %}
+          {% if task.assigned_to_team %}
+            <span style="color: #007bff;">{{ task.assigned_to_team.name }}</span>
+          {% else %}
+            <span style="color: #555;">No team assigned</span>
+          {% endif %}
         </div>
       </section>
     </article>
 
-   
+    <!-- Back Link Section -->
     <div class="back-link mt-4 text-center">
-      <a href="{% url 'task_list' %}" class="btn btn-primary btn-lg" style="border-radius: 50px; padding: 10px 30px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);">Back to tasks</a>
+      <a href="{% url 'task_list' %}" class="btn btn-primary btn-lg" style="border-radius: 50px; padding: 10px 30px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);">Back to Tasks</a>
     </div>
   </div>
 {% endblock %}
