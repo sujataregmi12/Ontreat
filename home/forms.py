@@ -1,5 +1,5 @@
 from django import forms
-from .models import Project ,User ,Task ,Team ,Developer
+from .models import Project ,User ,Task ,Team ,UserProfile
 from django.contrib.auth.models import User
 from bootstrap_datepicker_plus.widgets import DatePickerInput
 
@@ -49,5 +49,5 @@ class TeamForm(forms.ModelForm):
 
 class DeveloperForm(forms.ModelForm):
     class Meta:
-        model = Developer
+        model = UserProfile
         fields= "__all__"

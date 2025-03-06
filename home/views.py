@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect
 from django.http import HttpResponse
-from home.models import Project ,Task , Team ,Developer
+from home.models import Project ,Task , Team ,UserProfile
 from django.views.generic import TemplateView, ListView ,DetailView ,DeleteView, CreateView
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -96,26 +96,26 @@ class TeamCreateView(CreateView):
 
 
 class DeveloperListView(ListView):
-    model = Developer
+    model = UserProfile
     template_name = 'developer_list.html'
     context_object_name = 'developers'
 
 
 class DeveloperDetailView(DetailView):
-    model = Developer
+    model = UserProfile
     template_name = 'developer_detail.html'
     context_object_name = 'developer'
 
 
 class DeveloperDeleteView(DeleteView):
-    model = Developer
+    model = UserProfile
     template_name = 'developer_delete.html'
     context_object_name = 'developer'
     success_url = reverse_lazy('developer_list') 
 
 
 class DeveloperCreateView(CreateView):
-    model = Developer
+    model = UserProfile
     template_name = 'developer_form.html'
     form_class = DeveloperForm
     success_url = reverse_lazy('developer_list')

@@ -13,13 +13,24 @@ class Signup(models.Model):
         return self.username
 
 
-
+ROLE_CHOICES = [
+        ('developer', 'Developer'),
+        ('project_lead', 'Project Lead'),
+        ('project_manager', 'Project Manager'),
+    ]
    
-class Developer(models.Model):
-    name = models.CharField(max_length=50)
+class UserProfile(models.Model):
+    display_name = models.CharField(max_length=150, null=True, blank=True)
+    email = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    role = models.CharField(max_length=150, choices=ROLE_CHOICES, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
         
     def __str__(self):
-        return self.name
+        if self.display_name:
+            return self.display_name
+        else:
+            f"User_{self.id}"
  
 class Project(models.Model):
     Project_name= models.CharField(max_length=122)
@@ -31,7 +42,7 @@ class Project(models.Model):
         ('Web', 'Web Development'),
       ]
     type =models.CharField(max_length=12 ,choices=TYPE_CHOICES)
-    developers = models.ManyToManyField(Developer, related_name='projects')
+    developers = models.ManyToManyField(UserProfile, related_name='projects', null=True, blank=True)
     image = models.ImageField(upload_to = 'projects/images/', null=True, blank=True )
 
     def __str__(self):
@@ -40,8 +51,8 @@ class Project(models.Model):
     
 class Team(models.Model):
     name = models.CharField(max_length=100)
-    project_lead = models.ForeignKey(Developer, related_name='lead_of_teams', on_delete=models.SET_NULL, null=True, blank=True)
-    developers = models.ManyToManyField(Developer, related_name='teams', blank=True)
+    project_lead = models.ForeignKey(UserProfile, related_name='lead_of_teams', on_delete=models.SET_NULL, null=True, blank=True)
+    developers = models.ManyToManyField(UserProfile, related_name='teams', blank=True)
     projects = models.ManyToManyField(Project, related_name='teams_assigned', blank=True)
     
 
