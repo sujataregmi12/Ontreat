@@ -7,8 +7,15 @@
             <div class="card-header text-white text-center py-4" style="background-color: rgb(50, 96, 146);">
                 <h2>{{ developer.display_name }}</h2>
             </div>
-            <div class="card-body">
-
+                <div class="card-body">
+                    <!-- Display Developer Image -->
+                    <div class="text-center mb-4">
+                        {% if developer.image %}
+                            <img src="{{ developer.image.url }}" alt="Developer Image" class="img-fluid rectangle" style="max-width: 150px; max-height: 150px;">
+                        {% else %}
+                            <p>No image available</p>
+                        {% endif %}
+                    </div>
                 <!-- Developer Email -->
                 <div class="mb-4">
                     <h5 class="text-muted"><b>Email</b></h5>
@@ -19,6 +26,12 @@
                 <div class="mb-4">
                     <h5 class="text-muted"><b>Role</b></h5>
                     <p class="fs-5 text-dark">{{ developer.role }}</p>
+                </div>
+
+                 <!-- Developer About Me -->
+                <div class="mb-4">
+                    <h5 class="text-muted"><b>About Me</b></h5>
+                    <p class="fs-5 text-dark">{{ developer.about_me|default:"No bio available" }}</p>
                 </div>
 
                 <!-- Developer Active Status -->

@@ -51,3 +51,12 @@ class DeveloperForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields= "__all__"
+
+
+class Developer(forms.ModelForm):
+   image = forms.ImageField(
+       label= "photo",
+       widget = forms.ClearableFileInput(attrs={
+           'class':'form-control'
+       })
+   )

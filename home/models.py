@@ -24,8 +24,10 @@ class UserProfile(models.Model):
     email = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     role = models.CharField(max_length=150, choices=ROLE_CHOICES, null=True, blank=True)
+    about_me =models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
-        
+    image = models.ImageField(upload_to = 'projects/images/',blank=True, null=True) 
+    
     def __str__(self):
         if self.display_name:
             return self.display_name
