@@ -1,56 +1,89 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container mt-5">
-        <!-- Card layout with shadow for elegance -->
-        <div class="card shadow-sm rounded-lg">
-            <div class="card-header text-white text-center py-4" style="background-color: rgb(50, 96, 146);">
-                <h2>{{ developer.display_name }}</h2>
-            </div>
-                <div class="card-body">
-                    <!-- Display Developer Image -->
-                    <div class="text-center mb-4">
+<div class="container mt-5">
+    
+    <div class="mb-4 about-me-section text-center p-4" style="background-color:rgb(37, 88, 138);">
+        <h5 class="text-muted about-title"><b>About Me</b></h5>
+        <p class="fs-5 text-dark about-text">{{ developer.about_me|default:"No bio available" }}</p>
+    </div>
+
+
+        <div class="row d-flex align-items-stretch">           
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
                         {% if developer.image %}
-                            <img src="{{ developer.image.url }}" alt="Developer Image" class="img-fluid rectangle" style="max-width: 150px; max-height: 150px;">
+                            <img src="{{ developer.image.url }}" alt="Developer Image" 
+                                 style="width: 100%; height: 200px; object-fit: cover; border-radius: 0;">
                         {% else %}
                             <p>No image available</p>
                         {% endif %}
                     </div>
-                <!-- Developer Email -->
-                <div class="mb-4">
-                    <h5 class="text-muted"><b>Email</b></h5>
-                    <p class="fs-5 text-dark">{{ developer.email }}</p>
+                    <div class="card-footer text-center">                  
+                        <p class="fs-6 text-muted">A page where you can see the details of developrs</p>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="col-md-8 d-flex flex-column">
+                <div class="row">                
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="text-muted"><b>Role</b></h5>
+                                <p class="fs-5 text-dark">{{ developer.role }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="text-muted"><b>Email</b></h5>
+                                <p class="fs-5 text-dark">{{ developer.email }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Developer Role -->
-                <div class="mb-4">
-                    <h5 class="text-muted"><b>Role</b></h5>
-                    <p class="fs-5 text-dark">{{ developer.role }}</p>
-                </div>
+              
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="text-muted"><b>User</b></h5>
+                                <p class="fs-5 text-dark">{{ developer.user }}</p>
+                            </div>
+                        </div>
+                    </div>
 
-                 <!-- Developer About Me -->
-                <div class="mb-4">
-                    <h5 class="text-muted"><b>About Me</b></h5>
-                    <p class="fs-5 text-dark">{{ developer.about_me|default:"No bio available" }}</p>
-                </div>
-
-                <!-- Developer Active Status -->
-                <div class="mb-4">
-                    <h5 class="text-muted"><b>Active Status</b></h5>
-                    <p class="fs-5 text-dark">
-                        {% if developer.is_active %}
-                            <span class="badge bg-success">Active</span>
-                        {% else %}
-                            <span class="badge bg-danger">Inactive</span>
-                        {% endif %}
-                    </p>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="d-flex justify-content-between mt-4">
-                    <a href="{% url 'developer_delete' developer.pk %}" class="btn btn-danger btn-sm px-4">Delete</a>
+           
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="text-muted"><b>Active Status</b></h5>
+                                <p class="fs-5 text-dark">
+                                    {% if developer.is_active %}
+                                        <span class="badge bg-success">Active</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">Inactive</span>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+       
+        <div class="d-flex justify-content-center mt-4">
+            <a href="{% url 'developer_delete' developer.pk %}" class="btn btn-danger btn-sm px-4">Delete</a>
+        </div>
+
     </div>
 {% endblock %}
+
