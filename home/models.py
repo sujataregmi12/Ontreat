@@ -63,8 +63,8 @@ class Team(models.Model):
 
 
 class Task(models.Model):
-    title=models.CharField(max_length=150)
-    description= models.TextField(max_length=250)
+    title=models.CharField(max_length=150 ,null= True, blank= True)
+    description= models.TextField(max_length=250 ,null= True, blank= True)
     assigned_to_team = models.ForeignKey(Team, related_name='tasks_assigned_to_team', null=True, blank=True, on_delete=models.SET_NULL)
 
   
@@ -83,7 +83,7 @@ class Task(models.Model):
         ('blocked', 'Blocked'),
         ('on_hold', 'On Hold'),
     ]
-    status=models.CharField(max_length=150, choices=STATUS_CHOICES)
+    status=models.CharField(max_length=150,null= True, blank= True,  choices=STATUS_CHOICES)
     deadline=models.DateTimeField(null=True, blank=True)
     created_date =models.DateTimeField(null=True, blank=True)
     end_date =models.DateTimeField(null=True, blank=True)

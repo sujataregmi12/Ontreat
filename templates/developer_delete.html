@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Are you sure you want to delete {{ developer.name }}?</h1>
+<div class="container my-5">
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <!-- Card for the delete confirmation -->
+        <div class="card shadow-lg">
+            <div class="card-body text-center">
+                <h4 class="card-title text-danger mb-4">Delete Developer</h4>
+                <p class="card-text text-muted mb-4">Are you sure you want to delete{{ developer.name }}?</p>
+
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Yes, Delete</button>
+    <button type="submit" class="btn btn-danger btn-block mb-3">yes, Delete it</button>
 </form>
+<a href="{% url 'team_list' %}" class="btn btn-outline-secondary btn-block">Cancel</a>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
 
 {% endblock %}

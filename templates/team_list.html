@@ -1,34 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1 class="text-center mb-5" style="font-size: 3rem; font-weight: bold; color: #2c3e50; margin-bottom: 40px;">Our Amazing Teams</h1>
-  
-  <div class="team-list-container" style="display: flex; justify-content: center; align-items: center; padding: 20px;">
-    <ul class="team-list" style="list-style: none; padding: 0; margin: 0; width: 100%; max-width: 900px;">
-      {% for team in teams %}
-        <li class="team-item" style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background-color: #fff; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;">
-          <div class="team-details" style="max-width: 70%;">
-            <span class="team-name" style="font-size: 1.8rem; font-weight: bold; color: #2980b9; margin-bottom: 5px;">{{ team.name }}</span>
-          </div>
-          
-          <div class="team-actions" style="display: flex; gap: 15px;">
-            <a href="{% url 'team_detail' team.pk %}" class="btn btn-primary" style="font-weight: bold; font-size: 1rem;">
-                View Details
-              </a>
-              
-            <a href="{% url 'team_delete' team.pk %}" class="btn btn-danger" style="font-weight: bold; font-size: 1rem;">
-              Delete
-            </a>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div class="container my-5">
-    <div class="col d-flex justify-content-center">
-        <a href="{% url 'team_create' %}" class="btn btn-outline-primary btn-hover-custom mb-3" style="text-align: center;">Add New Team</a>
+<div class="container my-5">
+    <div class="col text-end">
+        <a href="{% url 'team_create' %}" class="btn btn-outline-primary btn-hover-custom mb-3">Add New Team</a>
     </div>
+    <h2 class="text-center mb-4 text-dark font-weight-bold">Our Teams</h2>
+    
+    {% if teams %}
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            {% for team in teams %}
+                <div class="col">
+                    <div class="card mb-4 shadow-lg border-0 rounded-3 overflow-hidden">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark font-weight-bold">{{ team.name }}</h5>
+                            <h6 class="card-subtitle mb-3 text-muted">{{ team.project_lead }}</h6> <!-- Added project_lead -->
+                            
+                            <div class="d-flex gap-3 justify-content-between">
+                                <a href="{% url 'team_detail' pk=team.pk %}" class="btn btn-primary py-2">View Details</a>
+                                <a href="{% url 'team_delete' pk=team.pk %}" class="btn btn-danger py-2">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No teams available.</p>
+    {% endif %}
 </div>
-
-
 {% endblock %}
