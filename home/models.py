@@ -42,6 +42,9 @@ class Project(models.Model):
     end_date =models.DateTimeField(null=True, blank=True)
     TYPE_CHOICES = [
         ('Web', 'Web Development'),
+        ('Software', 'Software Development'),
+        ('Data', 'Data Science'),
+        ('AI', 'Artificial Intelligence'),
       ]
     type =models.CharField(max_length=12 ,choices=TYPE_CHOICES)
     developers = models.ManyToManyField(UserProfile, related_name='projects', null=True, blank=True)

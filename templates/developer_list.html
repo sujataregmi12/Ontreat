@@ -14,7 +14,8 @@
                 <div class="card shadow-lg border-0 rounded-3 overflow-hidden">          
                     <!-- Display Developer Image -->
                     {% if developer.image %}
-                        <img src="{{ developer.image.url }}" alt="{{ developer.display_name }}" class="card-img-top">
+                        <img src="{{ developer.image.url }}" alt="{{ developer.display_name }}" class="card-img-top"
+                         style=" height: 200px; ">
                     {% else %}
                         <p class="text-center text-muted">No image available</p>
                     {% endif %}
