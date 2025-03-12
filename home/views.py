@@ -55,7 +55,7 @@ class TaskListView(ListView):
 class TaskDetailView(DetailView):
     model = Task
     template_name = 'task_detail.html'
-    context_object_name = "task_detail"
+    context_object_name = 'task'
 
 class TaskDeleteView(DeleteView):
     model= Task

@@ -91,5 +91,5 @@ class Task(models.Model):
     def __str__(self):
       return self.title
     
-
+     
 #username and password of superuser: admin, email:admin@gmail.com
