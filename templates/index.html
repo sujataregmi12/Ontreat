@@ -3,16 +3,32 @@
 {% block content %}
 {{request.user}}
 
+
+{% if messages %}
+{% for message in messages %}
+  <div class="alert alert-{{ message }} alert-dismissible fade show my-0" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}
+{% endif %}
+
+
+<div class="container my-4">
+  <h1 class="text-center"><b>Welcome to the Project Management System</b></h1>
+  <p class="text-center"><b>Efficiently track, collaborate, and complete your projects with ease.</b></p>
+
+
+
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="/static/header-bg1 (1).jpg" class="d-block w-100" alt="..." style="height: 600px; object-fit: cover;">
+      <div class="carousel-item active py-5">
+        <img src="static/indexpage.PNG" class="d-block w-100" alt="..." style="height: 600px; object-fit: cover;">
         <div class="carousel-caption d-none d-md-block  ">
-          <h1>Python/Django developer at remote</h1>
-          <h3>A agile team that you can count on</h3>
+         
           <ul>
             <li><button type="button" class="btn btn-secondary">
-                <a class="nav-link active" aria-current="page" href="#services">TELL ME MORE</a>
+                <a class="nav-link active" aria-current="page" href="#about">TELL ME MORE</a>
               </button></li>
           </ul>
         </div>
@@ -21,6 +37,121 @@
   </div>
   </div>
 
+  <main>
+    <section class="pt-0 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <section id="about">
+            <!-- Section Heading -->
+            <h1 class="fw-bold display-4 mb-4 "><br>About Us</h1>
+            <p class="lead text-muted mb-5">
+              Welcome, your go-to project management system. We are dedicated to providing agile, collaborative, and efficient solutions for managing your projects, teams, and tasks seamlessly.
+            </p>
+          </section>
+  
+          <!-- Our Mission -->
+          <section class="my-5">
+            <h2 class="fw-bold ">Our Mission</h2>
+            <p class="text-body-secondary">
+              Our mission is to simplify project management through intuitive, user-friendly tools that enhance team collaboration, streamline workflows, and drive success. We are committed to providing powerful yet easy-to-use features for teams of all sizes.
+            </p>
+          </section>
+  
+          <!-- Key Features Section -->
+          <section class="my-5">
+            <h2 class="fw-bold ">Key Features</h2>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+              <!-- Feature 1 -->
+              <div class="col">
+                <div class="card shadow-lg border-0 rounded-3">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary">Project Management</h5>
+                    <p class="card-text">Efficiently manage projects from start to finish with clear timelines, goals, and milestones.</p>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Feature 2 -->
+              <div class="col">
+                <div class="card shadow-lg border-0 rounded-3">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary">Task Management</h5>
+                    <p class="card-text">Assign tasks, set priorities, and track progress in real-time. Ensure no task is overlooked and deadlines are met.</p>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Feature 3 -->
+              <div class="col">
+                <div class="card shadow-lg border-0 rounded-3">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary">Team Collaboration</h5>
+                    <p class="card-text">
+                      Organize teams effectively with a structured hierarchy. Each team is led by a <strong>Project Lead</strong> and includes multiple <strong>Developers</strong> working on various projects.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+  
+              <!-- Feature 4 -->
+             <!-- Feature 4 (Developer Management) -->
+<div class="col">
+  <div class="card shadow-lg border-0 rounded-3">
+    <div class="card-body">
+      <h5 class="card-title text-primary">Developer Management</h5>
+      <p class="card-text"> manage your development team effectively. With features like the Developer List, team assignment. It ensures that your developers work collaboratively.</p>
+    
+    </div>
+  </div>
+</div>
+</section>
+  
+          <!-- Our Values -->
+          <section class="my-5">
+            <h2 class="fw-bold ">Our Values</h2>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Transparency - Clear communication and visibility in every project.</li>
+              <li class="list-group-item">Collaboration - Working together to achieve goals efficiently.</li>
+              <li class="list-group-item">Innovation - Constantly evolving to meet the needs of modern project management.</li>
+              <li class="list-group-item">Customer Focus - Delivering value and solving real problems for our users.</li>
+            </ul>
+          </section>
+  
+          <!-- Call to Action -->
+          <section class="my-5">
+            <h2 class="fw-bold ">Join Us Today</h2>
+            <p class="text-body-secondary">
+              Ready to take control of your projects and streamline your team's workflow? Sign up now and start experiencing the power of Our System!
+            </p>
+            <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg">Get Started</a>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  
+
+  {% comment %} <script>
+    let prevScrollPos = window.pageYOffset;
+    window.onscroll = function () {
+      let currentScrollPos = window.pageYOffset;
+      let navbar = document.querySelector(".navbar");
+      
+      if (prevScrollPos > currentScrollPos) {
+        // Scrolling Up - Show Navbar
+        navbar.style.top = "0";
+      } else {
+        // Scrolling Down - Hide Navbar
+        navbar.style.top = "-80px"; // Adjust height as needed
+      }
+      
+      prevScrollPos = currentScrollPos;
+    };
+  </script> {% endcomment %}
+
+{% comment %} 
 
   <main>
   
@@ -387,7 +518,7 @@
       </div>
     </div>
     </div>
-  </main>
+  </main> {% endcomment %}
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -16,6 +16,7 @@
   background-color: #295297;
 }
 
+
 /* Add a wrapper class to make sure the stepper stays centered */
 .vertical-stepper-wrapper {
   display: flex;
@@ -862,6 +863,7 @@ body {
         height: 100%;  /* Makes sure each card stretches to fill the height of the column */
     }
 
+  
 
  
 /* project detail*/

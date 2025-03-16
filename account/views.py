@@ -253,7 +253,7 @@ class SignupView(PasswordMixin, FormView):
         # API for site developers.
         self.form = form  # skipcq: PYL-W0201
         self.login_user()
-        return redirect(self.get_success_url())
+        return redirect ("/account_login")
 
     def create_user(self, form, commit=True, model=None, **kwargs):
         User = model
