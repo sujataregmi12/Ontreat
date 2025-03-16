@@ -867,41 +867,4 @@ body {
 
 
  
-/* developers index*/
-.notes-container {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-  }
-  .note {
-  background-color: #fff3cd;
-  padding: 15px;
-  border-left: 5px solid #ffc107;
-  border-radius: 8px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  max-width: 300px;
-  }
-  .note h4 {
-  margin-bottom: 8px;
-  font-weight: bold;
-  }
-  .carousel-caption {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 10px;
-  border-radius: 5px;
-  }
-  .developer-container {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-  }
-  .developer {
-  text-align: center;
-  }
-  .developer img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  }
+/* project detail*/

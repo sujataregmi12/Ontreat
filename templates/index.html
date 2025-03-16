@@ -46,8 +46,11 @@
             <h1 class="fw-bold display-4 mb-4 "><br>About Us</h1>
             <p class="lead text-muted mb-5">
               Welcome, your go-to project management system. We are dedicated to providing agile, collaborative, and efficient solutions for managing your projects, teams, and tasks seamlessly.
-            </p>
+            </p>  
           </section>
+                </div>
+            </div>
+        </div>
   
           <!-- Our Mission -->
           <section class="my-5">
@@ -93,6 +96,8 @@
                 </div>
               </div>
               
+
+              
   
               <!-- Feature 4 -->
              <!-- Feature 4 (Developer Management) -->
@@ -131,7 +136,83 @@
     </section>
   </main>
   
+  <main>
+    <div class="container my-5">
+      <h2 class="text-center">Meet Our Developers</h2>
+      <div class="developer-container d-flex justify-content-center flex-wrap gap-4">
+          
+          <!-- Lead Developer -->
+          <div class="developer text-center">
+              <img src="/static/dev3.png" alt="Sujata" class="rounded-circle shadow" style="width: 120px; height: 120px;">
+              <h4 class="mt-2"><span class="badge bg-primary px-3 py-2 mb-2">Lead Developer</span></h4>
+              
+              <p class="text-muted small">Oversees technical development, ensures quality code, and leads the team in best practices.</p>
+          </div>
   
+          <!-- Project Manager -->
+          <div class="developer text-center">
+              <img src="static/dev4.jpeg" alt="Roniee" class="rounded-circle shadow" style="width: 120px; height: 120px;">
+              <h4 class="mt-2"> <span class="badge bg-success px-3 py-2 mb-2">Project Manager</span></h4>
+            
+              <p class="text-muted small">Coordinates projects, manages timelines, and ensures smooth collaboration for success.</p>
+          </div>
+  
+          <!-- Developer -->
+          <div class="developer text-center">
+              <img src="/static/dev2.jpeg" alt="Sudip" class="rounded-circle shadow" style="width: 120px; height: 120px;">
+              <h4 class="mt-2"><span class="badge bg-warning px-3 py-2 mb-2 text-dark">Developer</span></h4>
+              
+              <p class="text-muted small">Writes and debugs code, implements features, and collaborates with the team for system improvements.</p>
+          </div>
+      </div>
+    </div>
+  </main>
+  
+
+            
+<style>
+.notes-container {
+display: flex;
+gap: 15px;
+justify-content: center;
+flex-wrap: wrap;
+}
+.note {
+background-color: #fff3cd;
+padding: 15px;
+border-left: 5px solid #ffc107;
+border-radius: 8px;
+box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+max-width: 300px;
+}
+.note h4 {
+margin-bottom: 8px;
+font-weight: bold;
+}
+.carousel-caption {
+background: rgba(0, 0, 0, 0.6);
+padding: 10px;
+border-radius: 5px;
+}
+.developer-container {
+display: flex;
+gap: 20px;
+justify-content: center;
+flex-wrap: wrap;
+}
+.developer {
+text-align: center;
+}
+.developer img {
+width: 100px;
+height: 100px;
+border-radius: 50%;
+}
+</style>
+        </div>
+    </div>
+  </div>
+</main>
 
   {% comment %} <script>
     let prevScrollPos = window.pageYOffset;

@@ -7,37 +7,39 @@
 {% block head_title %}{% trans "Log in" %}{% endblock %}
 
 {% block content %}
-<div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 80vh; background-image: url( static/form background.jpg); background-size: cover; background-position: center;">
-    <div class="row w-100 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-6">
-            <div class="card p-4 shadow-lg rounded-4 border-0" style="background-color: rgba(209, 209, 217, 0.8);">
-                <div class="card-body">
-                    <form method="POST" action="{% url 'account_login' %}" autocapitalize="off" {% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-                        <legend class="text-center mb-4" style="font-weight: 600; font-size: 1.5rem; color: rgb(43, 71, 100); margin-top: 20px;">
-                            {% trans "Log in to an existing account" %}
-                        </legend>
-                        
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh; background-image: url(static/form\ background.jpg); background-size: cover; background-position: center;">
+    <div class="row justify-content-center w-100">
+        <div class="col-md-5 col-lg-4"> <!-- Slightly increased width -->
+            <div class="card p-3 shadow-lg rounded-3 border-0" style="background-color: rgba(209, 209, 217, 0.9);">
+                <div class="card-body p-2">
+                    <form method="POST" action="{% url 'account_login' %}" autocapitalize="off">
                         {% csrf_token %}
-                        
-                        {% bootstrap_form form %}
-                        
-                        {% if redirect_field_value %}
-                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                        {% endif %}
-                        
-                        <button type="submit" class="btn btn-primary w-100 py-2 mb-3" style="font-size: 1.1rem; font-weight: 600; background-color: rgb(43, 71, 100); border-color: rgb(43, 71, 100);">{% trans "Log in" %}</button>
-                        
-                        <div class="d-flex justify-content-center">
-                            <a href="{% url 'account_password_reset' %}" class="btn btn-link" style="font-size: 1rem; color: rgb(43, 71, 100); text-decoration: underline;">{% trans "Forgot your password?" %}</a>
+
+                        <legend class="text-center mb-2" style="font-weight: 600; font-size: 1.3rem; color: rgb(43, 71, 100);">
+                            {% trans "Log in" %}
+                        </legend>
+
+                        <div class="mb-2">
+                            <label for="id_username" class="form-label" style="font-size: 0.9rem;">Username</label>
+                            <input type="text" id="id_username" name="username" class="form-control form-control-sm" required>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="id_password" class="form-label" style="font-size: 0.9rem;">Password</label>
+                            <input type="password" id="id_password" name="password" class="form-control form-control-sm" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 py-1" style="font-size: 0.9rem; font-weight: 600; background-color: rgb(43, 71, 100); border-color: rgb(43, 71, 100);">{% trans "Log in" %}</button>
+
+                        <div class="text-center mt-2">
+                            <a href="{% url 'account_password_reset' %}" class="btn btn-link p-0" style="font-size: 0.8rem; color: rgb(43, 71, 100);">{% trans "Forgot your password?" %}</a>
                         </div>
                     </form>
-                    
+
                     {% if ACCOUNT_OPEN_SIGNUP %}
-                        <p class="text-center mt-4">
-                            <small style="font-size: 0.9rem;">
-                                {% trans "Don't have an account?" %} 
-                                <strong><a href="{% urlnext 'account_signup' %}" style="font-weight: 600; color: rgb(43, 71, 100);">{% trans "Sign up" %}</a></strong>
-                            </small>
+                        <p class="text-center mt-2" style="font-size: 0.8rem;">
+                            {% trans "Don't have an account?" %}
+                            <a href="{% url 'account_signup' %}" style="font-weight: 600; color: rgb(43, 71, 100);">{% trans "Sign up" %}</a>
                         </p>
                     {% endif %}
                 </div>
