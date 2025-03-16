@@ -14,15 +14,15 @@
 {% endif %}
 
 
-<div class="container my-4">
+{% comment %} <div class="container my-4">
   <h1 class="text-center"><b>Welcome to the Project Management System</b></h1>
-  <p class="text-center"><b>Efficiently track, collaborate, and complete your projects with ease.</b></p>
+  <p class="text-center"><b>Efficiently track, collaborate, and complete your projects with ease.</b></p> {% endcomment %}
 
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="static/indexpage.PNG" class="d-block w-100" alt="..." 
-                 style="height: 100vh; width: 100vw; object-fit: cover;">
+        <div class="carousel-item active py-4">
+            <img src="static/index2.PNG" class="d-block w-100" alt="..." 
+                 style="height: 120vh; width: 100%; object-fit: cover;">
             <div class="carousel-caption d-none d-md-block" style="background: none; color: #fff;">
                 <ul>
                     <li>
@@ -36,8 +36,11 @@
     </div>
 </div>
 
-
  
+
+ <div class="container my-4">
+  <h1 class="text-center"><b>Welcome to the Project Management System</b></h1>
+  <p class="text-center"><b>Efficiently track, collaborate, and complete your projects with ease.</b></p>
 
 
   <main>
@@ -46,7 +49,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <section id="about">
             <!-- Section Heading -->
-            <h1 class="fw-bold display-4 mb-4 "><br>About Us</h1>
+            <h3 class="fw-bold display-4 mb-4 "><br>About Us</h3>
             <p class="lead text-muted mb-5">
               Welcome, your go-to project management system. We are dedicated to providing agile, collaborative, and efficient solutions for managing your projects, teams, and tasks seamlessly.
             </p>  
@@ -139,36 +142,46 @@
   
   <main>
     <div class="container my-5">
-      <h2 class="text-center">Meet Our Developers</h2>
-      <div class="developer-container d-flex justify-content-center flex-wrap gap-4">
-          
-          <!-- Lead Developer -->
-          <div class="developer text-center">
-              <img src="/static/dev3.png" alt="Sujata" class="rounded-circle shadow" style="width: 120px; height: 120px;">
-              <h4 class="mt-2"><span class="badge bg-primary px-3 py-2 mb-2">Lead Developer</span></h4>
-              
-              <p class="text-muted small">Oversees technical development, ensures quality code, and leads the team in best practices.</p>
-          </div>
-  
-          <!-- Project Manager -->
-          <div class="developer text-center">
-              <img src="static/dev4.jpeg" alt="Roniee" class="rounded-circle shadow" style="width: 120px; height: 120px;">
-              <h4 class="mt-2"> <span class="badge bg-success px-3 py-2 mb-2">Project Manager</span></h4>
+        <h2 class="text-center">Meet Our Developers</h2>
+        <div class="developer-container d-flex justify-content-center flex-wrap gap-4">
             
-              <p class="text-muted small">Coordinates projects, manages timelines, and ensures smooth collaboration for success.</p>
-          </div>
-  
-          <!-- Developer -->
-          <div class="developer text-center">
-              <img src="/static/dev2.jpeg" alt="Sudip" class="rounded-circle shadow" style="width: 120px; height: 120px;">
-              <h4 class="mt-2"><span class="badge bg-warning px-3 py-2 mb-2 text-dark">Developer</span></h4>
-              
-              <p class="text-muted small">Writes and debugs code, implements features, and collaborates with the team for system improvements.</p>
-          </div>
-      </div>
+            <!-- Lead Developer -->
+            <div class="developer d-flex align-items-center">
+                <img src="/static/dev3.png" alt="Sujata" class="rounded-circle shadow" style="width: 120px; height: 120px;">
+                <div class="card ms-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h4><span class="badge bg-primary px-3 py-2 mb-2">Lead Developer</span></h4>
+                        <p class="text-muted small">Oversees technical development, ensures quality code, and leads the team in best practices.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Manager -->
+            <div class="developer d-flex align-items-center">
+                <img src="static/dev4.jpeg" alt="Roniee" class="rounded-circle shadow" style="width: 120px; height: 120px;">
+                <div class="card ms-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h4><span class="badge bg-success px-3 py-2 mb-2">Project Manager</span></h4>
+                        <p class="text-muted small">Coordinates projects, manages timelines, and ensures smooth collaboration for success.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Developer -->
+            <div class="developer d-flex align-items-center">
+                <img src="/static/dev2.jpeg" alt="Sudip" class="rounded-circle shadow" style="width: 120px; height: 120px;">
+                <div class="card ms-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h4><span class="badge bg-warning px-3 py-2 mb-2 text-dark">Developer</span></h4>
+                        <p class="text-muted small">Writes and debugs code, implements features, and collaborates with the team for system improvements.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </main>
-  
+</main>
+
 
             
 <style>
