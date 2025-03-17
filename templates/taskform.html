@@ -1,23 +1,154 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container my-5"> 
+<div class="container my-4">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-8">           
-            <div class="card shadow-lg">
-                <div class="card-body">                   
-                    <h4 class="card-title text-center mb-4 text-primary">Create New Task</h4>
-                    {{form.media}}
-        <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn w-100 mb-3" style="background-color: rgb(43, 71, 100); color: white;">Create Task</button>
-    </form>
-    <a href="{% url 'task_list' %}" class="btn btn-outline-secondary w-100">Cancel</a>
+        <div class="col-12 col-md-8 col-lg-6"> <!-- Ensure full width on small screens and adjust for larger screens -->
+            <div class="card shadow-lg border-0 rounded-4 custom-card">
+                <div class="card-body p-4"> <!-- Adjust padding for compactness -->
+                    <h3 class="text-center text-primary mb-4">Create New Task</h3>
+
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <!-- Row for Title and Description -->
+                        <div class="row">
+                            <!-- Task Title (Left side) -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.title.id_for_label }}" class="form-label">Task Title</label>
+                                <input type="text" name="title" id="{{ form.title.id_for_label }}" class="form-control custom-input">
+                            </div>
+
+                            <!-- Task Description (Right side) -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.description.id_for_label }}" class="form-label">Task Description</label>
+                                <textarea name="description" id="{{ form.description.id_for_label }}" class="form-control custom-input"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Row for Assigned to Team and Priority -->
+                        <div class="row">
+                            <!-- Assigned to Team (Left side) -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.assigned_to_team.id_for_label }}" class="form-label">Assigned to Team</label>
+                                <select name="assigned_to_team" id="{{ form.assigned_to_team.id_for_label }}" class="form-control custom-select">
+                                    <option value="" selected disabled></option>
+                                    {% for team in form.assigned_to_team.field.queryset %}
+                                    <option value="{{ team.id }}">{{ team.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!-- Task Priority (Right side) -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.priority.id_for_label }}" class="form-label">Priority</label>
+                                <select name="priority" id="{{ form.priority.id_for_label }}" class="form-control custom-select">
+                                    <option value="" selected disabled></option>
+                                    {% for choice, label in form.priority.field.choices %}
+                                    <option value="{{ choice }}">{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row for Status and Deadline -->
+                        <div class="row">
+                            <!-- Task Status (Left side) -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.status.id_for_label }}" class="form-label">Status</label>
+                                <select name="status" id="{{ form.status.id_for_label }}" class="form-control custom-select">
+                                    <option value="" selected disabled></option>
+                                    {% for choice, label in form.status.field.choices %}
+                                    <option value="{{ choice }}">{{ label }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!-- Deadline (Right side) -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.deadline.id_for_label }}" class="form-label">Deadline</label>
+                                <input type="datetime-local" name="deadline" id="{{ form.deadline.id_for_label }}" class="form-control custom-input">
+                            </div>
+                        </div>
+
+                        <!-- Row for Created Date and End Date -->
+                        <div class="row">
+                            <!-- Created Date (Left side) -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.created_date.id_for_label }}" class="form-label">Created Date</label>
+                                <input type="datetime-local" name="created_date" id="{{ form.created_date.id_for_label }}" class="form-control custom-input">
+                            </div>
+
+                            <!-- End Date (Right side) -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.end_date.id_for_label }}" class="form-label">End Date</label>
+                                <input type="datetime-local" name="end_date" id="{{ form.end_date.id_for_label }}" class="form-control custom-input">
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill">Create Task</button>
+                    </form>
+
+                    <a href="{% url 'task_list' %}" class="btn btn-outline-secondary w-100 mt-3 rounded-pill">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+
+<!-- Custom CSS -->
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .custom-card {
+        width: 100%; /* Ensures the form uses full available space */
+        max-width: 900px; /* Set max width to make the form not too wide */
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 15px;
+        background-color: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-input, .custom-select {
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        padding: 12px;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+    .custom-input:focus, .custom-select:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: white;
+        border-radius: 8px;
+        padding: 12px 20px;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-outline-secondary {
+        background-color: transparent;
+        border: 1px solid #ccc;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #f8f9fa;
+    }
+</style>
+
 {% endblock %}
