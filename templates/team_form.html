@@ -1,23 +1,195 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container my-5"> 
+<div class="container my-4">
     <div class="row justify-content-center">
-        <div class="col-md-10 col-lg-8">           
-            <div class="card shadow-lg">
-                <div class="card-body">                   
-                    <h4 class="card-title text-center mb-4 text-primary">Create New Team</h4>
-                    {{form.media}}
+        <div class="col-12 col-md-8 col-lg-6"> <!-- Ensure full width on small screens and adjust for larger screens -->
+            <div class="card shadow-lg border-0 rounded-4 custom-card">
+                <div class="card-body p-4"> <!-- Adjust padding for compactness -->
+                    <h3 class="text-center text-primary mb-4">Create New Team</h3>
+
                     <form method="post">
                         {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit" class="btn w-100 mb-3" style="background-color: rgb(43, 71, 100); color: white;">Create Team</button>
 
+                        <!-- Row for Team Name and Project Lead -->
+                        <div class="row">
+                            <!-- Team Name -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.name.id_for_label }}" class="form-label">Team Name</label>
+                                <input type="text" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}" class="form-control custom-input">
+                            </div>
+
+                            <!-- Project Lead -->
+                            <div class="col-md-6 mb-3">
+                                <label for="id_project_lead" class="form-label">Project Lead</label>
+                                <select name="project_lead" id="id_project_lead" class="form-control custom-select">
+                                    <option value="" selected disabled></option>
+                                    {% for lead in form.project_lead.field.queryset %}
+                                    <option value="{{ lead.id }}">{{ lead.display_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row for Developers and Projects -->
+                        <div class="row">
+                            <!-- Developers Multi-Select Dropdown -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Select Developers</label>
+                                <div class="custom-dropdown">
+                                    <button type="button" class="dropdown-btn" onclick="toggleDropdown('developersDropdown')">Select Developers</button>
+                                    <div id="developersDropdown" class="dropdown-content" onclick="event.stopPropagation();">
+                                        {% for developer in form.developers.field.queryset %}
+                                        <label class="dropdown-item">
+                                            <input type="checkbox" name="developers" value="{{ developer.id }}" onclick="keepDropdownOpen(event)"> {{ developer.display_name }}
+                                        </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Projects Multi-Select Dropdown -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Select Projects</label>
+                                <div class="custom-dropdown">
+                                    <button type="button" class="dropdown-btn" onclick="toggleDropdown('projectsDropdown')">Select Projects</button>
+                                    <div id="projectsDropdown" class="dropdown-content" onclick="event.stopPropagation();">
+                                        {% for project in form.projects.field.queryset %}
+                                        <label class="dropdown-item">
+                                            <input type="checkbox" name="projects" value="{{ project.id }}" onclick="keepDropdownOpen(event)"> {{ project.Project_name }}
+                                        </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill">Create Team</button>
                     </form>
-                    <a href="{% url 'team_list' %}" class="btn btn-outline-secondary w-100">Cancel</a>
+
+                    <a href="{% url 'team_list' %}" class="btn btn-outline-secondary w-100 mt-3 rounded-pill">Cancel</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Custom CSS -->
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .custom-card {
+        width: 100%; /* Ensures the form uses full available space */
+        max-width: 900px; /* Set max width to make the form not too wide */
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 15px;
+        background-color: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .custom-input, .custom-select, .dropdown-btn {
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        padding: 12px;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+    .custom-input:focus, .custom-select:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .dropdown-btn {
+        background: #fff;
+        border-radius: 8px;
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        transition: 0.3s;
+    }
+
+    .dropdown-btn:hover {
+        background: #f0f0f0;
+    }
+
+    .custom-dropdown {
+        position: relative;
+        width: 100%;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        width: 100%;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+
+    .dropdown-content .dropdown-item {
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .dropdown-item:hover {
+        background: #f0f0f0;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: white;
+        border-radius: 8px;
+        padding: 12px 20px;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-outline-secondary {
+        background-color: transparent;
+        border: 1px solid #ccc;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #f8f9fa;
+    }
+</style>
+
+<!-- JavaScript for Dropdown -->
+<script>
+    function toggleDropdown(id) {
+        document.getElementById(id).classList.toggle("show");
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-btn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+
 {% endblock %}
