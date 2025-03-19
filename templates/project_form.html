@@ -1,14 +1,190 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends 'base.html' %}
 
-  <div class="form-container">
-    <h2>Add a New Project</h2>
-  {{form.media}}
-    <form action="{% url 'add_project' %}" method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form.as_p }} 
-        <button type="submit" class="btn w-100 mb-3" style="background-color: rgb(43, 71, 100); color: white;">Create Project</button>
-    </form>
-    <a href="{% url 'project_list' %}" class="btn btn-outline-secondary w-100">Cancel</a>
-                
+{% block content %}
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8"> 
+            <div class="card shadow-lg border-0 rounded-4 custom-card">
+                <div class="card-body p-4"> 
+                    <h3 class="text-center text-primary mb-4">Create New Project</h3>
+                    {{form.media}}
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Project Name</label>
+                                {{ form.Project_name }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Short Description</label>
+                                {{ form.short_description }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Description</label>
+                                {{ form.description }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Project Type</label>
+                                {{ form.type }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Created Date</label>
+                                {{ form.created_date }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">End Date</label>
+                                {{ form.end_date }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Select Developers</label>
+                                <div class="custom-dropdown">
+                                    <button type="button" class="dropdown-btn btn btn-secondary" onclick="toggleDropdown('developersDropdown')">Select Developers</button>
+                                    <div id="developersDropdown" class="dropdown-content" onclick="event.stopPropagation();">
+                                        {% for developer in form.developers.field.queryset %}
+                                        <label class="dropdown-item">
+                                            <input type="checkbox" name="developers" value="{{ developer.id }}" onclick="keepDropdownOpen(event)"> {{ developer.display_name }}
+                                        </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Upload Image</label>
+                                {{ form.image }}
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill">Create Project</button>
+                    </form>
+                    <a href="{% url 'project_list' %}" class="btn btn-outline-secondary w-100 mt-3 rounded-pill">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+    }
+    .custom-card {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 15px;
+        background-color: #fff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-label {
+        font-weight: 600;
+    }
+    .custom-select, input[type="text"], textarea, select {
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        padding: 12px;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+    textarea {
+        height: 50px;
+        width: 100%;
+    }
+    .custom-select:focus, input[type="text"]:focus, textarea:focus, select:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+    .btn {
+        background-color: #007bff;
+        color: white;
+        border-radius: 8px;
+        padding: 12px 20px;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    .btn-outline-secondary {
+        background-color: transparent;
+        border: 1px solid #ccc;
+    }
+    .btn-outline-secondary:hover {
+        background-color: #f8f9fa;
+    }
+    .custom-dropdown {
+        position: relative;
+        width: 100%;
+    }
+    .dropdown-btn {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 8px;
+        font-size: 16px;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+    }
+    .dropdown-btn:hover {
+        background-color: #5a6268;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        width: 100%;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .dropdown-content .dropdown-item {
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .dropdown-item:hover {
+        background: #f0f0f0;
+    }
+    .show {
+        display: block;
+    }
+</style>
+
+<script>
+    function toggleDropdown(id) {
+        document.getElementById(id).classList.toggle("show");
+    }
+
+    function keepDropdownOpen(event) {
+        event.stopPropagation();
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-btn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+
 {% endblock %}
