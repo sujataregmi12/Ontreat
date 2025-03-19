@@ -90,7 +90,7 @@
                         <button type="submit" class="btn btn-primary w-100 rounded-pill">Create Task</button>
                     </form>
 
-                    <a href="{% url 'task_list' %}" class="btn btn-outline-secondary w-100 mt-3 rounded-pill">Cancel</a>
+                    <a href="{% url 'task_list' %}" class="btn btn-secondary w-100 mt-3 rounded-pill">Cancel</a>
                 </div>
             </div>
         </div>
@@ -139,16 +139,19 @@
 
     .btn:hover {
         background-color: #0056b3;
-    }
 
-    .btn-outline-secondary {
-        background-color: transparent;
-        border: 1px solid #ccc;
     }
-
-    .btn-outline-secondary:hover {
-        background-color: #f8f9fa;
+    .btn-secondary {
+        background-color: #6c757d; /* Secondary color */
+        border-color: #6c757d;
+        color: white; /* Ensure text is white for readability */
     }
+    
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Darker shade for hover */
+        border-color: #545b62;
+    }
+    
 </style>
 
 {% endblock %}

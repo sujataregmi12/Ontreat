@@ -24,27 +24,37 @@
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Description</label>
-                                {{ form.description }}
+                                <label class="form-label d-block">Project Type</label>  <!-- Label will be displayed above -->
+                                {{ form.type }}  <!-- Input below the label -->
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Project Type</label>
-                                {{ form.type }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Created Date</label>
+                        
+                            <!-- Created Date field moved to the same row -->
+                            <div class="col-md-6 mb-3 position-relative">
+                                <label class="form-label d-block">Created Date</label>
                                 {{ form.created_date }}
                             </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label d-block">Description</label>  <!-- Label will be displayed above -->
+                                {{ form.description }}  <!-- Input below the label -->
+                            </div>
+                            
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">End Date</label>
                                 {{ form.end_date }}
                             </div>
                         </div>
+                        
+                        
 
                         <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Upload Image</label>
+                                {{ form.image }}
+                            </div>
+                            
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Select Developers</label>
                                 <div class="custom-dropdown">
@@ -58,15 +68,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Upload Image</label>
-                                {{ form.image }}
-                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100 rounded-pill">Create Project</button>
                     </form>
-                    <a href="{% url 'project_list' %}" class="btn btn-outline-secondary w-100 mt-3 rounded-pill">Cancel</a>
+                    <a href="{% url 'project_list' %}" class="btn btn-secondary w-100 mt-3 rounded-pill">Cancel</a>
+
                 </div>
             </div>
         </div>
@@ -116,13 +123,17 @@
     .btn:hover {
         background-color: #0056b3;
     }
-    .btn-outline-secondary {
-        background-color: transparent;
-        border: 1px solid #ccc;
+    .btn-secondary {
+        background-color: #6c757d; /* Secondary color */
+        border-color: #6c757d;
     }
-    .btn-outline-secondary:hover {
-        background-color: #f8f9fa;
+    
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Darker shade for hover */
+        border-color: #545b62;
     }
+    
+    
     .custom-dropdown {
         position: relative;
         width: 100%;
