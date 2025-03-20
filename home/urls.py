@@ -25,4 +25,6 @@ urlpatterns = [
     path('developer/<int:pk>/delete/', DeveloperDeleteView.as_view(), name='developer_delete'),
     path('developer/create/', DeveloperCreateView.as_view(), name='developer_create'),
 
+    path('no-access/', views.no_access, name='no_access'),
+
 ]

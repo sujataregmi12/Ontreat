@@ -1,4 +1,6 @@
-from django.shortcuts import render ,redirect
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.shortcuts import render ,redirect ,get_object_or_404
+from django.contrib import messages
 from django.http import HttpResponse
 from home.models import Project ,Task , Team ,UserProfile
 from django.views.generic import TemplateView, ListView ,DetailView ,DeleteView, CreateView
@@ -6,6 +8,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from .forms import AddForm ,TaskForm, TeamForm ,DeveloperForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
 
 
 
@@ -24,10 +27,12 @@ class ProjectListView(ListView):
 
 #### Create a ProjectDetailView, ProjectDeleteView
 #ProjectDetailView
-class ProjectDetailView(DetailView):
+class ProjectDetailView( DetailView):
     model = Project
     template_name = 'project_detail.html'  # The template you want to use
     context_object_name = 'project'
+    
+    
 
 #projectDeleteView
 class ProjectDeleteView(DeleteView):
@@ -56,6 +61,9 @@ class TaskDetailView(DetailView):
     model = Task
     template_name = 'task_detail.html'
     context_object_name = 'task'
+
+    
+
 
 class TaskDeleteView(DeleteView):
     model= Task
@@ -95,11 +103,23 @@ class TeamCreateView(CreateView):
     success_url = reverse_lazy("team_list")
 
 
-class DeveloperListView(ListView):
+class DeveloperListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = UserProfile
     template_name = 'developer_list.html'
     context_object_name = 'developers'
 
+    def test_func(self):
+        return self.request.user.is_superuser  # Only admin can access
+
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            return redirect('/login')  # Redirect to login if not authenticated
+        
+        # If the user is authenticated but not an admin, redirect to the no access page
+        return redirect('no_access')
+
+def no_access(request):
+    return render(request, 'no_access.html')
 
 class DeveloperDetailView(DetailView):
     model = UserProfile
@@ -119,5 +139,6 @@ class DeveloperCreateView(CreateView):
     template_name = 'developer_form.html'
     form_class = DeveloperForm
     success_url = reverse_lazy('developer_list')
+
 
 #superuser:admin, password:admin , email:admin@gmail.com
