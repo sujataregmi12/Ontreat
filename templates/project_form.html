@@ -7,58 +7,59 @@
             <div class="card shadow-lg border-0 rounded-4 custom-card">
                 <div class="card-body p-4"> 
                     <h3 class="text-center text-primary mb-4">Create New Project</h3>
-                    {{form.media}}
+                    {{ form.media }}
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Project Name</label>
-                                {{ form.Project_name }}
+                                <input type="text" name="Project_name" class="form-control custom-input" value="{{ form.Project_name.value|default:'' }}">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Short Description</label>
-                                {{ form.short_description }}
+                                <input type="text" name="short_description" class="form-control custom-input" value="{{ form.short_description.value|default:'' }}">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label d-block">Project Type</label>  <!-- Label will be displayed above -->
-                                {{ form.type }}  <!-- Input below the label -->
+                                <label class="form-label d-block">Project Type</label>
+                                <select name="type" class="form-control custom-input">
+                                    {% for choice in form.type.field.choices %}
+                                        <option value="{{ choice.0 }}" {% if form.type.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                         
-                            <!-- Created Date field moved to the same row -->
                             <div class="col-md-6 mb-3 position-relative">
                                 <label class="form-label d-block">Created Date</label>
-                                {{ form.created_date }}
+                                <input type="date" name="created_date" class="form-control custom-input" value="{{ form.created_date.value|default:'' }}">
                             </div>
                         </div>
                         
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label class="form-label d-block">Description</label>  <!-- Label will be displayed above -->
-                                {{ form.description }}  <!-- Input below the label -->
+                                <label class="form-label d-block">Description</label>
+                                <textarea name="description" class="form-control custom-input">{{ form.description.value|default:'' }}</textarea>
                             </div>
                             
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">End Date</label>
-                                {{ form.end_date }}
+                                <input type="date" name="end_date" class="form-control custom-input" value="{{ form.end_date.value|default:'' }}">
                             </div>
                         </div>
-                        
-                        
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Upload Image</label>
-                                {{ form.image }}
+                                <input type="file" name="image" class="form-control custom-input">
                             </div>
                             
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Select Developers</label>
+                                <label class="form-label">Select Teams</label>
                                 <div class="custom-dropdown">
-                                    <button type="button" class="dropdown-btn btn btn-secondary" onclick="toggleDropdown('developersDropdown')">Select Developers</button>
+                                    <button type="button" class="dropdown-btn btn btn-secondary" onclick="toggleDropdown('developersDropdown')">Select Teams</button>
                                     <div id="developersDropdown" class="dropdown-content" onclick="event.stopPropagation();">
                                         {% for developer in form.developers.field.queryset %}
                                         <label class="dropdown-item">
@@ -69,17 +70,19 @@
                                 </div>
                             </div>
                         </div>
-
-                        <button type="submit" class="btn btn-primary w-100 rounded-pill">Create Project</button>
+                        
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-4 py-2 me-2 rounded-pill">Create Project</button>                  
+                            <a href="{% url 'project_list' %}" class="btn btn-secondary btn-lg px-4 py-2 rounded-pill">Cancel</a>
+                        </div>
                     </form>
-                    <a href="{% url 'project_list' %}" class="btn btn-secondary w-100 mt-3 rounded-pill">Cancel</a>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Custom CSS -->
 <style>
     body {
         background-color: #f8f9fa;
@@ -96,18 +99,20 @@
     .form-label {
         font-weight: 600;
     }
-    .custom-select, input[type="text"], textarea, select {
+    .custom-input, .custom-select, input[type="text"], input[type="date"], textarea, select {
+        width: 100%;
+        height: 45px; /* Consistent height */
+        padding: 10px;
+        font-size: 16px;
         border-radius: 8px;
         border: 1px solid #ccc;
-        padding: 12px;
-        font-size: 16px;
         transition: 0.3s;
     }
     textarea {
-        height: 50px;
-        width: 100%;
+        height: 120px; /* Slightly larger for description fields */
+        resize: vertical; /* Allow vertical resizing */
     }
-    .custom-select:focus, input[type="text"]:focus, textarea:focus, select:focus {
+    .custom-input:focus, .custom-select:focus, input[type="text"]:focus, input[type="date"]:focus, textarea:focus, select:focus {
         border-color: #007bff;
         outline: none;
         box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
@@ -116,8 +121,8 @@
         background-color: #007bff;
         color: white;
         border-radius: 8px;
-        padding: 12px 20px;
-        font-size: 16px;
+        padding: 14px 20px;
+        font-size: 18px;
         transition: background-color 0.3s;
     }
     .btn:hover {
@@ -127,13 +132,10 @@
         background-color: #6c757d; /* Secondary color */
         border-color: #6c757d;
     }
-    
     .btn-secondary:hover {
         background-color: #5a6268; /* Darker shade for hover */
         border-color: #545b62;
     }
-    
-    
     .custom-dropdown {
         position: relative;
         width: 100%;
@@ -176,6 +178,7 @@
     }
 </style>
 
+<!-- JavaScript for Dropdown -->
 <script>
     function toggleDropdown(id) {
         document.getElementById(id).classList.toggle("show");

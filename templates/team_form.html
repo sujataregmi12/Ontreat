@@ -35,9 +35,9 @@
                         <div class="row">
                             <!-- Developers Multi-Select Dropdown -->
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Select Developers</label>
+                                <label class="form-label">Select Teams</label>
                                 <div class="custom-dropdown">
-                                    <button type="button" class="dropdown-btn" onclick="toggleDropdown('developersDropdown')">Select Developers</button>
+                                    <button type="button" class="dropdown-btn" onclick="toggleDropdown('developersDropdown')">Select Teams</button>
                                     <div id="developersDropdown" class="dropdown-content" onclick="event.stopPropagation();">
                                         {% for developer in form.developers.field.queryset %}
                                         <label class="dropdown-item">
@@ -63,12 +63,13 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary w-100 rounded-pill">Create Team</button>
                     </form>
 
-                    <a href="{% url 'team_list' %}" class="btn btn-secondary w-100 mt-3 rounded-pill">Cancel</a>
+                    <!-- Submit and Cancel Buttons Centered -->
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-primary btn-md rounded-pill px-4 py-2 me-3 shadow">Create Team</button>
+                        <a href="{% url 'team_list' %}" class="btn btn-secondary btn-md rounded-pill px-4 py-2 shadow">Cancel</a>
+                    </div>
 
                 </div>
             </div>
@@ -114,10 +115,12 @@
         padding: 12px;
         border: 1px solid #ccc;
         transition: 0.3s;
+        color: #6c757d; /* Secondary color */
     }
 
     .dropdown-btn:hover {
         background: #f0f0f0;
+        color: #007bff; /* Change color on hover */
     }
 
     .custom-dropdown {
@@ -133,12 +136,12 @@
         border-radius: 8px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         z-index: 1000;
-        max-height: 200px;
+        max-height: 200px; /* Slightly increased height to prevent cutoff */
         overflow-y: auto;
     }
 
     .dropdown-content .dropdown-item {
-        padding: 8px 12px;
+        padding: 4px 12px; /* Reduced padding between items */
         cursor: pointer;
         transition: 0.2s;
     }
@@ -151,17 +154,22 @@
         display: block;
     }
 
+    /* Smaller Checkboxes */
+    .dropdown-content input[type="checkbox"] {
+        width: 18px; /* Maintain checkbox size */
+        height: 18px;
+        margin-right: 8px; /* Reduced margin to tighten the space */
+        vertical-align: middle;
+    }
+
     .btn {
-        background-color: #007bff;
-        color: white;
-        border-radius: 8px;
-        padding: 12px 20px;
-        font-size: 16px;
-        transition: background-color 0.3s;
+        transition: all 0.3s ease-in-out;
+        font-weight: 600;
     }
 
     .btn:hover {
-        background-color: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.3);
     }
 
     .btn-secondary {
@@ -169,12 +177,11 @@
         border-color: #6c757d;
         color: white; /* Ensure text is white for readability */
     }
-    
+
     .btn-secondary:hover {
         background-color: #5a6268; /* Darker shade for hover */
         border-color: #545b62;
     }
-    
 </style>
 
 <!-- JavaScript for Dropdown -->
