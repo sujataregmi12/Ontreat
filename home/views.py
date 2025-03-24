@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import UserPassesTestMixin
+# from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render ,redirect ,get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponse
@@ -8,7 +8,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from .forms import AddForm ,TaskForm, TeamForm ,DeveloperForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import ObjectDoesNotExist
+
 
 
 
@@ -62,9 +62,6 @@ class TaskDetailView(DetailView):
     template_name = 'task_detail.html'
     context_object_name = 'task'
 
-    
-
-
 class TaskDeleteView(DeleteView):
     model= Task
     template_name = 'task_delete.html'
@@ -103,29 +100,55 @@ class TeamCreateView(CreateView):
     success_url = reverse_lazy("team_list")
 
 
-class DeveloperListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+class DeveloperListView(LoginRequiredMixin, ListView):
     model = UserProfile
     template_name = 'developer_list.html'
     context_object_name = 'developers'
 
-    def test_func(self):
-        return self.request.user.is_superuser  # Only admin can access
+def get_queryset(self):
+        queryset = super().get_queryset()
 
-    def handle_no_permission(self):
-        if not self.request.user.is_authenticated:
-            return redirect('/login')  # Redirect to login if not authenticated
+        # Get the logged-in user's profile and the teams they belong to
+        user_profile = self.request.user.userprofile
+        user_teams = user_profile.teams.all()
+
+        # If the user is an admin, they can see all profiles
+        if self.request.user.is_staff:
+            return queryset
+
+        # Filter developers who are in the same team as the logged-in user
+        queryset = queryset.filter(teams__in=user_teams).distinct()
+
+        # Allow the user to see their own profile, even if it's private
+        queryset = queryset.filter(is_private=False) | queryset.filter(is_private=True, id=user_profile.id)
+
+        return queryset
+
+
+
+
+
+
+
+    # def test_func(self):
+    #     return self.request.user.is_superuser  # Only admin can access
+
+    # def handle_no_permission(self):
+    #     if not self.request.user.is_authenticated:
+    #         return redirect('/login')  # Redirect to login if not authenticated
         
-        # If the user is authenticated but not an admin, redirect to the no access page
-        return redirect('no_access')
+    #     # If the user is authenticated but not an admin, redirect to the no access page
+    #     return redirect('no_access')
 
-def no_access(request):
-    return render(request, 'no_access.html')
+# def no_access(request):
+#     return render(request, 'no_access.html')
+
+
 
 class DeveloperDetailView(DetailView):
     model = UserProfile
     template_name = 'developer_detail.html'
     context_object_name = 'developer'
-
 
 class DeveloperDeleteView(DeleteView):
     model = UserProfile

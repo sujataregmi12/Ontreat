@@ -1,14 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% if messages %}
-    <div class="alert alert-danger">
-        {% for message in messages %}
-            <p>{{ message }}</p>
-        {% endfor %}
-    </div>
-{% endif %}
-
 <div class="container my-5">
     <div class="row">
         <div class="col text-end">
@@ -17,6 +9,7 @@
     </div>
     <h2 class="text-center mb-4 text-dark font-weight-bold">Our Developers</h2>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        
         {% if developers %}
             {% for developer in developers %}
             <div class="col">
@@ -24,15 +17,28 @@
                     <!-- Display Developer Image -->
                     {% if developer.image %}
                         <img src="{{ developer.image.url }}" alt="{{ developer.display_name }}" class="card-img-top"
-                         style=" height: 200px; ">
+                         style="height: 200px;">
                     {% else %}
                         <p class="text-center text-muted">No image available</p>
                     {% endif %}
                     <div class="card-body p-4">
                         <h5 class="card-title text-dark font-weight-bold">{{ developer.display_name }}</h5>
-                      
+                        <p class="card-text text-muted">{{ developer.role }}</p> <!-- Show role -->
+
                         <div class="d-flex justify-content-between">
-                            <a href="{% url 'developer_detail' pk=developer.pk %}" class="btn btn-primary">View Details</a>
+                            {% if not developer.is_private or user.is_staff or developer == user.userprofile %}
+                                <!-- If the profile is not private, user is an admin, or the user is viewing their own profile -->
+                                <a href="{% url 'developer_detail' pk=developer.pk %}" class="btn btn-primary">View Details</a>
+                            {% elif developer.teams.all %}
+                                <!-- Check if the user is part of any team of the developer -->
+                                {% for team in developer.teams.all %}
+                                    {% if team in user.userprofile.teams.all %}
+                                        <a href="{% url 'developer_detail' pk=developer.pk %}" class="btn btn-primary">View Details</a>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-danger">Profile is private</p>
+                            {% endif %}
                             <a href="{% url 'developer_delete' pk=developer.pk %}" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
