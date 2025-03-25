@@ -35,9 +35,9 @@
                         <div class="row">
                             <!-- Developers Multi-Select Dropdown -->
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Select Teams</label>
+                                <label class="form-label">Select Team</label>
                                 <div class="custom-dropdown">
-                                    <button type="button" class="dropdown-btn" onclick="toggleDropdown('developersDropdown')">Select Teams</button>
+                                    <button type="button" class="dropdown-btn" onclick="toggleDropdown('developersDropdown')">Select Team</button>
                                     <div id="developersDropdown" class="dropdown-content" onclick="event.stopPropagation();">
                                         {% for developer in form.developers.field.queryset %}
                                         <label class="dropdown-item">
