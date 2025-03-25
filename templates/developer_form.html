@@ -38,13 +38,28 @@
                             </div>
                         </div>
 
-                        <!-- Third Row: Image Upload -->
-                        <div class="row mb-4">
-                            <div class="col-md-6">
-                                <label class="form-label">Upload Image</label>
-                                <input type="file" name="image" class="form-control custom-input">
-                            </div>
-                        </div>
+                     <!-- Third Row: Image Upload and User Selection (same line) -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <label class="form-label">Upload Image</label>
+        <input type="file" name="image" class="form-control custom-input">
+    </div>
+
+ 
+  <!-- User Selection Column -->
+<div class="col-md-6">
+    <label class="form-label">Select User</label>
+    <select name="user" class="form-control custom-input">
+        <option value="" disabled selected>Select User</option>
+        {% for user in form.user.field.queryset %}
+            <option value="{{ user.id }}" {% if form.user.value == user.id %}selected{% endif %}>
+                {{ user.username }}
+            </option>
+        {% endfor %}
+    </select>
+</div>
+
+
 
                         <!-- Fourth Row: Active Status and Private Profile -->
                         <div class="row mb-4">
