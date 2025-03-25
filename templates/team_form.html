@@ -3,23 +3,18 @@
 {% block content %}
 <div class="container my-4">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6"> <!-- Ensure full width on small screens and adjust for larger screens -->
+        <div class="col-12 col-md-8 col-lg-6"> 
             <div class="card shadow-lg border-0 rounded-4 custom-card">
-                <div class="card-body p-4"> <!-- Adjust padding for compactness -->
+                <div class="card-body p-4"> 
                     <h3 class="text-center text-primary mb-4">Create New Team</h3>
-
                     <form method="post">
                         {% csrf_token %}
-
-                        <!-- Row for Team Name and Project Lead -->
                         <div class="row">
-                            <!-- Team Name -->
                             <div class="col-md-6 mb-3">
                                 <label for="{{ form.name.id_for_label }}" class="form-label">Team Name</label>
                                 <input type="text" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}" class="form-control custom-input">
                             </div>
 
-                            <!-- Project Lead -->
                             <div class="col-md-6 mb-3">
                                 <label for="id_project_lead" class="form-label">Project Lead</label>
                                 <select name="project_lead" id="id_project_lead" class="form-control custom-select">
@@ -31,13 +26,11 @@
                             </div>
                         </div>
 
-                        <!-- Row for Developers and Projects -->
                         <div class="row">
-                            <!-- Developers Multi-Select Dropdown -->
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Select Team</label>
                                 <div class="custom-dropdown">
-                                    <button type="button" class="dropdown-btn" onclick="toggleDropdown('developersDropdown')">Select Team</button>
+                                    <button type="button" class="dropdown-btn btn btn-secondary" onclick="toggleDropdown('developersDropdown')">Select Team</button>
                                     <div id="developersDropdown" class="dropdown-content" onclick="event.stopPropagation();">
                                         {% for developer in form.developers.field.queryset %}
                                         <label class="dropdown-item">
@@ -48,11 +41,10 @@
                                 </div>
                             </div>
 
-                            <!-- Projects Multi-Select Dropdown -->
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Select Projects</label>
                                 <div class="custom-dropdown">
-                                    <button type="button" class="dropdown-btn" onclick="toggleDropdown('projectsDropdown')">Select Projects</button>
+                                    <button type="button" class="dropdown-btn btn btn-secondary" onclick="toggleDropdown('projectsDropdown')">Select Projects</button>
                                     <div id="projectsDropdown" class="dropdown-content" onclick="event.stopPropagation();">
                                         {% for project in form.projects.field.queryset %}
                                         <label class="dropdown-item">
@@ -63,51 +55,23 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="d-flex justify-content-center mt-3">
+                            <button type="submit" class="btn btn-primary btn-md rounded-pill px-4 py-2 me-3 shadow">Create Team</button>
+                            <a href="{% url 'team_list' %}" class="btn btn-secondary btn-md rounded-pill px-4 py-2 shadow">Cancel</a>
+                        </div>
                     </form>
-
-                    <!-- Submit and Cancel Buttons Centered -->
-                    <div class="d-flex justify-content-center mt-3">
-                        <button type="submit" class="btn btn-primary btn-md rounded-pill px-4 py-2 me-3 shadow">Create Team</button>
-                        <a href="{% url 'team_list' %}" class="btn btn-secondary btn-md rounded-pill px-4 py-2 shadow">Cancel</a>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Custom CSS -->
 <style>
-    body {
-        background-color: #f8f9fa;
-        font-family: 'Arial', sans-serif;
+    .custom-dropdown {
+        position: relative;
+        width: 100%;
     }
-
-    .custom-card {
-        width: 100%; /* Ensures the form uses full available space */
-        max-width: 900px; /* Set max width to make the form not too wide */
-        margin: 0 auto;
-        padding: 20px;
-        border-radius: 15px;
-        background-color: #fff;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .custom-input, .custom-select, .dropdown-btn {
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        padding: 12px;
-        font-size: 16px;
-        transition: 0.3s;
-    }
-
-    .custom-input:focus, .custom-select:focus {
-        border-color: #007bff;
-        outline: none;
-        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    }
-
     .dropdown-btn {
         background: #fff;
         border-radius: 8px;
@@ -115,19 +79,12 @@
         padding: 12px;
         border: 1px solid #ccc;
         transition: 0.3s;
-        color: #6c757d; /* Secondary color */
+        color: #6c757d;
     }
-
     .dropdown-btn:hover {
         background: #f0f0f0;
-        color: #007bff; /* Change color on hover */
+        color: #007bff;
     }
-
-    .custom-dropdown {
-        position: relative;
-        width: 100%;
-    }
-
     .dropdown-content {
         display: none;
         position: absolute;
@@ -136,55 +93,26 @@
         border-radius: 8px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         z-index: 1000;
-        max-height: 200px; /* Slightly increased height to prevent cutoff */
+        max-height: 200px;
         overflow-y: auto;
     }
-
     .dropdown-content .dropdown-item {
-        padding: 4px 12px; /* Reduced padding between items */
+        padding: 8px 12px;
         cursor: pointer;
         transition: 0.2s;
     }
-
     .dropdown-item:hover {
         background: #f0f0f0;
     }
-
     .show {
         display: block;
     }
-
-    /* Smaller Checkboxes */
-    .dropdown-content input[type="checkbox"] {
-        width: 18px; /* Maintain checkbox size */
-        height: 18px;
-        margin-right: 8px; /* Reduced margin to tighten the space */
-        vertical-align: middle;
-    }
-
-    .btn {
-        transition: all 0.3s ease-in-out;
-        font-weight: 600;
-    }
-
-    .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.3);
-    }
-
     .btn-secondary {
-        background-color: #6c757d; /* Secondary color */
+        background-color: #6c757d; /* You can keep this or choose any color */
         border-color: #6c757d;
-        color: white; /* Ensure text is white for readability */
-    }
-
-    .btn-secondary:hover {
-        background-color: #5a6268; /* Darker shade for hover */
-        border-color: #545b62;
-    }
+        color: white;}
 </style>
 
-<!-- JavaScript for Dropdown -->
 <script>
     function toggleDropdown(id) {
         document.getElementById(id).classList.toggle("show");
