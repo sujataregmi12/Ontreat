@@ -16,11 +16,12 @@
                             <fieldset>
                                 {% csrf_token %}
                                 <p class="text-center" style="font-size: 1.1rem;">{% trans "Are you sure you want to log out?" %}</p>
-                                <div class="d-flex justify-content-center">
+                                <div class="d-flex justify-content-center  gap-2">
                                     <button type="submit" class="btn btn-danger w-100 py-2" style="font-size: 1.1rem; font-weight: 600; background-color: #dc3545; border-color: #dc3545;">
                                         {% trans "Log out" %}
                                     </button>
-                                    <a href="{% url 'account_login' %}" class="btn btn-outline-secondary btn-block">Cancel</a>
+                                    <a href="{% url 'account_login' %}" class="btn btn-block" style="background-color: gray; color: white;">Cancel</a>
+
                                 </div>
                             </fieldset>
                         </form>
