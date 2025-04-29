@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block content %}
+
+ <div class="card shadow-sm rounded-lg mb-4">
+  <div class="card-header text-white text-center py-4 mt-5" style="background-color: rgb(50, 96, 146);">
+      <h2>{{ task.title }}</h2>
+      
+  </div>
+</div>
+
+    
+<div class="container">
+    <div class="row justify-content-center mb-4"> <!-- Center the row -->
+       
+        <div class="col-md-6 mb-4"> <!-- Cards will be centered within the row -->
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="text-muted"><b>Short Description</b></h5>
+                    <p class="fs-5 text-dark">{{ task.description|default:"No description available" }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Created On and End Date Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="text-muted"><b>Created Date</b></h5>
+                    <p class="fs-5 text-dark">{{ task.created_date|date:"F j, Y" }}</p>
+                    <h5 class="text-muted"><b>End Date</b></h5>
+                    <p class="fs-5 text-dark">{{ task.end_date|date:"F j, Y" }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Priority and Status Cards -->
+    <div class="row mb-4">
+        <!-- Priority Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="text-muted"><b>Priority</b></h5>
+                    <p class="fs-5 text-dark">{{ task.get_priority_display }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="text-muted"><b>Status</b></h5>
+                    <p class="fs-5 text-dark">{{ task.get_status_display }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deadline and Assigned Team Cards -->
+    <div class="row mb-4">
+        <!-- Deadline Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="text-muted"><b>Deadline</b></h5>
+                    <p class="fs-5 text-dark">{{ task.deadline|date:"F j, Y" }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assigned Team Card -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="text-muted"><b>Assigned Team</b></h5>
+                    <p class="fs-5 text-dark">
+                        {% if task.assigned_to_team %}
+                            <span class="text-primary">{{ task.assigned_to_team.name }}</span>
+                        {% else %}
+                            <span class="text-muted">No team assigned</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="d-flex justify-content-center mt-4">
+        <a href="{% url 'task_list' %}" class="btn btn-primary btn-sm px-4">Back to Tasks</a>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="col text-end">
+        <a href="{% url 'add_task' %}" class="btn btn-outline-primary btn-hover-custom mb-3">Add New task</a>
+    </div>
+    <h2 class="text-center mb-4 text-dark font-weight-bold">Task List</h2>
+    
+    {% if task_list %}
+        <div class="row">
+            {% for task in task_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title text-dark font-weight-bold">{{ task.title }}</h5>
+                            <p class="card-text">{{ task.description|truncatewords:20 }}</p>
+                            
+                                           
+                        <div class="d-flex justify-content-between">                  
+                            <a href="{% url 'task_detail' pk=task.pk %}" class="btn btn-primary ">View Details</a>                           
+                            <a href="{% url 'task_delete' pk=task.pk %}" class="btn btn-danger" style= "background-color : #dc3545;" >Delete</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No tasks available.</p>
+    {% endif %}
+</div>
+{% endblock %}

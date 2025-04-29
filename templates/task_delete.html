@@ -1,0 +1,27 @@
+<!-- home/templates/home/task_delete.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <!-- Card for the delete confirmation -->
+            <div class="card shadow-lg">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-danger mb-4">Delete Task</h4>
+                    <p class="card-text text-muted mb-4">Are you sure you want to delete the task{{ task.title }}?</p>
+
+                    <!-- The deletion happens immediately upon visiting this page -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-block mb-3">yes, Delete it</button>
+                    </form>
+
+                    <!-- Cancel Button -->
+                    <a href="{% url 'task_list' %}" class="btn btn-outline-secondary btn-block" style="background-color: gray; color: white;">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

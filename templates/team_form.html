@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6"> 
+            <div class="card shadow-lg border-0 rounded-4 custom-card">
+                <div class="card-body p-4"> 
+                    <h3 class="text-center text-primary mb-4">Create New Team</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.name.id_for_label }}" class="form-label">Team Name</label>
+                                <input type="text" name="{{ form.name.name }}" id="{{ form.name.id_for_label }}" class="form-control custom-input">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="id_project_lead" class="form-label">Project Lead</label>
+                                <select name="project_lead" id="id_project_lead" class="form-control custom-select">
+                                    <option value="" selected disabled></option>
+                                    {% for lead in form.project_lead.field.queryset %}
+                                    <option value="{{ lead.id }}">{{ lead.display_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Select Team</label>
+                                <div class="custom-dropdown">
+                                    <button type="button" class="dropdown-btn btn btn-secondary" onclick="toggleDropdown('developersDropdown')">Select Team</button>
+                                    <div id="developersDropdown" class="dropdown-content" onclick="event.stopPropagation();">
+                                        {% for developer in form.developers.field.queryset %}
+                                        <label class="dropdown-item">
+                                            <input type="checkbox" name="developers" value="{{ developer.id }}" onclick="keepDropdownOpen(event)"> {{ developer.display_name }}
+                                        </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Select Projects</label>
+                                <div class="custom-dropdown">
+                                    <button type="button" class="dropdown-btn btn btn-secondary" onclick="toggleDropdown('projectsDropdown')">Select Projects</button>
+                                    <div id="projectsDropdown" class="dropdown-content" onclick="event.stopPropagation();">
+                                        {% for project in form.projects.field.queryset %}
+                                        <label class="dropdown-item">
+                                            <input type="checkbox" name="projects" value="{{ project.id }}" onclick="keepDropdownOpen(event)"> {{ project.Project_name }}
+                                        </label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-center mt-3">
+                            <button type="submit" class="btn btn-primary btn-md rounded-pill px-4 py-2 me-3 shadow">Create Team</button>
+                            <a href="{% url 'team_list' %}" class="btn btn-secondary btn-md rounded-pill px-4 py-2 shadow">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .custom-dropdown {
+        position: relative;
+        width: 100%;
+    }
+    .dropdown-btn {
+        background: #fff;
+        border-radius: 8px;
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        transition: 0.3s;
+        color: #6c757d;
+    }
+    .dropdown-btn:hover {
+        background: #f0f0f0;
+        color: #007bff;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        width: 100%;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .dropdown-content .dropdown-item {
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .dropdown-item:hover {
+        background: #f0f0f0;
+    }
+    .show {
+        display: block;
+    }
+    .btn-secondary {
+        background-color: #6c757d; /* You can keep this or choose any color */
+        border-color: #6c757d;
+        color: white;}
+</style>
+
+<script>
+    function toggleDropdown(id) {
+        document.getElementById(id).classList.toggle("show");
+    }
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropdown-btn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
+
+{% endblock %}

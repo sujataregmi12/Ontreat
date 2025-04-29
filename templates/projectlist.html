@@ -1,14 +1,44 @@
 {% extends 'base.html' %}
 {% load i18n static django_bootstrap5 %}
 {% block content %}
-<div class="container">
-    <h2>Project List</h2>
-    <ul>
+<div class="container my-5">
+    <div class="row">
+        <div class="col text-end">
+            <a href="{% url 'add_project' %}" class="btn btn-outline-primary btn-hover-custom mb-3">Add New Project</a>
+        </div>
+    </div>
+    <h2 class="text-center mb-4 text-dark font-weight-bold">Project List</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
         {% if project_list %}
             {% for project in project_list %}
-                <li>{{ project.name }}</li>
+            <div class="col">
+                <div class="card shadow-lg border-0 rounded-3 overflow-hidden">          
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" alt="{{ project.Project_name }}" style="height:200px;" >
+                  {% else %}
+                    <p>No image available</p>
+                  {% endif %}
+                    <div class="card-body p-4">
+                        <h5 class="card-title text-dark font-weight-bold" >{{ project.Project_name }}</h5>
+                        <p class="card-text text-muted">
+                            {% if project.short_description %}
+                                {{ project.short_description|truncatewords:20 }}
+                            {% else %}
+                                No description available.
+                            {% endif %}
+                        </p>  
+                        <div class="d-flex justify-content-between">                  
+                            <a href="{% url 'project_detail' pk=project.pk %}" class="btn btn-primary ">View Details</a>                           
+                            <a href="{% url 'project_delete' pk=project.pk %}" class="btn btn-danger" style= "background-color : #dc3545;" >Delete</a>
+                        </div>
+                </div>
+                </div>
+            </div>
             {% endfor %}
+        {% else %}
+            <p class="text-center text-muted">No projects available.</p>
         {% endif %}
-    </ul>
+    </div>
 </div>
+
 {% endblock %}

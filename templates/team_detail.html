@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <!-- Card layout with shadow for elegance -->
+        <div class="card shadow-sm rounded-lg">
+            <div class="card-header text-white text-center py-4" style="background-color: rgb(50, 96, 146);">
+                <h2>{{ team.name }}</h2>
+            </div>
+
+            
+            <div class="card-body">
+
+                <!-- Row for Project Lead, Developers, and Projects -->
+                <div class="row mb-4">
+                    <!-- Project Lead Card -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header text-white" style="background-color: rgb(50, 96, 146);">
+                                <h5><b>Project Lead</b></h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="fs-5 text-dark">{{ team.project_lead.display_name }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Developers Card -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header text-white" style="background-color: rgb(50, 96, 146);">
+                                <h5><b>Developers</b></h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled">
+                                    {% for developer in team.developers.all %}
+                                        <li>
+                                            <i class="bi bi-person-fill text-primary me-2"></i>
+                                            {{ developer.display_name }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projects Card -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-header text-white" style="background-color: rgb(50, 96, 146);">
+                                <h5><b>Projects</b></h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-unstyled">
+                                    {% for project in team.projects.all %}
+                                        <li>
+                                            <i class="bi bi-folder-fill text-warning me-2"></i>
+                                            {{ project.Project_name }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="d-flex justify-content-center mt-4">
+                    <a href="{% url 'team_list' %}" class="btn btn-primary btn-sm px-4">Back to Team</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

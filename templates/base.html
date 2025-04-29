@@ -5,40 +5,57 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ontreat - Python/Django Development</title>
+  <title>{% block head_title %} project management system {% endblock %}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+  {% comment %} datepicker {% endcomment %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="{% static 'bootstrap_datepicker_plus/css/bootstrap-datepicker.min.css' %}">
+  <script type="text/javascript" src="{% static 'bootstrap_datepicker_plus/js/bootstrap-datepicker.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bootstrap_datepicker_plus/js/bootstrap-datepicker.en.js' %}"></script>
+
 </head>
 
+
 <body>
+  
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Ontreat</a>
+      <a class="navbar-brand nav-link" href="#">ONTREAT</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          {% comment %} <li class="nav-item">
             <a class="nav-link" aria-current="page" href="#services">SERVICES</a>
-          </li>
+          </li> {% endcomment %}
           <li class="nav-item">
-            <a class="nav-link" href="#about">ABOUT</a>
+            <a class="nav-link" href="#about">ABOUT US</a>
           </li>
-          <li class="nav-item">
+          {% comment %} <li class="nav-item">
             <a class="nav-link" href="#portfolio">PORTFOLIO</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#team">TEAM</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact">CONTACT</a>
-          </li>
+          </li> {% endcomment %}
+         
           <li class="nav-item">
             <a class="nav-link" href="{% url 'project_list' %}">PROJECT LIST</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'task_list' %}">TASK LIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'team_list' %}">TEAM LIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'developer_list' %}">DEVELOPER LIST</a>
+          </li>
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link text-danger"  name="logout" href="/account/logout">LOGOUT</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -46,10 +63,13 @@
   {% block content %}
 
   {% endblock %}
+  {% block extra_scripts %}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-</body>
+  {% endblock extra_scripts %}
+    
+  </body>
 
 </html>
 

@@ -1,26 +1,233 @@
 {% extends 'base.html' %}
 {% load static i18n django_bootstrap5 %}
 {% block content %}
-<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+{{request.user}}
+
+
+{% if messages %}
+{% for message in messages %}
+  <div class="alert alert-{{ message }} alert-dismissible fade show my-0" role="alert">
+    {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}
+{% endif %}
+
+
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="/static/header-bg1 (1).jpg" class="d-block w-100" alt="..." style="height: 600px; object-fit: cover;">
-        <div class="carousel-caption d-none d-md-block  ">
-          <h1>Python/Django developer at remote</h1>
-          <h3>A agile team that you can count on</h3>
-          <ul>
-            <li><button type="button" class="btn btn-secondary">
-                <a class="nav-link active" aria-current="page" href="#services">TELL ME MORE</a>
-              </button></li>
-          </ul>
+        <div class="carousel-item active py-4">
+            <img src="static/index3.PNG" class="d-block w-100" alt="..." 
+                 style="height: 120vh; width: 100%; object-fit: cover;">
+            <div class="carousel-caption d-none d-md-block" style="background: none; color: #fff;">
+                <ul>
+                    <li>
+                        <button type="button" class="btn btn-secondary">
+                            <a class="nav-link active" aria-current="page" href="#about">TELL ME MORE</a>
+                        </button>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  </div>
+</div>
+
+ 
+{% comment %} 
+ <div class="container my-4">
+  <h1 class="text-center"><b>Welcome to the Project Management System</b></h1>
+  <p class="text-center"><b>Efficiently track, collaborate, and complete your projects with ease.</b></p> {% endcomment %}
 
 
   <main>
+    <section class="pt-0 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <section id="about">
+            <!-- Section Heading -->
+            <h2 class="fw-bold display-4 mb-4 "><br>About Us</h2>
+            <p class="lead text-muted mb-5">
+              Welcome, your go-to project management system. We are dedicated to providing agile, collaborative, and efficient solutions for managing your projects, teams, and tasks seamlessly.
+            </p>  
+          </section>
+                
+  
+          <!-- Our Mission -->
+          <section class="my-5">
+            <h2 class="fw-bold ">Our Mission</h2>
+            <p class="text-body-secondary">
+              Our mission is to simplify project management through intuitive, user-friendly tools that enhance team collaboration, streamline workflows, and drive success. We are committed to providing powerful yet easy-to-use features for teams of all sizes.
+            </p>
+          </section>
+  
+          <!-- Key Features Section -->
+          <section class="my-5">
+            <h2 class="fw-bold ">Key Features</h2>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+              <!-- Feature 1 -->
+              <div class="col">
+                <div class="card shadow-lg border-0 rounded-3">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary">Project Management</h5>
+                    <p class="card-text">Efficiently manage projects from start to finish with clear timelines, goals, and milestones.</p>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Feature 2 -->
+              <div class="col">
+                <div class="card shadow-lg border-0 rounded-3">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary">Task Management</h5>
+                    <p class="card-text">Assign tasks, set priorities, and track progress in real-time. Ensure no task is overlooked and deadlines are met.</p>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Feature 3 -->
+              <div class="col">
+                <div class="card shadow-lg border-0 rounded-3">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary">Team Collaboration</h5>
+                    <p class="card-text">
+                      Organize teams effectively with a structured hierarchy. Each team is led by a <strong>Project Lead</strong> and includes multiple <strong>Developers</strong> working on various projects.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+
+              
+  
+              <!-- Feature 4 -->
+             <!-- Feature 4 (Developer Management) -->
+<div class="col">
+  <div class="card shadow-lg border-0 rounded-3">
+    <div class="card-body">
+      <h5 class="card-title text-primary">Developer Management</h5>
+      <p class="card-text"> manage your development team effectively. With features like the Developer List, team assignment. It ensures that your developers work collaboratively.</p>
+    
+    </div>
+  </div>
+</div>
+</section>
+  
+          <!-- Our Values -->
+          <section class="my-5">
+            <h2 class="fw-bold">Our Values</h2>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Value</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Transparency</strong></td>
+                            <td>Clear communication and visibility in every project.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Collaboration</strong></td>
+                            <td>Working together to achieve goals efficiently.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Innovation</strong></td>
+                            <td>Constantly evolving to meet the needs of modern project management.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Customer Focus</strong></td>
+                            <td>Delivering value and solving real problems for our users.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+  
+          <!-- Call to Action -->
+          <section class="my-5">
+            <h2 class="fw-bold ">Join Us Today</h2>
+            <p class="text-body-secondary">
+              Ready to take control of your projects and streamline your team's workflow? Sign up now and start experiencing the power of Our System!
+            </p>
+            <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg">Get Started</a>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  
+  <main>
+    <div class="container my-5">
+        <h2 class="text-center">
+            Meet Our Developers
+        </h2>
+        <div class="developer-container d-flex flex-column align-items-center gap-4">
+          <!-- Lead Developer -->
+          <div class="developer d-flex align-items-center justify-content-center">
+              <img src="/static/dev3.png" alt="Sujata" class="rounded-circle shadow" style="width: 120px; height: 120px;">
+              <div class="card ms-3" style="width: 30rem;">
+                  <div class="card-body">
+                      <h4><span class="badge bg-primary px-3 py-2 mb-2 text-white">
+                          <a href="{% url 'team_list' %}" class="team-link text-white" style="text-decoration: none;">Project Lead</a>
+                      </span></h4>
+                      <p class="text-muted small">Guides the team in software architecture, maintains code quality, and ensures scalable solutions.</p>
+                  </div>
+              </div>
+          </div>
+
+            <!-- Project Manager -->
+            <div class="developer d-flex align-items-center justify-content-center">
+                <img src="/static/dev4.jpeg" alt="Roniee" class="rounded-circle shadow" style="width: 120px; height: 120px;">
+                <div class="card ms-3" style="width: 30rem;">
+                    <div class="card-body">
+                        <h4><span class="badge bg-info px-3 py-2 mb-2"><a href="{% url 'project_list' %}" class="project-link"  style = "text-decoration:none;">Project Manager</a></span></h4>
+                        <p class="text-muted small">Coordinates projects, manages timelines, and ensures smooth collaboration for success.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Developer -->
+            <div class="developer d-flex align-items-center justify-content-center">
+                <img src="/static/dev2.jpeg" alt="Sudip" class="rounded-circle shadow" style="width: 120px; height: 120px;">
+                <div class="card ms-3" style="width: 30rem;">
+                    <div class="card-body">
+                        <h4><span class="badge bg-warning px-3 py-2 mb-2 text-dark"><a href="{% url "developer_list" %}" class ='developer-link' style="text-decoration: none;"> Developer </a></span></h4>
+                        <p class="text-muted small">Writes and debugs code, implements features, and collaborates with the team for system improvements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+  {% comment %} <script>
+    let prevScrollPos = window.pageYOffset;
+    window.onscroll = function () {
+      let currentScrollPos = window.pageYOffset;
+      let navbar = document.querySelector(".navbar");
+      
+      if (prevScrollPos > currentScrollPos) {
+        // Scrolling Up - Show Navbar
+        navbar.style.top = "0";
+      } else {
+        // Scrolling Down - Hide Navbar
+        navbar.style.top = "-80px"; // Adjust height as needed
+      }
+      
+      prevScrollPos = currentScrollPos;
+    };
+  </script> {% endcomment %}
+
+{% comment %} 
+
+  <main>
+  
     <section class="py-5 text-center container">
       <div class="row py-lg">
         <div class="col-lg-6 col-md-8 mx-auto">
@@ -108,8 +315,8 @@
 
           <div class="step">
             <div class="step-content">
-              <h2>2014</h2>
-              <h2>Beginning of Ontreat.com</h2>
+              <h2>April 2015</h2>
+              <h2>Tragic Year</h2>
               <p class="text-muted">A massive earthquake, magnitude of 7.8M<sub>w</sub>,<br /> hit Nepal. We lost our
                 homes - thousands of <br />people lost their life, millions people lost <br />their family members and
                 house. And, as <br />tiny startup, ontreat lost our its business<br /> traction. Thankfully all our
@@ -122,8 +329,8 @@
 
           <div class="step">
             <div class="step-content">
-              <h2>2014</h2>
-              <h2>Beginning of Ontreat.com</h2>
+              <h2>2016 - Now</h2>
+              <h2>Transition and Experiment</h2>
               <p class="text-muted">It took time to recover from earthquake<br /> disaster - to build homes and
                 everything.<br /> However we were passionate geek, had <br />years of experience and expertise. We
                 <br />pivoted ontreat.com to Python/Django<br /> Agency. We helped awesome entreprenuers<br /> to build
@@ -384,144 +591,9 @@
       </div>
     </div>
     </div>
-  </main>
+  </main> {% endcomment %}
 
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-  <section id="contact">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 text-center">
-          <a name="#contact">
-            <h1 class="section-heading text-uppercase pt-3">
-              <b>Get in toch with us</b>
-            </h1>
-            <h5 class="section-subheading text-muted">
-              <i> Please drop us your name, number or email, and a brief note
-              about your project.</i>
-            </h5>
-          </a>
-        </div>
-        <a name="#contact"> </a>
-      </div>
-      <a name="#contact">
-        <div class="row">
-          <div class="col-lg-12">
-            <form method="post" action="/index" id="contactForm" name="sentMessage" novalidate="novalidate">
-              {% csrf_token %}
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group pt-3">
-                    <input class="form-control" id="name" name="name" type="text" placeholder="Your Name *" required="required"
-                      data-validation-required-message="Please enter your name." />
-                  </div>
-
-                  <div class="form-group">
-                    <input class="form-control" id="email" name="email" type="email" placeholder="Your Email *" required="required"
-                      data-validation-required-message="Please enter your email address." />
-                  </div>
-
-                  <div class="form-group">
-                    <input class="form-control" id="phone" type="tel" name="phone" placeholder="Your Phone *" required="required"
-                      data-validation-required-message="Please enter your phone number." />
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="form-group pt-3">
-                    <textarea class="form-control" id="message" name="desc" placeholder="Your Message *" required="required"
-                      data-validation-required-message="Please enter a message."></textarea>
-
-                      <form method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <!-- Left Column (for name, short description, and description) -->
-                            <div class="col-md-6">
-                                <div class="form-group pt-3">
-                                    <input class="form-control" id="name" name="name" type="text" placeholder="Project Name *" required="required"
-                                        data-validation-required-message="Please enter the project name." />
-                                </div>
-                    
-                                <div class="form-group">
-                                    <input class="form-control" id="short_description" name="short_description" type="text" placeholder="Short Description *" required="required"
-                                        data-validation-required-message="Please enter the short description." />
-                                </div>
-                    
-                                <div class="form-group">
-                                    <textarea class="form-control" id="description" name="description" placeholder="Project Description *" required="required"
-                                        data-validation-required-message="Please enter the project description."></textarea>
-                                </div>
-                    
-                                <div class="form-group">
-                                    <input class="form-control" id="created_date" name="created_date" type="text" placeholder="Created Date (YYYY-MM-DD HH:MM:SS) *" required="required"
-                                        data-validation-required-message="Please enter the created date." />
-                                </div>
-                            </div>
-                    
-                            <!-- Right Column (for end date, type, and developers) -->
-                            <div class="col-md-6">
-                                <div class="form-group pt-3">
-                                    <input class="form-control" id="end_date" name="end_date" type="text" placeholder="End Date (YYYY-MM-DD HH:MM:SS) *" required="required"
-                                        data-validation-required-message="Please enter the end date." />
-                                </div>
-                    
-                                <div class="form-group">
-                                  <label for="type">Project Type</label>
-                                  <select name="type" id="type" required placeholders="type">
-                                    <option value="Web">Web Development</option>
-                                </select> 
-                                    </select>
-                                </div>
-                    
-                                <div class="form-group">
-                                  <label for="developers">Developers</label>
-
-                                  <select class="form-control" name="developers" id="developers" placeholder="developers" multiple required="required" data-validation-required-message="Please enter the end date." />>
-                                  {% for developer in users %}
-                                      <option value="{{ developer.id }}">{{ developer.username }}</option> 
-                                  {% endfor %}
-                              </select>
-                                </div>
-                            </div>
-                        </div>
-                    
-                      
-                    </form>
-                    
-                    
-                      
-                    
-                    
-
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-lg-12 text-center">
-                  <div id="success"></div>
-                  <button id="sendMessageButton" class="btn btn-secondary btn-xl text-uppercase" type="submit">
-                    Send Message
-                  </button>
-                </div>
-                <div class="col-lg-12 text-center">&nbsp;</div>
-                <div class="clearfix"></div>
-                <div class="col-lg-12 text-center">
-                  <p>Ontreat Service Pvt. Ltd.<br />
-                    Kathmandu-16, Nayabazar<br />
-                    Kathmandu, Nepal<br />
-                    Krishna Sunuwar<br />
-                    Email: krish@ontreat.com</p>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </a>
-    </div>
-    <a name="#contact"> </a>
-
-  </section>
-
-  <div class="col-md-4">
-    <span class="copyright">Copyright © ontreat.com 2018</span><br>
-  </div>
-{% endblock %}
+{% endblock content %}
