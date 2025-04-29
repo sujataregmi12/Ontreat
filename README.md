@@ -1,6 +1,6 @@
 # Project Management System
 
-A project management system is a platform that plans, organizes, tracks and manages projects, developers, teams, and
+A project management system is a web based application that plans, organizes, tracks and manages projects, developers, teams, and
 tasks to ensure that work is completed properly within the designated timelines.
 
 # Features
