@@ -19,6 +19,11 @@ class IndexView(LoginRequiredMixin, TemplateView):
     template_name = "index.html"
     login_url = '/account/login'  # Specify where to redirect users who aren't logged in
 
+
+class AboutView(TemplateView):
+    template_name = "about.html"
+
+    
 #### Modifiy the projectlist template as you prefer.
 class ProjectListView(ListView):
     template_name = "projectlist.html"

@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.urls import path
 from home import views
-from home.views import IndexView, ProjectListView, ProjectDetailView, ProjectDeleteView, ProjectFormView
+from home.views import IndexView, AboutView, ProjectListView, ProjectDetailView, ProjectDeleteView, ProjectFormView
 from home.views import TaskListView ,TaskDetailView ,TaskDeleteView ,TaskCreateView
 from home.views import TeamListView ,TeamDetailView ,TeamDeleteView ,TeamCreateView
 from home.views import DeveloperListView, DeveloperDetailView , DeveloperDeleteView ,DeveloperCreateView
 
 urlpatterns = [
     path('', IndexView.as_view(), name= 'index'),
+    path('about/', AboutView.as_view(), name='about'),
     path('project_list', ProjectListView.as_view(), name= 'project_list'),
     path('project/<int:pk>',  ProjectDetailView.as_view(), name= 'project_detail'),
     path('project/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),

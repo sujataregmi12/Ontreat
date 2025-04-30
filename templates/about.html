@@ -1,0 +1,127 @@
+<!-- templates/about.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  
+    <main>
+        <section class="pt-0 text-center container">
+          <div class="row py-lg-5">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <section id="about">
+                <!-- Section Heading -->
+                <h2 class="fw-bold display-4 mb-4 "><br>About Us</h2>
+                <p class="lead text-muted mb-5">
+                  Welcome, your go-to project management system. We are dedicated to providing agile, collaborative, and efficient solutions for managing your projects, teams, and tasks seamlessly.
+                </p>  
+              </section>
+                    
+      
+              <!-- Our Mission -->
+              <section class="my-5">
+                <h2 class="fw-bold ">Our Mission</h2>
+                <p class="text-body-secondary">
+                  Our mission is to simplify project management through intuitive, user-friendly tools that enhance team collaboration, streamline workflows, and drive success. We are committed to providing powerful yet easy-to-use features for teams of all sizes.
+                </p>
+              </section>
+      
+              <!-- Key Features Section -->
+              <section class="my-5">
+                <h2 class="fw-bold ">Key Features</h2>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                  <!-- Feature 1 -->
+                  <div class="col">
+                    <div class="card shadow-lg border-0 rounded-3">
+                      <div class="card-body">
+                        <h5 class="card-title text-primary">Project Management</h5>
+                        <p class="card-text">Efficiently manage projects from start to finish with clear timelines, goals, and milestones.</p>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <!-- Feature 2 -->
+                  <div class="col">
+                    <div class="card shadow-lg border-0 rounded-3">
+                      <div class="card-body">
+                        <h5 class="card-title text-primary">Task Management</h5>
+                        <p class="card-text">Assign tasks, set priorities, and track progress in real-time. Ensure no task is overlooked and deadlines are met.</p>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <!-- Feature 3 -->
+                  <div class="col">
+                    <div class="card shadow-lg border-0 rounded-3">
+                      <div class="card-body">
+                        <h5 class="card-title text-primary">Team Collaboration</h5>
+                        <p class="card-text">
+                          Organize teams effectively with a structured hierarchy. Each team is led by a <strong>Project Lead</strong> and includes multiple <strong>Developers</strong> working on various projects.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+    
+                  
+      
+                  <!-- Feature 4 -->
+                 <!-- Feature 4 (Developer Management) -->
+    <div class="col">
+      <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body">
+          <h5 class="card-title text-primary">Developer Management</h5>
+          <p class="card-text"> manage your development team effectively. With features like the Developer List, team assignment. It ensures that your developers work collaboratively.</p>
+        
+        </div>
+      </div>
+    </div>
+    </section>
+      
+              <!-- Our Values -->
+              <section class="my-5">
+                <h2 class="fw-bold">Our Values</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Value</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Transparency</strong></td>
+                                <td>Clear communication and visibility in every project.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Collaboration</strong></td>
+                                <td>Working together to achieve goals efficiently.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Innovation</strong></td>
+                                <td>Constantly evolving to meet the needs of modern project management.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Customer Focus</strong></td>
+                                <td>Delivering value and solving real problems for our users.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+      
+              <!-- Call to Action -->
+              <section class="my-5">
+                <h2 class="fw-bold ">Join Us Today</h2>
+                <p class="text-body-secondary">
+                  Ready to take control of your projects and streamline your team's workflow? Sign up now and start experiencing the power of Our System!
+                </p>
+                <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg">Get Started</a>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+      
+  
+{% endblock %}
