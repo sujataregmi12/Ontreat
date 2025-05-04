@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+
+  <!-- Welcome Header -->
+  <div class="text-center mb-5">
+    <h1 class="display-4">Welcome, {{ request.user.get_full_name|default:request.user.username }}!</h1>
+    <p class="lead">Here's a quick summary of your project activity.</p>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="row text-center mb-4">
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title text-success">Completed Tasks</h5>
+          <p class="display-6">{{ finished_tasks|length }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title text-warning">Upcoming Tasks</h5>
+          <p class="display-6">{{ upcoming_tasks|length }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title text-primary">Total Projects</h5>
+          <p class="display-6">{{ total_projects }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Task Lists -->
+  <div class="row mb-5">
+    <div class="col-md-6">
+      <h4 class="mb-3">Upcoming Tasks</h4>
+      <ul class="list-group">
+        {% for task in upcoming_tasks %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ task.title }}
+          <span class="badge bg-warning text-dark">{{ task.due_date }}</span>
+        </li>
+        {% empty %}
+        <li class="list-group-item">No upcoming tasks.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h4 class="mb-3">Completed Tasks</h4>
+      <ul class="list-group">
+        {% for task in finished_tasks %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ task.title }}
+          <span class="badge bg-success">Completed</span>
+        </li>
+        {% empty %}
+        <li class="list-group-item">No completed tasks yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Teams Section -->
+  <div class="mb-5">
+    <h4 class="mb-3">Your Teams</h4>
+    <ul class="list-group">
+      {% for team in teams %}
+      <li class="list-group-item">{{ team.name }}</li>
+      {% empty %}
+      <li class="list-group-item">You're not assigned to any team yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+  <p class="mb-0">Ontreat Service Pvt. Ltd. | Kathmandu, Nepal</p>
+  <p class="mb-0">&copy; 2025 Ontreat.com</p>
+</footer>
+
+{% endblock %}
+

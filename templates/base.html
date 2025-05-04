@@ -29,23 +29,55 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          
+        
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">HOME </a>
+          </li>
+          {% endif %}
+
+
+          {% if not user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'about' %}">ABOUT US</a>
           </li>
-         
+         {%endif%}
+
+
+          {% if user.is_authenticated %}
+
+          <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    FEATURES
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <a class="dropdown-item" href="{% url 'project_list' %}">Project List</a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="{% url 'task_list' %}">Task List</a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="{% url 'team_list' %}">Team List</a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="{% url 'developer_list' %}">Developer List</a>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'pricing' %}">PRICING</a>
+</li>
+          {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'project_list' %}">PROJECT LIST</a>
+            <a class="nav-link" href="{% url 'account_login' %}">LOGIN</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'task_list' %}">TASK LIST</a>
+            <a class="nav-link" href="{% url 'account_signup' %}">SIGNUP</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'team_list' %}">TEAM LIST</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'developer_list' %}">DEVELOPER LIST</a>
-          </li>
+{% endif %}
+
           {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link text-danger"  name="logout" href="/account/logout">LOGOUT</a>

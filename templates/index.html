@@ -14,6 +14,7 @@
 {% endif %}
 
 
+
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active py-4">
@@ -31,6 +32,124 @@
         </div>
     </div>
 </div>
+<section class="text-center p-5 bg-light">
+  <h1 class="display-4">Your Project Management System</h1>
+  <p class="lead">Manage your projects with speed and simplicity.</p>
+</section>
+
+
+<section id="Features">
+  <!-- Section Heading -->
+  <h2 class="fw-bold display-4 mb-4 "><br>Features</h2>
+</section>
+
+<section class="container text-center py-5">
+  <div class="row">
+      <!-- Feature 1: Project Creation and Tracking -->
+      <div class="col-md-4">
+          <div class="card">
+              <img src="static/carousel.jpg" class="card-img-top" alt="Project Creation">
+              <div class="card-body">
+                  <h5 class="card-title">Project Management</h5>
+                  <p class="card-text">Create, track, and manage projects with ease. Keep everything on schedule.</p>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card">
+            <img src="static/pro1.jpeg" class="card-img-top" alt="Task Assignment">
+            <div class="card-body">
+                <h5 class="card-title">Task Management</h5>
+                <p class="card-text">Assign tasks to team members and track their progress efficiently.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature 3: Team Management -->
+    <div class="col-md-4">
+        <div class="card">
+            <img src="static/pro2.jpeg" class="card-img-top" alt="Team Management">
+            <div class="card-body">
+                <h5 class="card-title">Team Management</h5>
+                <p class="card-text">Manage teams, assign roles, and ensure everyone works in sync.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Testimonials -->
+<section class="bg-light py-5 text-center">
+  <blockquote class="blockquote">
+      <p class="mb-0">"This system improved our team's efficiency and communication!"</p>
+      <footer class="blockquote-footer" style="margin-top: 10px;">A Happy User</footer>
+  </blockquote>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center p-3">
+  <P>Ontreat Service Pvt. Ltd.<br>
+    Kathmandu-16, Nayabazar<br>
+    Kathmandu, Nepal<br>
+  <p>&copy; 2025 ontreat.com. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  
 {% comment %} 
@@ -159,53 +278,6 @@
     </section>
   </main>
    {% endcomment %}
-
-
-  
-  <main>
-    <div class="container my-5">
-        <h2 class="text-center">
-            Meet Our Developers
-        </h2>
-        <div class="developer-container d-flex flex-column align-items-center gap-4">
-          <!-- Lead Developer -->
-          <div class="developer d-flex align-items-center justify-content-center">
-              <img src="/static/dev3.png" alt="Sujata" class="rounded-circle shadow" style="width: 120px; height: 120px;">
-              <div class="card ms-3" style="width: 30rem;">
-                  <div class="card-body">
-                      <h4><span class="badge bg-primary px-3 py-2 mb-2 text-white">
-                          <a href="{% url 'team_list' %}" class="team-link text-white" style="text-decoration: none;">Project Lead</a>
-                      </span></h4>
-                      <p class="text-muted small">Guides the team in software architecture, maintains code quality, and ensures scalable solutions.</p>
-                  </div>
-              </div>
-          </div>
-
-            <!-- Project Manager -->
-            <div class="developer d-flex align-items-center justify-content-center">
-                <img src="/static/dev4.jpeg" alt="Roniee" class="rounded-circle shadow" style="width: 120px; height: 120px;">
-                <div class="card ms-3" style="width: 30rem;">
-                    <div class="card-body">
-                        <h4><span class="badge bg-info px-3 py-2 mb-2"><a href="{% url 'project_list' %}" class="project-link"  style = "text-decoration:none;">Project Manager</a></span></h4>
-                        <p class="text-muted small">Coordinates projects, manages timelines, and ensures smooth collaboration for success.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Developer -->
-            <div class="developer d-flex align-items-center justify-content-center">
-                <img src="/static/dev2.jpeg" alt="Sudip" class="rounded-circle shadow" style="width: 120px; height: 120px;">
-                <div class="card ms-3" style="width: 30rem;">
-                    <div class="card-body">
-                        <h4><span class="badge bg-warning px-3 py-2 mb-2 text-dark"><a href="{% url "developer_list" %}" class ='developer-link' style="text-decoration: none;"> Developer </a></span></h4>
-                        <p class="text-muted small">Writes and debugs code, implements features, and collaborates with the team for system improvements.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
-
 
 
   {% comment %} <script>

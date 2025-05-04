@@ -48,7 +48,7 @@ class Project(models.Model):
         ('AI', 'Artificial Intelligence'),
       ]
     type =models.CharField(max_length=12 ,choices=TYPE_CHOICES)
-    developers = models.ManyToManyField(UserProfile, related_name='projects', null=True, blank=True)
+    developers = models.ManyToManyField(UserProfile, related_name='projects', blank=True)
     image = models.ImageField(upload_to = 'projects/images/', null=True, blank=True )
 
     def __str__(self):

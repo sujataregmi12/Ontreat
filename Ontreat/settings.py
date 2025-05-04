@@ -63,10 +63,13 @@ MIDDLEWARE = [
 # Set up message storage system(manually added)
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
+
 #manually added
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL =  '/account/login' 
 
 ROOT_URLCONF = 'Ontreat.urls'
 

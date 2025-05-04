@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<section class="py-5 bg-light">
+    <div class="container text-center">
+      <h2 class="fw-bold display-5 mb-4">Choose the Right Plan for You</h2>
+      <p class="text-muted mb-5">Scalable solutions for individuals, teams, and enterprises.</p>
+  
+      <div class="row g-4">
+        
+        <!-- Starter Plan Card -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow h-100">
+            <div class="card-header bg-primary text-white py-4">
+              <h4 class="mb-0">Starter</h4>
+            </div>
+            <div class="card-body">
+              <h2 class="fw-bold">$5</h2>
+              <p class="text-muted">Per user / month</p>
+              <ul class="list-unstyled my-4 text-start">
+                <li>✔ Up to 5 Projects</li>
+                <li>✔ 5 Users</li>
+                <li>✖ Priority Support</li>
+              </ul>
+              <a href="{% url 'account_signup' %}" class="btn btn-outline-primary w-100">Get Started</a>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Advanced Plan Card -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow-lg h-100">
+            <div class="card-header bg-success text-white py-4">
+              <h4 class="mb-0">Advanced</h4>
+            </div>
+            <div class="card-body">
+              <h2 class="fw-bold">$10</h2>
+              <p class="text-muted">Per user / month</p>
+              <ul class="list-unstyled my-4 text-start">
+                <li>✔ Unlimited Projects</li>
+                <li>✔ 15 Users</li>
+                <li>✔ Email Support</li>
+              </ul>
+              <a href="{% url 'account_signup' %}" class="btn btn-success w-100">Start Free Trial</a>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Premium Plan Card -->
+        <div class="col-md-4">
+          <div class="card border-0 shadow h-100">
+            <div class="card-header bg-dark text-white py-4">
+              <h4 class="mb-0">Premium</h4>
+            </div>
+            <div class="card-body">
+              <h2 class="fw-bold">Custom</h2>
+              <p class="text-muted">Contact us for pricing</p>
+              <ul class="list-unstyled my-4 text-start">
+                <li>✔ Unlimited Users</li>
+                <li>✔ Custom Features</li>
+                <li>✔ Dedicated Support</li>
+              </ul>
+              <a href="{% url 'account_signup' %}" class="btn btn-outline-dark">Get Started</a>
+
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  {% endblock %}

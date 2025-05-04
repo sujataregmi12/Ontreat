@@ -15,20 +15,49 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 # https://docs.djangoproject.com/en/5.1/topics/class-based-views/
 
-class IndexView(LoginRequiredMixin, TemplateView):
+class IndexView(TemplateView):
     template_name = "index.html"
     login_url = '/account/login'  # Specify where to redirect users who aren't logged in
+
+
+def get(self, request, *args, **kwargs):
+        # If the user is authenticated, redirect to the home page (or dashboard)
+        if request.user.is_authenticated:
+            return redirect('home')  # Make sure to replace 'home' with your actual home URL name
+        
+        # Otherwise, render the public index page
+        return render(request, 'index.html')
 
 
 class AboutView(TemplateView):
     template_name = "about.html"
 
-    
+class HomePageView(LoginRequiredMixin, TemplateView):
+    template_name = 'homepage.html'
+
+def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+
+        context['finished_tasks'] = Task.objects.filter(assigned_to__user=user, status='completed')
+        context['upcoming_tasks'] = Task.objects.filter(assigned_to__user=user).exclude(status='completed')
+        context['total_projects'] = Project.objects.filter(developers__user=user).distinct().count()
+        context['teams'] = Team.objects.filter(developers__user=user).distinct()
+        return context
+
+
+class PricingView(LoginRequiredMixin, TemplateView):
+     template_name = "pricing.html"
+     
+
+
 #### Modifiy the projectlist template as you prefer.
-class ProjectListView(ListView):
+class ProjectListView(LoginRequiredMixin,ListView):
     template_name = "projectlist.html"
     model = Project
     context_object_name = "project_list"
+
+
 
 #### Create a ProjectDetailView, ProjectDeleteView
 #ProjectDetailView
@@ -57,7 +86,7 @@ class ProjectFormView(CreateView):
     success_url = reverse_lazy('project_list') 
 
 
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMixin,ListView):
     model= Task
     template_name ='task_list.html'
     context_object_name = "task_list"
@@ -81,7 +110,7 @@ class TaskCreateView(CreateView):
     success_url = reverse_lazy('task_list') 
 
 
-class TeamListView(ListView):
+class TeamListView(LoginRequiredMixin,ListView):
     model = Team
     template_name = 'team_list.html'
     context_object_name = 'teams'
@@ -167,6 +196,7 @@ class DeveloperCreateView(CreateView):
     template_name = 'developer_form.html'
     form_class = DeveloperForm
     success_url = reverse_lazy('developer_list')
+
 
 
 #superuser:admin, password:admin , email:admin@gmail.com
