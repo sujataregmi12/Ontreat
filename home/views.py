@@ -32,6 +32,7 @@ def get(self, request, *args, **kwargs):
 class AboutView(TemplateView):
     template_name = "about.html"
 
+from django.utils.timezone import now
 class HomePageView(LoginRequiredMixin, TemplateView):
     template_name = 'homepage.html'
 
@@ -39,10 +40,31 @@ def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        context['finished_tasks'] = Task.objects.filter(assigned_to__user=user, status='completed')
-        context['upcoming_tasks'] = Task.objects.filter(assigned_to__user=user).exclude(status='completed')
-        context['total_projects'] = Project.objects.filter(developers__user=user).distinct().count()
-        context['teams'] = Team.objects.filter(developers__user=user).distinct()
+        if user.is_authenticated and hasattr(user, 'userprofile'):
+            profile = user.userprofile
+
+            # Tasks
+            context['finished_tasks'] = Task.objects.filter(assigned_to=profile, status='completed')
+            context['upcoming_tasks'] = Task.objects.filter(
+                assigned_to_team__developers=profile,
+                deadline__gte=now()
+            ).exclude(status='completed').order_by('deadline')[:5]
+
+            # Projects and teams
+            context['total_projects'] = Project.objects.filter(developers=profile).distinct().count()
+            context['teams'] = Team.objects.filter(developers=profile).distinct()
+
+            # Project deadlines
+            context['project_deadlines'] = Project.objects.filter(
+                developers=profile
+            ).order_by('end_date')[:5]
+        else:
+            context['finished_tasks'] = []
+            context['upcoming_tasks'] = []
+            context['total_projects'] = 0
+            context['teams'] = []
+            context['project_deadlines'] = []
+
         return context
 
 

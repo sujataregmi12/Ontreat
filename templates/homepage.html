@@ -6,86 +6,128 @@
 
   <!-- Welcome Header -->
   <div class="text-center mb-5">
-    <h1 class="display-4">Welcome, {{ request.user.get_full_name|default:request.user.username }}!</h1>
-    <p class="lead">Here's a quick summary of your project activity.</p>
+    <h1 class="display-4 text-primary">Welcome, {{ request.user.get_full_name|default:request.user.username }}!</h1>
+    <p class="lead text-muted">Here's a quick summary of your project activity. Stay on top of your tasks and deadlines!</p>
   </div>
 
   <!-- Summary Cards -->
   <div class="row text-center mb-4">
     <div class="col-md-4 mb-3">
-      <div class="card shadow-sm h-100">
+      <div class="card shadow-lg h-100 border-0 rounded-lg">
         <div class="card-body">
           <h5 class="card-title text-success">Completed Tasks</h5>
-          <p class="display-6">{{ finished_tasks|length }}</p>
+          <p class="display-4">{{ finished_tasks|length }}</p>
         </div>
       </div>
     </div>
+
     <div class="col-md-4 mb-3">
-      <div class="card shadow-sm h-100">
+      <div class="card shadow-lg h-100 border-0 rounded-lg">
         <div class="card-body">
           <h5 class="card-title text-warning">Upcoming Tasks</h5>
-          <p class="display-6">{{ upcoming_tasks|length }}</p>
+          <p class="display-4">{{ upcoming_tasks|length }}</p>
         </div>
       </div>
     </div>
     <div class="col-md-4 mb-3">
-      <div class="card shadow-sm h-100">
+      <div class="card shadow-lg h-100 border-0 rounded-lg">
         <div class="card-body">
           <h5 class="card-title text-primary">Total Projects</h5>
-          <p class="display-6">{{ total_projects }}</p>
+          <p class="display-4">{{ total_projects }}</p>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Task Lists -->
-  <div class="row mb-5">
-    <div class="col-md-6">
-      <h4 class="mb-3">Upcoming Tasks</h4>
-      <ul class="list-group">
-        {% for task in upcoming_tasks %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          {{ task.title }}
-          <span class="badge bg-warning text-dark">{{ task.due_date }}</span>
-        </li>
-        {% empty %}
-        <li class="list-group-item">No upcoming tasks.</li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <h4 class="mb-3">Completed Tasks</h4>
-      <ul class="list-group">
-        {% for task in finished_tasks %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          {{ task.title }}
-          <span class="badge bg-success">Completed</span>
-        </li>
-        {% empty %}
-        <li class="list-group-item">No completed tasks yet.</li>
-        {% endfor %}
-      </ul>
     </div>
   </div>
 
   <!-- Teams Section -->
-  <div class="mb-5">
-    <h4 class="mb-3">Your Teams</h4>
-    <ul class="list-group">
+  <div class="mb-4">
+    <h4 class="mb-3 text-primary">Your Teams</h4>
+    <div class="row">
       {% for team in teams %}
-      <li class="list-group-item">{{ team.name }}</li>
+      <div class="col-lg-4 col-md-6 mb-3">
+        <div class="card shadow-sm h-100 border-0 rounded-lg">
+          <div class="card-body">
+            <h5 class="card-title text-dark">{{ team.name }}</h5>
+            <p class="text-muted">You're a part of this amazing team.</p>
+          </div>
+        </div>
+      </div>
       {% empty %}
-      <li class="list-group-item">You're not assigned to any team yet.</li>
+      <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+          You're not assigned to any team yet. Please reach out to your admin.
+        </div>
+      </div>
       {% endfor %}
-    </ul>
+    </div>
   </div>
+
+  <!-- Project Deadlines Section -->
+  <section class="mt-4">
+    <div class="row">
+
+      <!-- Project Deadlines Card -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-lg border-0 h-100 rounded-lg">
+          <div class="card-header bg-light border-bottom">
+            <h5 class="mb-0 text-primary"><i class="bi bi-calendar2-event text-primary"></i> Project Deadlines</h5>
+          </div>
+          <div class="card-body">
+            {% if project_deadlines %}
+              <ul class="list-group list-group-flush">
+                {% for project in project_deadlines %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                      <strong>{{ project.Project_name }}</strong>
+                      <br>
+                      <small class="text-muted">{{ project.short_description }}</small>
+                    </div>
+                    <span class="badge bg-info text-dark">
+                      {{ project.end_date|date:"M d, Y" }}
+                    </span>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-muted mb-0">No upcoming project deadlines.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Tasks Card -->
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-lg border-0 h-100 rounded-lg">
+          <div class="card-header bg-light border-bottom">
+            <h5 class="mb-0 text-warning"><i class="bi bi-clock-history text-warning"></i> Upcoming Task Due Dates</h5>
+          </div>
+          <div class="card-body">
+            {% if upcoming_tasks %}
+              <ul class="list-group list-group-flush">
+                {% for task in upcoming_tasks %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                      <strong>{{ task.title }}</strong>
+                      <br>
+                      <small>Status: {{ task.status|title }}</small>
+                    </div>
+                    <span class="badge bg-warning text-dark">
+                      {{ task.deadline|date:"M d, Y H:i" }}
+                    </span>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-muted mb-0">No upcoming tasks.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 </div>
 
-<!-- Footer -->
-<footer class="bg-dark text-white text-center py-3">
-  <p class="mb-0">Ontreat Service Pvt. Ltd. | Kathmandu, Nepal</p>
-  <p class="mb-0">&copy; 2025 Ontreat.com</p>
-</footer>
 
 {% endblock %}
-
