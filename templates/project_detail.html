@@ -95,4 +95,57 @@
     </div>
 </div>
 
+
+
+{% comment %} logbook form {% endcomment %}
+<h3 class="mt-4 mb-3 text-center text-primary"> Project Log Book</h3>
+
+{% for entry in project.log_entries.all %}
+  <div class="card mb-4 shadow-sm rounded">
+    <div class="card-body">
+      <h6 class="card-subtitle mb-4 text-muted text-center ">
+        {{ entry.timestamp|date:"F j, Y, g:i a" }} 
+        {% if entry.created_by %}
+          <span class="text-dark">by {{ entry.created_by.display_name }}</span>
+        {% endif %}
+      </h6>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong> Tasks Done:</strong></p>
+          <p class="small">{{ entry.tasks_done }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong> Remaining Tasks:</strong></p>
+          <p class="small">{{ entry.tasks_remaining }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+  <p class="text-center text-muted">No log entries yet.</p>
+{% endfor %}
+
+<h4 class="mt-5 text-center"> Add Log Entry</h4>
+<form method="post" class="p-4 shadow-sm rounded bg-light">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="id_tasks_done"><strong>Tasks Done:</strong></label>
+        {{ form.tasks_done }}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="id_tasks_remaining"><strong> Remaining Tasks:</strong></label>
+        {{ form.tasks_remaining }}
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-4">
+    <button type="submit" class="btn btn-success btn-sm">Submit Entry</button>
+  </div>
+</form>
+
+
 {% endblock %}

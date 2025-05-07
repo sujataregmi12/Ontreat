@@ -1,5 +1,5 @@
 from django.contrib import admin
-from home.models import Project ,Task, Team, UserProfile
+from home.models import Project ,Task, Team, UserProfile ,LogBook
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ["display_name", "user", "role", "is_active"]
@@ -9,3 +9,4 @@ admin.site.register(Project)
 admin.site.register(Task)
 admin.site.register(Team)
 admin.site.register(UserProfile, UserProfileAdmin)
+admin.site.register(LogBook)

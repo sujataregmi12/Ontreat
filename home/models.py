@@ -95,5 +95,16 @@ class Task(models.Model):
     def __str__(self):
       return self.title
     
+
+class LogBook(models.Model):
+    project = models.ForeignKey(Project, related_name='log_entries', on_delete=models.CASCADE)
+    created_by = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    tasks_done = models.TextField(help_text="Describe tasks completed")
+    tasks_remaining = models.TextField(help_text="Describe remaining tasks")
+    
+    def __str__(self):
+        return f"Log by {self.created_by} on {self.timestamp.strftime('%Y-%m-%d')}"
+
      
 #username and password of superuser: admin, email:admin@gmail.com

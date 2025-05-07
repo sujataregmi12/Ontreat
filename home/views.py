@@ -1,13 +1,15 @@
 # from django.contrib.auth.mixins import UserPassesTestMixin
-from django.shortcuts import render ,redirect ,get_object_or_404
+from django.shortcuts import render ,redirect 
 from django.contrib import messages
 from django.http import HttpResponse
-from home.models import Project ,Task , Team ,UserProfile
+from home.models import Project ,Task , Team ,UserProfile 
 from django.views.generic import TemplateView, ListView ,DetailView ,DeleteView, CreateView
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from .forms import AddForm ,TaskForm, TeamForm ,DeveloperForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import AddForm ,TaskForm, TeamForm ,DeveloperForm ,LogBookForm
+from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.views.generic.edit import FormMixin
+from django.urls import reverse
 
 
 
@@ -83,11 +85,32 @@ class ProjectListView(LoginRequiredMixin,ListView):
 
 #### Create a ProjectDetailView, ProjectDeleteView
 #ProjectDetailView
-class ProjectDetailView( DetailView):
+class ProjectDetailView( FormMixin, DetailView):
     model = Project
     template_name = 'project_detail.html'  # The template you want to use
     context_object_name = 'project'
+    form_class = LogBookForm
     
+    def get_success_url(self):
+        return reverse('project_detail', kwargs={'pk': self.object.pk})
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+
+        if form.is_valid():
+            log = form.save(commit=False)
+            log.project = self.object
+            log.created_by = UserProfile.objects.filter(user=request.user).first() # assumes a related UserProfile exists
+            log.save()
+            return self.form_valid(form)
+        return self.form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.get_form()
+        context['log_entries'] = self.object.log_entries.all().order_by('-timestamp')
+        return context
     
 
 #projectDeleteView

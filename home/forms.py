@@ -1,5 +1,5 @@
 from django import forms
-from .models import Project ,User ,Task ,Team ,UserProfile
+from .models import Project ,User ,Task ,Team ,UserProfile ,LogBook
 from django.contrib.auth.models import User
 from bootstrap_datepicker_plus.widgets import DatePickerInput
 
@@ -60,3 +60,13 @@ class Developer(forms.ModelForm):
            'class':'form-control'
        })
    )
+
+
+class LogBookForm(forms.ModelForm):
+    class Meta:
+        model = LogBook
+        fields = ['tasks_done', 'tasks_remaining']
+        widgets = {
+            'tasks_done': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'placeholder': 'Describe completed tasks...'}),
+            'tasks_remaining': forms.Textarea(attrs={'rows': 3, 'class': 'form-control', 'placeholder': 'Describe remaining tasks...'}),
+        }
