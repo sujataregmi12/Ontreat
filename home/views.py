@@ -10,6 +10,7 @@ from .forms import AddForm ,TaskForm, TeamForm ,DeveloperForm ,LogBookForm
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.views.generic.edit import FormMixin
 from django.urls import reverse
+from django.utils import timezone
 
 
 
@@ -34,40 +35,39 @@ def get(self, request, *args, **kwargs):
 class AboutView(TemplateView):
     template_name = "about.html"
 
-from django.utils.timezone import now
+
 class HomePageView(LoginRequiredMixin, TemplateView):
     template_name = 'homepage.html'
 
-def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
+        user_profile = UserProfile.objects.filter(user=user).first()
 
-        if user.is_authenticated and hasattr(user, 'userprofile'):
-            profile = user.userprofile
+        if not user_profile:
+            return context  # Return empty context if no profile
+        
+        # Fetch user's teams
+        teams = user_profile.teams.all()
+        
+        # Filter tasks and projects based on the user's teams
+        context.update({
+            'finished_tasks': Task.objects.filter(status='completed', assigned_to_team__in=teams),
+            'upcoming_tasks': Task.objects.filter(status='todo', deadline__gte=timezone.now(), assigned_to_team__in=teams),
+            'total_projects': user_profile.projects.count(),
+            'teams': teams,
+            'project_deadlines': Project.objects.filter(developers=user_profile, end_date__gte=timezone.now())
+        })
 
-            # Tasks
-            context['finished_tasks'] = Task.objects.filter(assigned_to=profile, status='completed')
-            context['upcoming_tasks'] = Task.objects.filter(
-                assigned_to_team__developers=profile,
-                deadline__gte=now()
-            ).exclude(status='completed').order_by('deadline')[:5]
-
-            # Projects and teams
-            context['total_projects'] = Project.objects.filter(developers=profile).distinct().count()
-            context['teams'] = Team.objects.filter(developers=profile).distinct()
-
-            # Project deadlines
-            context['project_deadlines'] = Project.objects.filter(
-                developers=profile
-            ).order_by('end_date')[:5]
-        else:
-            context['finished_tasks'] = []
-            context['upcoming_tasks'] = []
-            context['total_projects'] = 0
-            context['teams'] = []
-            context['project_deadlines'] = []
+        # If the user is an admin, show all tasks and projects
+        if user.is_superuser:  # For admin users
+            context.update({
+                'all_tasks': Task.objects.all(),
+                'all_projects': Project.objects.all()
+            })
 
         return context
+
 
 
 class PricingView(LoginRequiredMixin, TemplateView):
