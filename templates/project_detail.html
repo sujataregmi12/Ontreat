@@ -27,9 +27,7 @@
                             <p>No image available for this project.</p>
                         {% endif %}
                     </div>
-                    <div class="card-footer text-center">                  
-                      <p class="fs-6 text-muted">You can see every detail of project.</p>
-                  </div>
+                    
                 </div>
             </div>
 
@@ -90,33 +88,38 @@
 
     </article>
 
-    <div class="back-link mt-4 text-center">
+    {% comment %} <div class="back-link mt-4 text-center">
         <a href="{% url 'project_list' %}" class="btn btn-primary btn-lg" style="border-radius: 50px; padding: 10px 30px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);">Back to Projects</a>
-    </div>
+    </div> {% endcomment %}
 </div>
 
 
 
 {% comment %} logbook form {% endcomment %}
-<h3 class="mt-4 mb-3 text-center text-primary"> Project Log Book</h3>
-
 {% for entry in project.log_entries.all %}
   <div class="card mb-4 shadow-sm rounded">
     <div class="card-body">
-      <h6 class="card-subtitle mb-4 text-muted text-center ">
-        {{ entry.timestamp|date:"F j, Y, g:i a" }} 
+
+      <!-- Centered date and name -->
+      <p class="text-muted text-center mb-3">
+        {{ entry.timestamp|date:"F j, Y, g:i a" }}
         {% if entry.created_by %}
-          <span class="text-dark">by {{ entry.created_by.display_name }}</span>
+          - <span class="text-dark">by {{ entry.created_by.display_name }}</span>
         {% endif %}
-      </h6>
-      <div class="row">
-        <div class="col-md-6">
-          <p><strong> Tasks Done:</strong></p>
-          <p class="small">{{ entry.tasks_done }}</p>
+      </p>
+
+      <div class="row justify-content-center">
+        <div class="col-md-5 mb-3">
+          <div class="p-2 border rounded bg-light text-center">
+            <strong>Tasks Done:</strong>
+            <p class="small mb-0">{{ entry.tasks_done }}</p>
+          </div>
         </div>
-        <div class="col-md-6">
-          <p><strong> Remaining Tasks:</strong></p>
-          <p class="small">{{ entry.tasks_remaining }}</p>
+        <div class="col-md-5 mb-3">
+          <div class="p-2 border rounded bg-light text-center">
+            <strong>Remaining Tasks:</strong>
+            <p class="small mb-0">{{ entry.tasks_remaining }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -125,26 +128,37 @@
   <p class="text-center text-muted">No log entries yet.</p>
 {% endfor %}
 
-<h4 class="mt-5 text-center"> Add Log Entry</h4>
+
+<h4 class="mt-5 text-center">Add Log Entry</h4>
 <form method="post" class="p-4 shadow-sm rounded bg-light">
   {% csrf_token %}
-  <div class="form-row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="id_tasks_done"><strong>Tasks Done:</strong></label>
-        {{ form.tasks_done }}
-      </div>
+
+  <div class="row justify-content-center">
+    <!-- Tasks Done -->
+    <div class="col-md-5 mb-3">
+      <label for="id_tasks_done" class="form-label"><strong>Tasks Done:</strong></label>
+      <input type="text" name="tasks_done" id="id_tasks_done" class="form-control" 
+             style="height: 100px; width: 100%; border-radius: 6px;">
     </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="id_tasks_remaining"><strong> Remaining Tasks:</strong></label>
-        {{ form.tasks_remaining }}
-      </div>
+
+    <!-- Remaining Tasks -->
+    <div class="col-md-5 mb-3">
+      <label for="id_tasks_remaining" class="form-label"><strong>Remaining Tasks:</strong></label>
+      <input type="text" name="tasks_remaining" id="id_tasks_remaining" class="form-control" 
+             style="height: 100px; width: 100%; border-radius: 6px;">
     </div>
   </div>
-  <div class="text-center mt-4">
-    <button type="submit" class="btn btn-success btn-sm">Submit Entry</button>
-  </div>
+
+ <div class="d-flex justify-content-center gap-3 mt-4">
+  <button type="submit" class="btn btn-success btn-lg" style="border-radius: 50px; padding: 10px 30px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); font-size: 16px; font-weight: bold; text-align: center;">
+    Submit Entry
+  </button>
+
+  <a href="{% url 'project_list' %}" class="btn btn-primary btn-lg" style="border-radius: 50px; padding: 10px 30px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); font-size: 16px; font-weight: bold; text-align: center;">
+    Back to Projects
+  </a>
+</div>
+
 </form>
 
 
